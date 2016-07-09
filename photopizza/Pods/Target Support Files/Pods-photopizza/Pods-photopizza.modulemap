@@ -1,0 +1,6 @@
+framework module Pods_photopizza {
+  umbrella header "Pods-photopizza-umbrella.h"
+
+  export *
+  module * { export * }
+}

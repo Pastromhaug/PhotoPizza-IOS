@@ -1,0 +1,6 @@
+framework module Pods_photopizzaTests {
+  umbrella header "Pods-photopizzaTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

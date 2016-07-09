@@ -1,0 +1,542 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14924CAA1D319C2500E42676 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14924CA91D319C2500E42676 /* AppDelegate.swift */; };
+		14924CAC1D319C2500E42676 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14924CAB1D319C2500E42676 /* ViewController.swift */; };
+		14924CAF1D319C2500E42676 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14924CAD1D319C2500E42676 /* Main.storyboard */; };
+		14924CB11D319C2500E42676 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14924CB01D319C2500E42676 /* Assets.xcassets */; };
+		14924CB41D319C2500E42676 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14924CB21D319C2500E42676 /* LaunchScreen.storyboard */; };
+		14924CBF1D319C2500E42676 /* photopizzaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14924CBE1D319C2500E42676 /* photopizzaTests.swift */; };
+		C28437CDB477FDDCA025BE44 /* Pods_photopizza.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F57A44AF2D3E6F903E6FF5F /* Pods_photopizza.framework */; };
+		C424FF1175892682D63F3E0C /* Pods_photopizzaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCCC64CC1B81F7E9F8303A5 /* Pods_photopizzaTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		14924CBB1D319C2500E42676 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14924C9E1D319C2500E42676 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14924CA51D319C2500E42676;
+			remoteInfo = photopizza;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		14924CA61D319C2500E42676 /* photopizza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photopizza.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14924CA91D319C2500E42676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		14924CAB1D319C2500E42676 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		14924CAE1D319C2500E42676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		14924CB01D319C2500E42676 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		14924CB31D319C2500E42676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		14924CB51D319C2500E42676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14924CBA1D319C2500E42676 /* photopizzaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = photopizzaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14924CBE1D319C2500E42676 /* photopizzaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photopizzaTests.swift; sourceTree = "<group>"; };
+		14924CC01D319C2500E42676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DCCC64CC1B81F7E9F8303A5 /* Pods_photopizzaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_photopizzaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F57A44AF2D3E6F903E6FF5F /* Pods_photopizza.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_photopizza.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB8766D10868945FA487DD53 /* Pods-photopizzaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photopizzaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-photopizzaTests/Pods-photopizzaTests.release.xcconfig"; sourceTree = "<group>"; };
+		B04387FBACB7348273930792 /* Pods-photopizza.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photopizza.release.xcconfig"; path = "Pods/Target Support Files/Pods-photopizza/Pods-photopizza.release.xcconfig"; sourceTree = "<group>"; };
+		B92B20CA5CF3ADD390BB1DA9 /* Pods-photopizzaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photopizzaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-photopizzaTests/Pods-photopizzaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E9797281509BD6B68DD3D704 /* Pods-photopizza.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photopizza.debug.xcconfig"; path = "Pods/Target Support Files/Pods-photopizza/Pods-photopizza.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		14924CA31D319C2500E42676 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C28437CDB477FDDCA025BE44 /* Pods_photopizza.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14924CB71D319C2500E42676 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C424FF1175892682D63F3E0C /* Pods_photopizzaTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1412E62D1D31A074005454EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F57A44AF2D3E6F903E6FF5F /* Pods_photopizza.framework */,
+				5DCCC64CC1B81F7E9F8303A5 /* Pods_photopizzaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		14924C9D1D319C2500E42676 = {
+			isa = PBXGroup;
+			children = (
+				14924CA81D319C2500E42676 /* photopizza */,
+				14924CBD1D319C2500E42676 /* photopizzaTests */,
+				14924CA71D319C2500E42676 /* Products */,
+				1412E62D1D31A074005454EB /* Frameworks */,
+				5786CA18C74BFCAD548E1049 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		14924CA71D319C2500E42676 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				14924CA61D319C2500E42676 /* photopizza.app */,
+				14924CBA1D319C2500E42676 /* photopizzaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		14924CA81D319C2500E42676 /* photopizza */ = {
+			isa = PBXGroup;
+			children = (
+				14924CAB1D319C2500E42676 /* ViewController.swift */,
+				14924CA91D319C2500E42676 /* AppDelegate.swift */,
+				14924CAD1D319C2500E42676 /* Main.storyboard */,
+				14924CB01D319C2500E42676 /* Assets.xcassets */,
+				14924CB21D319C2500E42676 /* LaunchScreen.storyboard */,
+				14924CB51D319C2500E42676 /* Info.plist */,
+			);
+			path = photopizza;
+			sourceTree = "<group>";
+		};
+		14924CBD1D319C2500E42676 /* photopizzaTests */ = {
+			isa = PBXGroup;
+			children = (
+				14924CBE1D319C2500E42676 /* photopizzaTests.swift */,
+				14924CC01D319C2500E42676 /* Info.plist */,
+			);
+			path = photopizzaTests;
+			sourceTree = "<group>";
+		};
+		5786CA18C74BFCAD548E1049 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9797281509BD6B68DD3D704 /* Pods-photopizza.debug.xcconfig */,
+				B04387FBACB7348273930792 /* Pods-photopizza.release.xcconfig */,
+				B92B20CA5CF3ADD390BB1DA9 /* Pods-photopizzaTests.debug.xcconfig */,
+				AB8766D10868945FA487DD53 /* Pods-photopizzaTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		14924CA51D319C2500E42676 /* photopizza */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14924CC31D319C2500E42676 /* Build configuration list for PBXNativeTarget "photopizza" */;
+			buildPhases = (
+				F028A983360AC2295DDDC5E1 /* [CP] Check Pods Manifest.lock */,
+				14924CA21D319C2500E42676 /* Sources */,
+				14924CA31D319C2500E42676 /* Frameworks */,
+				14924CA41D319C2500E42676 /* Resources */,
+				1EAB7D26566FD9DE6F0E7F3C /* [CP] Embed Pods Frameworks */,
+				4F1F4CD3726751099A08670C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = photopizza;
+			productName = photopizza;
+			productReference = 14924CA61D319C2500E42676 /* photopizza.app */;
+			productType = "com.apple.product-type.application";
+		};
+		14924CB91D319C2500E42676 /* photopizzaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14924CC61D319C2500E42676 /* Build configuration list for PBXNativeTarget "photopizzaTests" */;
+			buildPhases = (
+				4836A79ED2C87D03ABFE601A /* [CP] Check Pods Manifest.lock */,
+				14924CB61D319C2500E42676 /* Sources */,
+				14924CB71D319C2500E42676 /* Frameworks */,
+				14924CB81D319C2500E42676 /* Resources */,
+				781A3E5B58775F7D539C7C67 /* [CP] Embed Pods Frameworks */,
+				D0DB2721500967631E36C4F0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14924CBC1D319C2500E42676 /* PBXTargetDependency */,
+			);
+			name = photopizzaTests;
+			productName = photopizzaTests;
+			productReference = 14924CBA1D319C2500E42676 /* photopizzaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		14924C9E1D319C2500E42676 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Gary Cheng";
+				TargetAttributes = {
+					14924CA51D319C2500E42676 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					14924CB91D319C2500E42676 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 14924CA51D319C2500E42676;
+					};
+				};
+			};
+			buildConfigurationList = 14924CA11D319C2500E42676 /* Build configuration list for PBXProject "photopizza" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 14924C9D1D319C2500E42676;
+			productRefGroup = 14924CA71D319C2500E42676 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14924CA51D319C2500E42676 /* photopizza */,
+				14924CB91D319C2500E42676 /* photopizzaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		14924CA41D319C2500E42676 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14924CB41D319C2500E42676 /* LaunchScreen.storyboard in Resources */,
+				14924CB11D319C2500E42676 /* Assets.xcassets in Resources */,
+				14924CAF1D319C2500E42676 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14924CB81D319C2500E42676 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1EAB7D26566FD9DE6F0E7F3C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-photopizza/Pods-photopizza-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4836A79ED2C87D03ABFE601A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4F1F4CD3726751099A08670C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-photopizza/Pods-photopizza-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		781A3E5B58775F7D539C7C67 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-photopizzaTests/Pods-photopizzaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0DB2721500967631E36C4F0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-photopizzaTests/Pods-photopizzaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F028A983360AC2295DDDC5E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		14924CA21D319C2500E42676 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14924CAC1D319C2500E42676 /* ViewController.swift in Sources */,
+				14924CAA1D319C2500E42676 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14924CB61D319C2500E42676 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14924CBF1D319C2500E42676 /* photopizzaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		14924CBC1D319C2500E42676 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14924CA51D319C2500E42676 /* photopizza */;
+			targetProxy = 14924CBB1D319C2500E42676 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		14924CAD1D319C2500E42676 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14924CAE1D319C2500E42676 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		14924CB21D319C2500E42676 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14924CB31D319C2500E42676 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		14924CC11D319C2500E42676 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		14924CC21D319C2500E42676 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		14924CC41D319C2500E42676 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9797281509BD6B68DD3D704 /* Pods-photopizza.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = photopizza/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizza;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		14924CC51D319C2500E42676 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B04387FBACB7348273930792 /* Pods-photopizza.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = photopizza/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizza;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		14924CC71D319C2500E42676 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B92B20CA5CF3ADD390BB1DA9 /* Pods-photopizzaTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = photopizzaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizzaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photopizza.app/photopizza";
+			};
+			name = Debug;
+		};
+		14924CC81D319C2500E42676 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB8766D10868945FA487DD53 /* Pods-photopizzaTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = photopizzaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizzaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photopizza.app/photopizza";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		14924CA11D319C2500E42676 /* Build configuration list for PBXProject "photopizza" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14924CC11D319C2500E42676 /* Debug */,
+				14924CC21D319C2500E42676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14924CC31D319C2500E42676 /* Build configuration list for PBXNativeTarget "photopizza" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14924CC41D319C2500E42676 /* Debug */,
+				14924CC51D319C2500E42676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14924CC61D319C2500E42676 /* Build configuration list for PBXNativeTarget "photopizzaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14924CC71D319C2500E42676 /* Debug */,
+				14924CC81D319C2500E42676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 14924C9E1D319C2500E42676 /* Project object */;
+}

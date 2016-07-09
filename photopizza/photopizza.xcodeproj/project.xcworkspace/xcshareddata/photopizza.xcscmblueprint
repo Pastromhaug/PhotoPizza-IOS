@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C1F091568F21D83188A42270BB743DBBEB8C921E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A20D666FF4B08EFE53F147818C2D4D17E2242912" : 0,
+    "C1F091568F21D83188A42270BB743DBBEB8C921E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E7188C87-5BDB-46E9-951F-13BC2E64AD2F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A20D666FF4B08EFE53F147818C2D4D17E2242912" : "EIA-project\/photopizza\/facebook-ios-sdk\/",
+    "C1F091568F21D83188A42270BB743DBBEB8C921E" : "EIA-project\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "photopizza",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "photopizza\/photopizza.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/facebook\/facebook-ios-sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A20D666FF4B08EFE53F147818C2D4D17E2242912"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Pastromhaug\/EIA-project.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C1F091568F21D83188A42270BB743DBBEB8C921E"
+    }
+  ]
+}

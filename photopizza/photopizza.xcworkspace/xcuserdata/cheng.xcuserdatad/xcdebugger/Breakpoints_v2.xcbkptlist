@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "photopizza/ViewController.swift"
+            timestampString = "489793823.562829"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "photopizza.ViewController.__deallocating_deinit"
+                  moduleName = "photopizza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cheng/code/projects/EIA-project/photopizza/photopizza/ViewController.swift"
+                  timestampString = "489793826.350091"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "photopizza.ViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; photopizza.ViewController"
+                  moduleName = "photopizza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cheng/code/projects/EIA-project/photopizza/photopizza/ViewController.swift"
+                  timestampString = "489793826.3515"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "photopizza.ViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;photopizza.ViewController&gt;"
+                  moduleName = "photopizza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cheng/code/projects/EIA-project/photopizza/photopizza/ViewController.swift"
+                  timestampString = "489793826.351644"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
