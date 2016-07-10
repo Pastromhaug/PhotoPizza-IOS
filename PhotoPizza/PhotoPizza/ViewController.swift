@@ -10,16 +10,23 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
-
+import Firebase
+import FirebaseAuth
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     // MARK: Properties
-    @IBOutlet weak var loginButton: FBSDKLoginButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        let loginButton = FBSDKLoginButton()
+        loginButton.center = self.view.center
+        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        loginButton.delegate = self
+        self.view.addSubview(loginButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,13 +37,33 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
     {}
     
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
-    {}
+
     
-    func configureFacebook()
-    {
-        loginButton.readPermissions = ["public_profile", "email", "user_friends"];
-        loginButton.delegate = self
+//    func configureFacebook() {
+//        let fbLoginButton = FBSDKLoginButton()
+//        fbLoginButton.readPermissions = ["public_profile", "email", "user_friends"];
+//        fbLoginButton.delegate = self
+//    }
+//    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {
+        print("loginButton")
+        
+        if let error = error {
+            print("error in didCompleteWithResult")
+            print(error.localizedDescription)
+            return
+        }
+        
+        print("access token: " + FBSDKAccessToken.currentAccessToken().tokenString)
+        
+        let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+        
+        FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+            if (error != nil) {
+                print(error)
+            }
+        }
+      
     }
     
 
