@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="424" y="58"/>
         </scene>
-        <!--View Controller-->
+        <!--Group Page View Controller-->
         <scene sceneID="PH9-1n-4ua">
             <objects>
-                <viewController id="Ey3-T6-RGo" sceneMemberID="viewController">
+                <viewController id="Ey3-T6-RGo" customClass="GroupPageViewController" customModule="photopizza" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ime-v8-eUF"/>
                         <viewControllerLayoutGuide type="bottom" id="ifo-cH-SbO"/>
@@ -59,42 +59,41 @@
                                     <segue destination="5lJ-BH-vNz" kind="show" id="0pq-32-FAp"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="139" placeholderIntrinsicHeight="139" image="noAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="kqm-lD-7XQ">
-                                <rect key="frame" x="30" y="94" width="139" height="139"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="139" id="13T-EO-qwr"/>
-                                    <constraint firstAttribute="width" constant="139" id="lDN-V3-cdd"/>
-                                </constraints>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="139" placeholderIntrinsicHeight="139" image="noAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="lS9-0D-e4S">
-                                <rect key="frame" x="205" y="94" width="139" height="139"/>
+                                <rect key="frame" x="206" y="94" width="140" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="139" id="F6I-nx-hbm"/>
-                                    <constraint firstAttribute="height" constant="139" id="zzN-FC-mj1"/>
+                                    <constraint firstAttribute="width" constant="140" id="F6I-nx-hbm"/>
+                                    <constraint firstAttribute="height" constant="140" id="zzN-FC-mj1"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBV-d4-BLd">
+                                <rect key="frame" x="29" y="94" width="140" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="1Lc-wk-T8q"/>
+                                    <constraint firstAttribute="width" constant="140" id="cQK-q6-Tfc"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="noAvatar"/>
+                                <connections>
+                                    <segue destination="QZa-AO-Y7S" kind="show" id="WAo-l1-dLx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="lS9-0D-e4S" secondAttribute="trailing" constant="10" id="1VL-Ul-V4l"/>
+                            <constraint firstItem="uBV-d4-BLd" firstAttribute="leading" secondItem="VwG-9E-OUz" secondAttribute="leadingMargin" constant="9" id="3zO-oh-bWp"/>
                             <constraint firstItem="lS9-0D-e4S" firstAttribute="top" secondItem="Ime-v8-eUF" secondAttribute="bottom" constant="30" id="L2K-XV-QP5"/>
-                            <constraint firstItem="lS9-0D-e4S" firstAttribute="leading" secondItem="kqm-lD-7XQ" secondAttribute="trailing" constant="30" id="Ouz-aL-hdp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sPO-5C-FH1" secondAttribute="trailing" constant="30" id="TVq-I2-VYc"/>
-                            <constraint firstItem="kqm-lD-7XQ" firstAttribute="top" secondItem="Ime-v8-eUF" secondAttribute="bottom" constant="30" id="Vos-La-nbt"/>
+                            <constraint firstItem="uBV-d4-BLd" firstAttribute="top" secondItem="Ime-v8-eUF" secondAttribute="bottom" constant="30" id="bka-bs-L4d"/>
                             <constraint firstItem="ifo-cH-SbO" firstAttribute="top" secondItem="sPO-5C-FH1" secondAttribute="bottom" constant="30" id="rdK-fB-AKE"/>
-                            <constraint firstItem="kqm-lD-7XQ" firstAttribute="leading" secondItem="VwG-9E-OUz" secondAttribute="leadingMargin" constant="10" id="yS2-sZ-b9G"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Ouz-aL-hdp"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="MLQ-Ls-9Li"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UL7-l5-pqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2058" y="89"/>
+            <point key="canvasLocation" x="2054" y="118"/>
         </scene>
         <!--Make Group One View Controller-->
         <scene sceneID="oah-os-Zah">
@@ -161,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="STK-Vl-3UE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3713" y="33"/>
+            <point key="canvasLocation" x="3599" y="377"/>
         </scene>
         <!--Add Membs View Controller-->
         <scene sceneID="qvo-uY-EsB">
@@ -193,7 +192,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DOt-9K-mct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4536" y="33"/>
+            <point key="canvasLocation" x="4328" y="377"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zZk-16-PnV">
@@ -229,7 +228,32 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KL7-FN-wiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2806" y="89"/>
+            <point key="canvasLocation" x="2836" y="377"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="p09-iX-5b3">
+            <objects>
+                <viewController id="QZa-AO-Y7S" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x5S-9H-WqZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="HTT-fv-6pv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ecl-yS-Ve0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HELLO MY FRIEND" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CiB-RV-POJ">
+                                <rect key="frame" x="89" y="137" width="143" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qam-Q2-KoP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2842" y="-471"/>
         </scene>
     </scenes>
     <resources>
