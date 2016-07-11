@@ -17,16 +17,16 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     // MARK: Properties
     
+    @IBOutlet weak var loginButton: FBSDKLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        let loginButton = FBSDKLoginButton()
         loginButton.center = self.view.center
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         loginButton.delegate = self
-        self.view.addSubview(loginButton)
+        //self.view.addSubview(loginButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,10 +63,25 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 print(error)
             }
         }
-      
+        
+        let storyBoard : UIStoryboard? = self.storyboard
+        
+        let nextViewController = (storyBoard?.instantiateViewControllerWithIdentifier("homeNav"))! as UIViewController
+        self.presentViewController(nextViewController, animated:true, completion:nil)
+//        let secondViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("home"))! as UIViewController
+//        self.navigationController?.pushViewController(secondViewController, animated: true)
     }
     
+//    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+//        if let sourceViewController = sender.sourceViewController as? MealViewController, meal = sourceViewController.meal {
+//            // Add a new meal.
+//            let newIndexPath = NSIndexPath(forRow: meals.count, inSection: 0)
+//            meals.append(meal)
+//            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+//        }
+//    }
+    
 
-
+    
 }
 

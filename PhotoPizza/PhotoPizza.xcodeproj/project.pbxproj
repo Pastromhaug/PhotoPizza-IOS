@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		145136A31D31B71200CD786F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 145136A21D31B71200CD786F /* GoogleService-Info.plist */; };
+		145136AF1D328BC300CD786F /* MakeGroupOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136AE1D328BC300CD786F /* MakeGroupOneViewController.swift */; };
+		145136B11D33964D00CD786F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136B01D33964D00CD786F /* Group.swift */; };
+		145136B31D33AD8600CD786F /* AddMembsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136B21D33AD8600CD786F /* AddMembsViewController.swift */; };
 		14924CAA1D319C2500E42676 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14924CA91D319C2500E42676 /* AppDelegate.swift */; };
 		14924CAC1D319C2500E42676 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14924CAB1D319C2500E42676 /* ViewController.swift */; };
 		14924CAF1D319C2500E42676 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14924CAD1D319C2500E42676 /* Main.storyboard */; };
@@ -30,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		145136A21D31B71200CD786F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		145136AE1D328BC300CD786F /* MakeGroupOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeGroupOneViewController.swift; path = ../MakeGroupOneViewController.swift; sourceTree = "<group>"; };
+		145136B01D33964D00CD786F /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		145136B21D33AD8600CD786F /* AddMembsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMembsViewController.swift; sourceTree = "<group>"; };
 		14924CA61D319C2500E42676 /* photopizza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photopizza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14924CA91D319C2500E42676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14924CAB1D319C2500E42676 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,10 +106,13 @@
 		14924CA81D319C2500E42676 /* photopizza */ = {
 			isa = PBXGroup;
 			children = (
+				145136AE1D328BC300CD786F /* MakeGroupOneViewController.swift */,
 				145136A21D31B71200CD786F /* GoogleService-Info.plist */,
 				14924CAB1D319C2500E42676 /* ViewController.swift */,
 				14924CA91D319C2500E42676 /* AppDelegate.swift */,
 				14924CAD1D319C2500E42676 /* Main.storyboard */,
+				145136B21D33AD8600CD786F /* AddMembsViewController.swift */,
+				145136B01D33964D00CD786F /* Group.swift */,
 				14924CB01D319C2500E42676 /* Assets.xcassets */,
 				14924CB21D319C2500E42676 /* LaunchScreen.storyboard */,
 				14924CB51D319C2500E42676 /* Info.plist */,
@@ -332,8 +341,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145136B31D33AD8600CD786F /* AddMembsViewController.swift in Sources */,
+				145136AF1D328BC300CD786F /* MakeGroupOneViewController.swift in Sources */,
 				14924CAC1D319C2500E42676 /* ViewController.swift in Sources */,
 				14924CAA1D319C2500E42676 /* AppDelegate.swift in Sources */,
+				145136B11D33964D00CD786F /* Group.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
