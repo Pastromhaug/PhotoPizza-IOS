@@ -13,14 +13,21 @@ import FirebaseStorage
 
 private let reuseIdentifier = "BackendImage"
 
+
 class PicStreamCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //MARK: Properties
     let storage = FIRStorage.storage()
     let ref = FIRDatabase.database().reference()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        dbListen()
+        
+        
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -30,6 +37,16 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
         // Do any additional setup after loading the view.
        
+    }
+    
+    func dbListen() {
+        let postRef = FIRDatabase.database().reference().child("images")
+        let refHandle = postRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            print("live update")
+            print(snapshot.value!)
+            
+            // ...
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -153,14 +170,10 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageCollectionViewCell
     
         // Configure the cell
-        
-<<<<<<< HEAD
-        cell.backgroundColor = UIColor.blackColor()
-=======
+    
         //cell.backgroundColor = UIColor.blackColor()
         //cell.designatedPic = UIImageView()
         cell.designatedPic.image = UIImage(named: "noAvatar")
->>>>>>> b67cd8ad269f7a340a4859ca878cc2e8ea892e65
         return cell
     }
 
