@@ -24,6 +24,12 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     var imgs : [String : UIImage] = [String : UIImage]()
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
+        initImageRefs()
+        dbListen()
+        
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,17 +39,18 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
         // Do any additional setup after loading the view.
         
-        hardRefresh()
-        dbListen()
-       
-    }
-    
-    func hardRefresh() {
         
+    }
+    func initImageRefs() {
+        ref.queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+            print("query returned")
+            print(snapshot.value!)
+        })
     }
     
     func dbListen() {
         let postRef = FIRDatabase.database().reference().child("images")
+        
         let addHandle = postRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             print("live added")
             print(snapshot.value!)
@@ -52,8 +59,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         let removeHandle = postRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
             print("live remove")
             print(snapshot.value!)
-            //TODO: need to work on this
-            
+        })
+        let refHandle = postRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            print(snapshot.value!)
             // ...
         })
     }
@@ -187,7 +195,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         
-        return imgIDs?.count ?? 0
+        return imgIDs.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
