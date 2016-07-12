@@ -41,8 +41,12 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     func dbListen() {
         let postRef = FIRDatabase.database().reference().child("images")
-        let refHandle = postRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            print("live update")
+        let addHandle = postRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            print("live added")
+            print(snapshot.value!)
+        })
+        let removeHandle = postRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+            print("live remove")
             print(snapshot.value!)
             
             // ...
