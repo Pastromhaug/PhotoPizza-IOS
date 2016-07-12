@@ -36,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		143F537D1D35AC4B00B1FEAA /* photopizza-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "photopizza-Bridging-Header.h"; sourceTree = "<group>"; };
 		145136AE1D328BC300CD786F /* MakeGroupOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeGroupOneViewController.swift; path = ../MakeGroupOneViewController.swift; sourceTree = "<group>"; };
 		145136B01D33964D00CD786F /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		145136B21D33AD8600CD786F /* AddMembsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMembsViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 				14924CB01D319C2500E42676 /* Assets.xcassets */,
 				14924CB21D319C2500E42676 /* LaunchScreen.storyboard */,
 				14924CB51D319C2500E42676 /* Info.plist */,
+				143F537D1D35AC4B00B1FEAA /* photopizza-Bridging-Header.h */,
 			);
 			path = photopizza;
 			sourceTree = "<group>";
@@ -493,10 +495,13 @@
 			baseConfigurationReference = E9797281509BD6B68DD3D704 /* Pods-photopizza.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = photopizza/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizza;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "photopizza/photopizza-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -505,10 +510,12 @@
 			baseConfigurationReference = B04387FBACB7348273930792 /* Pods-photopizza.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = photopizza/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizza;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "photopizza/photopizza-Bridging-Header.h";
 			};
 			name = Release;
 		};
