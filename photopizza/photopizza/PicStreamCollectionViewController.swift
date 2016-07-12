@@ -24,6 +24,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     var imgs : [String : UIImage]?
     override func viewDidLoad() {
         super.viewDidLoad()
+        initImageRefs()
         dbListen()
         
         
@@ -39,8 +40,16 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
        
     }
     
+    func initImageRefs() {
+        ref.queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+            print("query returned")
+            print(snapshot.value!)
+        })
+    }
+    
     func dbListen() {
         let postRef = FIRDatabase.database().reference().child("images")
+        
         let addHandle = postRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             print("live added")
             print(snapshot.value!)
@@ -48,7 +57,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         let removeHandle = postRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
             print("live remove")
             print(snapshot.value!)
-            
+        })
+        let refHandle = postRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+            print(snapshot.value!)
             // ...
         })
     }

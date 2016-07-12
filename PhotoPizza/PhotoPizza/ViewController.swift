@@ -26,6 +26,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         loginButton.center = self.view.center
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         loginButton.delegate = self
+        FIRDatabase.database().persistenceEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
