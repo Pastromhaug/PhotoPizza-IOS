@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "BackendImage"
 
 class PicStreamCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -26,10 +26,10 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //self.collectionView!.registerClass(ImageCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
-        
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -150,11 +150,17 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageCollectionViewCell
     
         // Configure the cell
         
+<<<<<<< HEAD
         cell.backgroundColor = UIColor.blackColor()
+=======
+        //cell.backgroundColor = UIColor.blackColor()
+        //cell.designatedPic = UIImageView()
+        cell.designatedPic.image = UIImage(named: "noAvatar")
+>>>>>>> b67cd8ad269f7a340a4859ca878cc2e8ea892e65
         return cell
     }
 
