@@ -20,8 +20,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     let storage = FIRStorage.storage()
     let ref = FIRDatabase.database().reference()
     
-    
-    
+    var imgIDs: [String]?
+    var imgs : [String : UIImage]?
     override func viewDidLoad() {
         super.viewDidLoad()
         dbListen()
@@ -85,8 +85,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     func cleanString(base64str: String) -> String {
         
         //makes the key string of length 64
-        let endindex = base64str.startIndex.advancedBy(20)
-        var subString = base64str.substringToIndex(endindex)
+        //let endindex = base64str.startIndex.advancedBy(20)
+        var subString = base64str.substringWithRange(Range<String.Index>(start: base64str.startIndex.advancedBy(1000), end: base64str.startIndex.advancedBy(1020)))
         
         //cleans string of /
         subString = subString.stringByReplacingOccurrencesOfString("/", withString: "7")
@@ -109,6 +109,20 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         return subString
     }
     
+    func md5(string string: String) -> String {
+        var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
+        if let data = string.dataUsingEncoding(NSUTF8StringEncoding) {
+            CC_MD5(data.bytes, CC_LONG(data.length), &digest)
+        }
+        
+        var digestHex = ""
+        for index in 0..<Int(CC_MD5_DIGEST_LENGTH) {
+            digestHex += String(format: "%02x", digest[index])
+        }
+        
+        return digestHex
+    }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
@@ -119,7 +133,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         //convert photo to string and clean it
         let uploadData: NSData = UIImageJPEGRepresentation(selectedImage, 0.9)!
         let fileString: String = uploadData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-        let subString = cleanString(fileString)
+        let subString = md5(string: fileString)
         
         
         print(subString)
@@ -163,7 +177,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 10
+        
+        return imgIDs?.count ?? 0
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -176,6 +191,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         cell.designatedPic.image = UIImage(named: "noAvatar")
         return cell
     }
+    
 
     // MARK: UICollectionViewDelegate
 
