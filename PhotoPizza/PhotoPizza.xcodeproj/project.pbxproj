@@ -14,6 +14,7 @@
 		145136B91D34191D00CD786F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 145136B81D34191D00CD786F /* GoogleService-Info.plist */; };
 		145136BD1D34E13C00CD786F /* PicturesInGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136BC1D34E13C00CD786F /* PicturesInGroupViewController.swift */; };
 		145136C11D352BCF00CD786F /* PicStreamCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136C01D352BCF00CD786F /* PicStreamCollectionViewController.swift */; };
+		145136C31D35503300CD786F /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136C21D35503300CD786F /* ImageCollectionViewCell.swift */; };
 		14924CAA1D319C2500E42676 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14924CA91D319C2500E42676 /* AppDelegate.swift */; };
 		14924CAC1D319C2500E42676 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14924CAB1D319C2500E42676 /* ViewController.swift */; };
 		14924CAF1D319C2500E42676 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14924CAD1D319C2500E42676 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		145136B81D34191D00CD786F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		145136BC1D34E13C00CD786F /* PicturesInGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PicturesInGroupViewController.swift; path = ../PicturesInGroupViewController.swift; sourceTree = "<group>"; };
 		145136C01D352BCF00CD786F /* PicStreamCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicStreamCollectionViewController.swift; sourceTree = "<group>"; };
+		145136C21D35503300CD786F /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		14924CA61D319C2500E42676 /* photopizza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photopizza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14924CA91D319C2500E42676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14924CAB1D319C2500E42676 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				14924CAB1D319C2500E42676 /* ViewController.swift */,
 				14924CA91D319C2500E42676 /* AppDelegate.swift */,
 				14924CAD1D319C2500E42676 /* Main.storyboard */,
+				145136C21D35503300CD786F /* ImageCollectionViewCell.swift */,
 				145136B41D3416F800CD786F /* GroupPageViewController.swift */,
 				145136B21D33AD8600CD786F /* AddMembsViewController.swift */,
 				145136B01D33964D00CD786F /* Group.swift */,
@@ -356,6 +359,7 @@
 				145136B51D3416F800CD786F /* GroupPageViewController.swift in Sources */,
 				145136BD1D34E13C00CD786F /* PicturesInGroupViewController.swift in Sources */,
 				145136C11D352BCF00CD786F /* PicStreamCollectionViewController.swift in Sources */,
+				145136C31D35503300CD786F /* ImageCollectionViewCell.swift in Sources */,
 				14924CAA1D319C2500E42676 /* AppDelegate.swift in Sources */,
 				145136B11D33964D00CD786F /* Group.swift in Sources */,
 			);

@@ -43,30 +43,40 @@
         <scene sceneID="gpc-bJ-SgY">
             <objects>
                 <collectionViewController id="mZa-8d-tRK" customClass="PicStreamCollectionViewController" customModule="photopizza" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="XdL-Nh-ZTx">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TJ3-IU-EzB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VCM-4N-KPI">
-                            <size key="itemSize" width="50" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Ht-OQ-RWY">
+                            <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tPd-Se-ja4">
-                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Sae-mx-sOW">
+                                <rect key="frame" x="0.0" y="64" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvG-9r-4VS">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="xvG-9r-4VS" firstAttribute="top" secondItem="Sae-mx-sOW" secondAttribute="topMargin" id="14v-5W-lA6"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="xvG-9r-4VS" secondAttribute="bottom" id="d7f-Pb-rJS"/>
+                                    <constraint firstItem="xvG-9r-4VS" firstAttribute="leading" secondItem="Sae-mx-sOW" secondAttribute="leadingMargin" id="njE-TN-Emz"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="xvG-9r-4VS" secondAttribute="trailing" id="xWx-w7-ZNP"/>
+                                </constraints>
                             </collectionViewCell>
                         </cells>
                         <connections>
-                            <outlet property="dataSource" destination="mZa-8d-tRK" id="Ib2-w6-naI"/>
-                            <outlet property="delegate" destination="mZa-8d-tRK" id="ulP-4x-iaV"/>
+                            <outlet property="dataSource" destination="mZa-8d-tRK" id="14D-Jn-FSL"/>
+                            <outlet property="delegate" destination="mZa-8d-tRK" id="hsD-DN-YZh"/>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Title" id="6cK-rd-uYn">

@@ -15,6 +15,7 @@ class PicturesInGroupViewController: UIViewController, UIImagePickerControllerDe
     
     //MARK: Navigation
     let storage = FIRStorage.storage()
+    let liveRef = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()

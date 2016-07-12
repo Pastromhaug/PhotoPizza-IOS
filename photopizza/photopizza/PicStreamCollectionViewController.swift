@@ -17,6 +17,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
     //MARK: Properties
     let storage = FIRStorage.storage()
+    let ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,25 +65,50 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         // Dismiss the picker if the user canceled.
         dismissViewControllerAnimated(true, completion: nil)
     }
+    func cleanString(base64str: String) -> String {
+        
+        //makes the key string of length 64
+        let endindex = base64str.startIndex.advancedBy(20)
+        var subString = base64str.substringToIndex(endindex)
+        
+        //cleans string of /
+        subString = subString.stringByReplacingOccurrencesOfString("/", withString: "7")
+        
+        //cleans string of .
+        subString = subString.stringByReplacingOccurrencesOfString(".", withString: "8")
+        
+        //cleans string of #
+        subString = subString.stringByReplacingOccurrencesOfString("#", withString: "9")
+        
+        //cleans string of $
+        subString = subString.stringByReplacingOccurrencesOfString("$", withString: "1")
+        
+        //cleans string of [
+        subString = subString.stringByReplacingOccurrencesOfString("[", withString: "2")
+        
+        //cleans string of ]
+        subString = subString.stringByReplacingOccurrencesOfString("]", withString: "3")
+        
+        return subString
+    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
         
+        //select image from photo library
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        //convert photo to string and clean it
         let uploadData: NSData = UIImageJPEGRepresentation(selectedImage, 0.9)!
-        
         let fileString: String = uploadData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-        let endindex = fileString.startIndex.advancedBy(20)
-        let substring = fileString.substringToIndex(endindex)
+        let subString = cleanString(fileString)
         
         
-        let realString = substring.stringByReplacingOccurrencesOfString("/", withString: "7")
-        print(realString)
+        print(subString)
         
-        
-        let imgRef = storageRef.child("images/" + realString + ".jpg")
-        
+        //uploads img to storage
+        let imgRef = storageRef.child("images/" + subString + ".jpg")
         imgRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
             if (error != nil) {
                 print("Error in putData")
@@ -89,17 +116,17 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
             else {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 print("putData succeeded")
-                //                let downloadURL = metadata!.downloadURL
-                //                print("downloadURL: " + downloadURL)
+                
+                //uploads to real time database
+                var dict = [String: String]()
+                dict.updateValue(subString + ".jpg", forKey: subString)
+                print(dict)
+                self.ref.child("images").updateChildValues(dict)
+
             }
         })
         
-        //        storageRef.putData(uploadData!, metadata: nil)
-        
-        
-        
-        // The info dictionary contains multiple representations of the image, and this uses the original.
-        //let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+    
         
         // Set photoImageView to display the selected image.
         //photoImageView.image = selectedImage
@@ -128,7 +155,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         // Configure the cell
         
         cell.backgroundColor = UIColor.blackColor()
-    
+        cell.imageView.image = UIImage(name: "noAvatar")
         return cell
     }
 
