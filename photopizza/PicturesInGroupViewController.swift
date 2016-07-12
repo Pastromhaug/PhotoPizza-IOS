@@ -13,6 +13,9 @@ import FirebaseStorage
 
 class PicturesInGroupViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    //MARK: Navigation
+    let storage = FIRStorage.storage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,7 +58,6 @@ class PicturesInGroupViewController: UIViewController, UIImagePickerControllerDe
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        let storage = FIRStorage.storage()
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
         
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage

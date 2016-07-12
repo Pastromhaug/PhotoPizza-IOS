@@ -39,6 +39,48 @@
             </objects>
             <point key="canvasLocation" x="424" y="58"/>
         </scene>
+        <!--Title-->
+        <scene sceneID="gpc-bJ-SgY">
+            <objects>
+                <collectionViewController id="mZa-8d-tRK" customClass="PicStreamCollectionViewController" customModule="photopizza" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="XdL-Nh-ZTx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VCM-4N-KPI">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tPd-Se-ja4">
+                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="mZa-8d-tRK" id="Ib2-w6-naI"/>
+                            <outlet property="delegate" destination="mZa-8d-tRK" id="ulP-4x-iaV"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Title" id="6cK-rd-uYn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dXG-ae-aSu">
+                            <connections>
+                                <action selector="uploadPicture:" destination="mZa-8d-tRK" id="T0b-E1-sdR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7V2-G4-Lio" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2751" y="-516"/>
+        </scene>
         <!--Group Page View Controller-->
         <scene sceneID="PH9-1n-4ua">
             <objects>
@@ -74,7 +116,7 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="noAvatar"/>
                                 <connections>
-                                    <segue destination="221-oD-Lhh" kind="show" id="Udj-1z-A3P"/>
+                                    <segue destination="mZa-8d-tRK" kind="show" id="zhp-LQ-7lX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -211,31 +253,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edf-Jt-fhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1246" y="89"/>
-        </scene>
-        <!--Title-->
-        <scene sceneID="rIf-JX-amb">
-            <objects>
-                <viewController id="221-oD-Lhh" customClass="PicturesInGroupViewController" customModule="photopizza" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="L51-4R-EMW"/>
-                        <viewControllerLayoutGuide type="bottom" id="wIM-gQ-JSw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CFE-4l-wOO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Title" id="R9o-MF-huV">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pyK-wz-Mwc">
-                            <connections>
-                                <action selector="uploadPicture:" destination="221-oD-Lhh" id="18Z-an-fTX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cnn-cM-DJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2890" y="-363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="P9Q-RU-fqv">
