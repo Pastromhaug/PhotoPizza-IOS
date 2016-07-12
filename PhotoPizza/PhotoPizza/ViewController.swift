@@ -26,7 +26,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         loginButton.center = self.view.center
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         loginButton.delegate = self
-        //self.view.addSubview(loginButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,15 +45,43 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 //    }
 //    
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {
-        print("loginButton")
+        
+        
+        let tokenString = result.token.tokenString
+        let fields = ["fields":"email,name,friendlists,permissions"]
+        let req = FBSDKGraphRequest(graphPath: "me", parameters: fields, tokenString: tokenString, version: nil, HTTPMethod: "GET")
+        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+            if(error == nil){
+                print("result \(result)")
+            }
+            else{
+                print("error \(error)")
+            }
+        })
+        
+        var friendsRequest : FBRequest = FBRequest.requestForMyFriends()
+        friendsRequest.startWithCompletionHandler
+        {
+            (connection:FBRequestConnection!,   result:AnyObject!, error:NSError!) -> Void in
+            var resultdict = result as NSDictionary
+            println("Result Dict: \(resultdict)")
+            var data : NSArray = resultdict.objectForKey("data") as NSArray
+            
+            for i in 0 ..< data.count
+            {
+                let valueDict : NSDictionary = data[i] as NSDictionary
+                let id = valueDict.objectForKey("id") as String
+                println("the id value is \(id)")
+            }
+            
+            var friends = resultdict.objectForKey("data") as NSArray
+            println("Found \(friends.count) friends")
+        }
         
         if let error = error {
-            print("error in didCompleteWithResult")
             print(error.localizedDescription)
             return
         }
-        
-        print("access token: " + FBSDKAccessToken.currentAccessToken().tokenString)
         
         let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
         

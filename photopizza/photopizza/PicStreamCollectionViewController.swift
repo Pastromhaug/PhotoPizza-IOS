@@ -155,7 +155,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         // Configure the cell
         
         cell.backgroundColor = UIColor.blackColor()
-        cell.imageView.image = UIImage(name: "noAvatar")
         return cell
     }
 
