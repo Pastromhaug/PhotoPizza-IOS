@@ -19,11 +19,13 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var loginButton: FBSDKLoginButton!
     
+    //@IBOutlet weak var mainBoxView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
         loginButton.center = self.view.center
+       // mainBoxView.center = self.view.center
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         loginButton.delegate = self
         FIRDatabase.database().persistenceEnabled = true
