@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="loginPage" id="BYZ-38-t0r" customClass="ViewController" customModule="photopizza" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginPage" id="BYZ-38-t0r" customClass="ViewController" customModule="vuepal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -42,7 +42,7 @@
         <!--Title-->
         <scene sceneID="gpc-bJ-SgY">
             <objects>
-                <collectionViewController id="mZa-8d-tRK" customClass="PicStreamCollectionViewController" customModule="photopizza" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="mZa-8d-tRK" customClass="PicStreamCollectionViewController" customModule="vuepal" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="600" dataMode="prototypes" id="TJ3-IU-EzB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -54,7 +54,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BackendImage" id="Sae-mx-sOW" customClass="ImageCollectionViewCell" customModule="photopizza" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BackendImage" id="Sae-mx-sOW" customClass="ImageCollectionViewCell" customModule="vuepal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -113,7 +113,7 @@
         <!--Group Page View Controller-->
         <scene sceneID="PH9-1n-4ua">
             <objects>
-                <viewController id="Ey3-T6-RGo" customClass="GroupPageViewController" customModule="photopizza" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ey3-T6-RGo" customClass="GroupPageViewController" customModule="vuepal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ime-v8-eUF"/>
                         <viewControllerLayoutGuide type="bottom" id="ifo-cH-SbO"/>
@@ -169,7 +169,7 @@
         <!--Make Group One View Controller-->
         <scene sceneID="oah-os-Zah">
             <objects>
-                <viewController storyboardIdentifier="makeGroupOne" id="KtN-5f-wzn" customClass="MakeGroupOneViewController" customModule="photopizza" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="makeGroupOne" id="KtN-5f-wzn" customClass="MakeGroupOneViewController" customModule="vuepal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jcp-rk-wOg"/>
                         <viewControllerLayoutGuide type="bottom" id="Gcp-mx-B69"/>
@@ -236,7 +236,7 @@
         <!--Add Membs View Controller-->
         <scene sceneID="qvo-uY-EsB">
             <objects>
-                <viewController id="hJK-SQ-ccL" customClass="AddMembsViewController" customModule="photopizza" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hJK-SQ-ccL" customClass="AddMembsViewController" customModule="vuepal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ITe-Tg-tVv"/>
                         <viewControllerLayoutGuide type="bottom" id="XOm-2e-kuf"/>

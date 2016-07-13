@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DKImagePickerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FBSDKCoreKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,12 +34,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-photopizza.xcscheme</key>
+		<key>Pods-vuepal.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-photopizzaTests.xcscheme</key>
+		<key>Pods-vuepalTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,7 +57,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23BDB3197074930DE61FEAED8C1CC4C9</key>
+		<key>1384F7270CE831E587DC806AA1A5D4BB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +67,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38E002664BEBA48EE82D8C454511855C</key>
+		<key>5F3E9F70BCB09AEB74B25B071709BF30</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,12 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7116AA14740A17264FF47B18C2B67020</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D40141F207E99D5C644AAAAC9D255602</key>
+		<key>E0E74B57BE27144D52CD4AD399FFBD55</key>
 		<dict>
 			<key>primary</key>
 			<true/>

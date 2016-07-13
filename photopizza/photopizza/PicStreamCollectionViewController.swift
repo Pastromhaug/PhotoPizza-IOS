@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import SwiftyJSON
+import  DKImagePickerController
 import Agrume
 
 private let reuseIdentifier = "BackendImage"
@@ -172,22 +173,49 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     */
     
     @IBAction func uploadPicture(sender: UIBarButtonItem) {
-        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        let imagePickerController = UIImagePickerController()
-        
-        // Only allow photos to be picked, not taken.
-        imagePickerController.sourceType = .PhotoLibrary
-        
-        // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self
-        
-        presentViewController(imagePickerController, animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        // Dismiss the picker if the user canceled.
-        dismissViewControllerAnimated(true, completion: nil)
-    }
+        let pickerController = DKImagePickerController()
+        pickerController.didSelectAssets = { (assets: [DKAsset]) in
+            let storageRef = self.storage.referenceForURL("gs://photo-pizza.appspot.com")
+            print("didSelectAssets")
+            print(assets)
+            for object in assets {
+                object.fetchOriginalImageWithCompleteBlock { (image, info) -> Void in
+                    //convert photo to string and clean it
+                    let uploadData: NSData = UIImageJPEGRepresentation(image!, 0.1)!
+                    let fileString: String = uploadData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+                    let subString = self.md5(string: fileString)
+                    
+                    
+                    print(subString)
+                    
+                    //uploads img to storage
+                    let imgRef = storageRef.child("images/" + subString + ".jpg")
+                    imgRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                        if (error != nil) {
+                            print("Error in putData")
+                        }
+                        else {
+                            // Metadata contains file metadata such as size, content-type, and download URL.
+                            print("putData succeeded")
+                            
+                            //uploads to real time database
+                            var dict = [String: String]()
+                            dict.updateValue(subString + ".jpg", forKey: subString)
+                            print(dict)
+                            self.ref.child("images").updateChildValues(dict)
+                            
+                        }
+                    })
+                    
+                }
+            }
+            
+            
+
+        }
+        pickerController.showsCancelButton = true
+        self.presentViewController(pickerController, animated: true) {}    }
+
     
     func md5(string string: String) -> String {
         var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
@@ -202,50 +230,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         
         return digestHex
     }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
-        
-        //select image from photo library
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        //convert photo to string and clean it
-        let uploadData: NSData = UIImageJPEGRepresentation(selectedImage, 0.9)!
-        let fileString: String = uploadData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-        let subString = md5(string: fileString)
-        
-        
-        print(subString)
-        
-        //uploads img to storage
-        let imgRef = storageRef.child("images/" + subString + ".jpg")
-        imgRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-            if (error != nil) {
-                print("Error in putData")
-            }
-            else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-                print("putData succeeded")
-                
-                //uploads to real time database
-                var dict = [String: String]()
-                dict.updateValue(subString + ".jpg", forKey: subString)
-                print(dict)
-                self.ref.child("images").updateChildValues(dict)
-
-            }
-        })
-        
-    
-        
-        // Set photoImageView to display the selected image.
-        //photoImageView.image = selectedImage
-        
-        // Dismiss the picker.
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
 
     // MARK: UICollectionViewDataSource
 
