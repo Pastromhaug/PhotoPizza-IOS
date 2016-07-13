@@ -5,6 +5,11 @@ PODS:
   - Bolts/AppLinks (1.8.3):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.3)
+  - DKImagePickerController (3.3.2):
+    - DKImagePickerController/Camera (= 3.3.2)
+    - DKImagePickerController/ImageManager (= 3.3.2)
+  - DKImagePickerController/Camera (3.3.2)
+  - DKImagePickerController/ImageManager (3.3.2)
   - FBSDKCoreKit (4.13.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.13.1):
@@ -54,6 +59,7 @@ PODS:
 
 DEPENDENCIES:
   - Bolts
+  - DKImagePickerController
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -65,6 +71,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 52551f96df2f8aac6b4414347f3f8353a39f1966
+  DKImagePickerController: 416dab2d42caaf4ca681baca9c2d533895a8c1a2
   FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
   FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
   FBSDKShareKit: c9438df7573b33780ac8c3451201c5ebb260ffca
@@ -81,6 +88,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: fd195f4311640b41061d738638eefc0e99800b5b
+PODFILE CHECKSUM: 78467be304c37089b9888bdf2b8af3aa75b2c6ef
 
 COCOAPODS: 1.0.1

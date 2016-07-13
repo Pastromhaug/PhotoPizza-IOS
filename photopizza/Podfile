@@ -15,6 +15,7 @@ target 'photopizza' do
   pod 'Firebase/Database'
   pod 'Firebase/Core'
   pod 'SwiftyJSON'	
+  pod 'DKImagePickerController'
   
   target 'photopizzaTests' do
     inherit! :search_paths
