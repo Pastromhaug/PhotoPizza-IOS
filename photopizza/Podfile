@@ -15,7 +15,7 @@ target 'photopizza' do
   pod 'Firebase/Database'
   pod 'Firebase/Core'
   pod 'SwiftyJSON'	
-  pod 'MWPhotoBrowser'
+  pod 'Agrume', :git => 'https://github.com/JanGorman/Agrume.git'
   
   target 'photopizzaTests' do
     inherit! :search_paths
