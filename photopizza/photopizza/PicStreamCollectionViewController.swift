@@ -24,10 +24,16 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     var imgIDs: [String] = [String]()
     var imgs : [String : UIImage] = [String : UIImage]()
+    var imgList : [UIImage] = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        imgs["Image-1"] = UIImage(named: "Image-1")
+        imgs["Image-2"] = UIImage(named: "Image-2")
+        imgs["noAvatar"] = UIImage(named: "noAvatar")
         
+        imgList = Array(imgs.values)
         initImageRefs()
         dbListen()
         
@@ -123,32 +129,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         // Dismiss the picker if the user canceled.
         dismissViewControllerAnimated(true, completion: nil)
     }
-    func cleanString(base64str: String) -> String {
-        
-        //makes the key string of length 64
-        //let endindex = base64str.startIndex.advancedBy(20)
-        var subString = base64str.substringWithRange(Range<String.Index>(start: base64str.startIndex.advancedBy(1000), end: base64str.startIndex.advancedBy(1020)))
-        
-        //cleans string of /
-        subString = subString.stringByReplacingOccurrencesOfString("/", withString: "7")
-        
-        //cleans string of .
-        subString = subString.stringByReplacingOccurrencesOfString(".", withString: "8")
-        
-        //cleans string of #
-        subString = subString.stringByReplacingOccurrencesOfString("#", withString: "9")
-        
-        //cleans string of $
-        subString = subString.stringByReplacingOccurrencesOfString("$", withString: "1")
-        
-        //cleans string of [
-        subString = subString.stringByReplacingOccurrencesOfString("[", withString: "2")
-        
-        //cleans string of ]
-        subString = subString.stringByReplacingOccurrencesOfString("]", withString: "3")
-        
-        return subString
-    }
     
     func md5(string string: String) -> String {
         var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
@@ -218,8 +198,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        
-        return imgIDs.count
+        return 3
+        //return imgIDs.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -229,7 +209,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
         //cell.backgroundColor = UIColor.blackColor()
         //cell.designatedPic = UIImageView()
-        cell.designatedPic.image = UIImage(named: "noAvatar")
+        
+        cell.designatedPic.image = imgList[indexPath.row]
         return cell
     }
     

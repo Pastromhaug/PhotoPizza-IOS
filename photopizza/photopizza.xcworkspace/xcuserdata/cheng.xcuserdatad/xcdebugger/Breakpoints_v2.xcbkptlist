@@ -201,11 +201,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "photopizza/PicStreamCollectionViewController.swift"
-            timestampString = "490059478.526283"
+            timestampString = "490061286.714795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -286,6 +286,22 @@
                   offsetFromSymbolStart = "19">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "photopizza/PicStreamCollectionViewController.swift"
+            timestampString = "490061286.714795"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
