@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -48,17 +48,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Ht-OQ-RWY">
-                            <size key="itemSize" width="75" height="75"/>
+                            <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BackendImage" id="Sae-mx-sOW" customClass="ImageCollectionViewCell" customModule="photopizza" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="75" height="75"/>
+                                <rect key="frame" x="0.0" y="64" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvG-9r-4VS">
@@ -69,10 +69,22 @@
                                 </view>
                                 <constraints>
                                     <constraint firstItem="xvG-9r-4VS" firstAttribute="top" secondItem="Sae-mx-sOW" secondAttribute="topMargin" id="14v-5W-lA6"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="xvG-9r-4VS" secondAttribute="trailing" constant="10" id="csf-GB-Rv5"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="xvG-9r-4VS" secondAttribute="bottom" id="d7f-Pb-rJS"/>
+                                    <constraint firstItem="xvG-9r-4VS" firstAttribute="leading" secondItem="Sae-mx-sOW" secondAttribute="leadingMargin" constant="10" id="fBW-8m-x4y"/>
                                     <constraint firstItem="xvG-9r-4VS" firstAttribute="leading" secondItem="Sae-mx-sOW" secondAttribute="leadingMargin" id="njE-TN-Emz"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="xvG-9r-4VS" secondAttribute="bottom" constant="10" id="tUa-c7-J6e"/>
+                                    <constraint firstItem="xvG-9r-4VS" firstAttribute="top" secondItem="Sae-mx-sOW" secondAttribute="topMargin" constant="10" id="uPQ-3f-pBm"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="xvG-9r-4VS" secondAttribute="trailing" id="xWx-w7-ZNP"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="14v-5W-lA6"/>
+                                        <exclude reference="d7f-Pb-rJS"/>
+                                        <exclude reference="njE-TN-Emz"/>
+                                        <exclude reference="xWx-w7-ZNP"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="designatedPic" destination="xvG-9r-4VS" id="GVr-LR-H2K"/>
                                 </connections>

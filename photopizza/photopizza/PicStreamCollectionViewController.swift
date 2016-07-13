@@ -28,9 +28,12 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.navigationBar.translucent = false
         initImageRefs()
         dbListen()
+        //print(self.imgs.count)
         
+        //self.loadView()
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -55,31 +58,37 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     
     func initImageRefs() {
+        let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
         ref.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
             let json = JSON(snapshot.value!)["images"]
             for (key,subJson):(String, JSON) in json {
                 let newval = subJson.string!
                 self.imgIDs.append(newval)
-                let photoRef = "images/" + newval
-                photoRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+                let photoRef = storageRef.child("images/" + newval)
+                photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
                     if (error != nil) {
                         // Uh-oh, an error occurred!
                     } else {
                         // Data for "images/island.jpg" is returned
                         // ... let islandImage: UIImage! = UIImage(data: data!)
-                        imgs[newVal] = UIImage(data: data!)
+                        self.imgs[newval] = UIImage(data: data!)
+                        print("IMAGE COUNT: " + String(self.imgs.count))
+                        //self.loadView()
+                        
                     }
                 }
-
+                
                 print(newval)
             }
             print("imgIDs")
             print(self.imgIDs)
+            print("MASTER IMAGE COUNT: " + String(self.imgs.count))
         })
         
     }
     
     func dbListen() {
+        let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
         let postRef = FIRDatabase.database().reference().child("images")
         
         let addHandle = postRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
@@ -93,18 +102,20 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                 }
             }
             self.imgIDs.append(newval)
-            let photoRef = "images/" + newval
-            photoRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+            let photoRef = storageRef.child("images/" + newval)
+            photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
                 if (error != nil) {
                     // Uh-oh, an error occurred!
                 } else {
                     // Data for "images/island.jpg" is returned
                     // ... let islandImage: UIImage! = UIImage(data: data!)
-                    imgs[newVal] = UIImage(data: data!)
+                    self.imgs[newval] = UIImage(data: data!)
+                    //self.loadView()
                 }
             }
-
+            //self.loadView()
             print(self.imgIDs)
+           
         })
         let removeHandle = postRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
             print("live remove")
@@ -115,8 +126,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                 let curr = self.imgIDs[i]
                 if (curr == newval) {
                     self.imgIDs.removeAtIndex(i)
-                    imgs.removeValueForKey(newval)
+                    self.imgs.removeValueForKey(newval)
                     print(self.imgIDs)
+                    //self.loadView()
                     return
                 }
             }
@@ -228,8 +240,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         // #warning Incomplete implementation, return the number of items
         
         imgList = Array(imgs.values)
-        return imgList.count
-        //return imgIDs.count
+        print("COUNT: " + String(imgIDs))
+        //return imgList.count
+        return 4
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -238,9 +251,10 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         // Configure the cell
     
         //cell.backgroundColor = UIColor.blackColor()
-        //cell.designatedPic = UIImageView()
+        
         imgList = Array(imgs.values)
-        cell.designatedPic.image = imgList[indexPath.row]
+        //cell.designatedPic.image = imgList[indexPath.row]
+        cell.designatedPic.image = UIImage(named: "noAvatar")
         return cell
     }
     
