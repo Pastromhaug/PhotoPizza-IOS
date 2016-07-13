@@ -11,27 +11,38 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import SwiftyJSON
-
+import MWPhotoBrowser
 
 private let reuseIdentifier = "BackendImage"
 
 
-class PicStreamCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PicStreamCollectionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MWPhotoBrowserDelegate {
 
     //MARK: Properties
     let storage = FIRStorage.storage()
     let ref = FIRDatabase.database().reference()
-    @IBOutlet var picCollectionView: UICollectionView!
+    //@IBOutlet var picCollectionView: UICollectionView!
     
     var imgIDs: [String] = [String]()
     var imgs : [String : UIImage] = [String : UIImage]()
     var imgList : [UIImage] = [UIImage]()
+    var photos = [MWPhoto]()
+    var browser:MWPhotoBrowser
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init()
+        browser = MWPhotoBrowser(delegate: self)
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.navigationBar.translucent = false
         initImageRefs()
         dbListen()
+        photos += [MWPhoto(image: UIImage(named: "noAvatar"))]
+        
+        showFullScreenImage()
         //print(self.imgs.count)
         
         //self.loadView()
@@ -47,6 +58,45 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         
         
     }
+    func showFullScreenImage() {
+        imgList = Array(imgs.values)
+        for img in imgList {
+            self.photos += [MWPhoto(image: img)]
+        }
+        
+        browser = MWPhotoBrowser(delegate: self)
+
+        
+        browser.displayActionButton = true
+        browser.displayNavArrows = false
+        browser.displaySelectionButtons = true
+        browser.zoomPhotosToFill = true
+        browser.alwaysShowControls = true
+        browser.enableGrid = true
+        browser.startOnGrid = true
+        browser.enableSwipeToDismiss = true
+        
+        browser.setCurrentPhotoIndex(0)
+        
+        self.navigationController?.pushViewController(browser, animated: true)
+    }
+    
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+        return UInt(self.photos.count)
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+        if Int(index) < self.photos.count {
+            return photos[Int(index)] as! MWPhoto
+        }
+        return nil
+    }
+    
+    func photoBrowserDidFinishModalPresentation(photoBrowser:MWPhotoBrowser) {
+        self.dismissViewControllerAnimated(true, completion:nil)
+    }
+    
+
     
 //    islandRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
 //    if (error != nil) {
@@ -75,8 +125,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         self.imgs[newval] = UIImage(data: data!)
                         print("IMAGE COUNT: " + String(self.imgs.count))
                         //self.loadView()
-                        self.picCollectionView.reloadData()
-                        
+                        //TODO: self.picCollectionView.reloadData()
+                        self.browser.reloadData()
                     }
                 }
                 
@@ -112,7 +162,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                     // Data for "images/island.jpg" is returned
                     // ... let islandImage: UIImage! = UIImage(data: data!)
                     self.imgs[newval] = UIImage(data: data!)
-                    self.picCollectionView.reloadData()
+                    //TODO: self.picCollectionView.reloadData()
+                    self.browser.reloadData()
                 }
             }
             //self.loadView()
@@ -131,7 +182,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                     self.imgs.removeValueForKey(newval)
                     print(self.imgIDs)
                     //self.loadView()
-                    self.picCollectionView.reloadData()
+                    //TODO: self.picCollectionView.reloadData()
                     return
                 }
             }
@@ -233,33 +284,33 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        
-        imgList = Array(imgs.values)
-        //print("COUNT: " + String(imgIDs))
-        return imgList.count
-        //return 4
-    }
-
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageCollectionViewCell
-    
-        // Configure the cell
-    
-        //cell.backgroundColor = UIColor.blackColor()
-        
-        imgList = Array(imgs.values)
-        cell.designatedPic.image = imgList[indexPath.row]
-        //cell.designatedPic.image = UIImage(named: "noAvatar")
-        return cell
-    }
+//    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 1
+//    }
+//
+//
+//    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of items
+//        
+//        imgList = Array(imgs.values)
+//        //print("COUNT: " + String(imgIDs))
+//        return imgList.count
+//        //return 4
+//    }
+//
+//    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageCollectionViewCell
+//    
+//        // Configure the cell
+//    
+//        //cell.backgroundColor = UIColor.blackColor()
+//        
+//        imgList = Array(imgs.values)
+//        cell.designatedPic.image = imgList[indexPath.row]
+//        //cell.designatedPic.image = UIImage(named: "noAvatar")
+//        return cell
+//    }
     
 
     // MARK: UICollectionViewDelegate
