@@ -76,7 +76,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         let storyBoard : UIStoryboard? = self.storyboard
         
-        let nextViewController = (storyBoard?.instantiateViewControllerWithIdentifier("homeNav"))! as UIViewController
+        let nextViewController = (storyBoard?.instantiateViewControllerWithIdentifier("newNav"))! as UIViewController
         self.presentViewController(nextViewController, animated:true, completion:nil)
 //        let secondViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("home"))! as UIViewController
 //        self.navigationController?.pushViewController(secondViewController, animated: true)
