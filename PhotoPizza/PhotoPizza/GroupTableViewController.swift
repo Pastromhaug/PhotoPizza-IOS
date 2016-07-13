@@ -14,9 +14,12 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         loadSampleMeals()
-        navigationController!.navigationBar.barTintColor = UIColor(red:0.60, green:0.36, blue:0.51, alpha:1.0)
-        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.94, green:0.94, blue:0.94, alpha:1.0)]
+        navigationController!.navigationBar.barTintColor = UIColor(red:0.44, green:0.01, blue:0.33, alpha:1.0)
+        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)]
+        self.tableView.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

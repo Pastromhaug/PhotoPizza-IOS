@@ -33,6 +33,12 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController!.navigationBar.barTintColor = UIColor(red:0.44, green:0.01, blue:0.33, alpha:1.0)
+        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)]
+        navigationController!.navigationBar.tintColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
+        self.collectionView?.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
+
+
         
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
