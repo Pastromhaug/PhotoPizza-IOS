@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import SwiftyJSON
-
+import Agrume
 
 private let reuseIdentifier = "BackendImage"
 
@@ -23,15 +23,32 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     let ref = FIRDatabase.database().reference()
     @IBOutlet var picCollectionView: UICollectionView!
     
+    var screenSize: CGRect!
+    var screenWidth: CGFloat!
+    var screenHeight: CGFloat!
+    
     var imgIDs: [String] = [String]()
     var imgs : [String : UIImage] = [String : UIImage]()
     var imgList : [UIImage] = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        screenSize = UIScreen.mainScreen().bounds
+        screenWidth = screenSize.width
+        screenHeight = screenSize.height
+        
         //self.navigationController?.navigationBar.translucent = false
         initImageRefs()
         dbListen()
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+        layout.itemSize = CGSize(width: screenWidth / 3, height: screenWidth / 3)
+        picCollectionView!.dataSource = self
+        picCollectionView!.delegate = self
+        
+        
         //print(self.imgs.count)
         
         //self.loadView()
@@ -155,7 +172,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     */
     
     @IBAction func uploadPicture(sender: UIBarButtonItem) {
-        print("hi")
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()
         
@@ -258,11 +274,28 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         imgList = Array(imgs.values)
         cell.designatedPic.image = imgList[indexPath.row]
         //cell.designatedPic.image = UIImage(named: "noAvatar")
+//        cell.layer.borderWidth = 0.5
+//        cell.frame.size.width = screenWidth / 3
+//        cell.frame.size.height = screenWidth / 3
+        
+    
         return cell
     }
     
 
     // MARK: UICollectionViewDelegate
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let agrume = Agrume(images: imgList, startIndex: indexPath.row, backgroundBlurStyle: .Light)
+        agrume.didScroll = {
+            [unowned self] index in
+            self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forRow: index, inSection: 0),
+                                                         atScrollPosition: [],
+                                                         animated: false)
+        }
+        agrume.showFrom(self)
+    }
+
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
