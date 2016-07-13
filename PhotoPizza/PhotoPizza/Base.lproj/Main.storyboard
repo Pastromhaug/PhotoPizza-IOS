@@ -102,10 +102,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="picCollectionView" destination="TJ3-IU-EzB" id="tgS-xT-1RK"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7V2-G4-Lio" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2751" y="-516"/>
+            <point key="canvasLocation" x="2743" y="-501"/>
         </scene>
         <!--Group Page View Controller-->
         <scene sceneID="PH9-1n-4ua">

@@ -21,6 +21,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     //MARK: Properties
     let storage = FIRStorage.storage()
     let ref = FIRDatabase.database().reference()
+    @IBOutlet var picCollectionView: UICollectionView!
     
     var imgIDs: [String] = [String]()
     var imgs : [String : UIImage] = [String : UIImage]()
@@ -74,6 +75,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         self.imgs[newval] = UIImage(data: data!)
                         print("IMAGE COUNT: " + String(self.imgs.count))
                         //self.loadView()
+                        self.picCollectionView.reloadData()
                         
                     }
                 }
@@ -110,7 +112,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                     // Data for "images/island.jpg" is returned
                     // ... let islandImage: UIImage! = UIImage(data: data!)
                     self.imgs[newval] = UIImage(data: data!)
-                    //self.loadView()
+                    self.picCollectionView.reloadData()
                 }
             }
             //self.loadView()
@@ -129,6 +131,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                     self.imgs.removeValueForKey(newval)
                     print(self.imgIDs)
                     //self.loadView()
+                    self.picCollectionView.reloadData()
                     return
                 }
             }
@@ -240,9 +243,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         // #warning Incomplete implementation, return the number of items
         
         imgList = Array(imgs.values)
-        print("COUNT: " + String(imgIDs))
-        //return imgList.count
-        return 4
+        //print("COUNT: " + String(imgIDs))
+        return imgList.count
+        //return 4
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -253,8 +256,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         //cell.backgroundColor = UIColor.blackColor()
         
         imgList = Array(imgs.values)
-        //cell.designatedPic.image = imgList[indexPath.row]
-        cell.designatedPic.image = UIImage(named: "noAvatar")
+        cell.designatedPic.image = imgList[indexPath.row]
+        //cell.designatedPic.image = UIImage(named: "noAvatar")
         return cell
     }
     
