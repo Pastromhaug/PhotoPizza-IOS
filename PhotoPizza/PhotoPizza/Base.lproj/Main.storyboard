@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -108,7 +108,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7V2-G4-Lio" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2743" y="-501"/>
+            <point key="canvasLocation" x="3555" y="-501"/>
         </scene>
         <!--Group Page View Controller-->
         <scene sceneID="PH9-1n-4ua">
@@ -164,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UL7-l5-pqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2054" y="118"/>
+            <point key="canvasLocation" x="2582" y="-1129"/>
         </scene>
         <!--Make Group One View Controller-->
         <scene sceneID="oah-os-Zah">
@@ -265,6 +265,52 @@
             </objects>
             <point key="canvasLocation" x="4328" y="377"/>
         </scene>
+        <!--Groups-->
+        <scene sceneID="l4r-p0-yc1">
+            <objects>
+                <tableViewController id="maW-Dr-Y5P" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="FjC-K6-ca8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="6mR-Qg-IAE" customClass="GroupTableViewCell" customModule="vuepal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="67"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="70" tableViewCell="6mR-Qg-IAE" id="Z8k-We-D3f">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="66.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxH-Vl-g7b">
+                                            <rect key="frame" x="74" y="8" width="518" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OEw-6K-dea">
+                                            <rect key="frame" x="0.0" y="0.0" width="66.5" height="66.5"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="groupImage" destination="OEw-6K-dea" id="DJc-7n-mhi"/>
+                                    <outlet property="groupLabel" destination="TxH-Vl-g7b" id="G7v-S3-fig"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="maW-Dr-Y5P" id="8lt-qN-vpw"/>
+                            <outlet property="delegate" destination="maW-Dr-Y5P" id="LFq-cC-Cet"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Groups" id="8Mw-OM-XMJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="A2C-JW-xrN"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aI7-MV-ZDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1824" y="-981"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="zZk-16-PnV">
             <objects>
@@ -281,7 +327,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edf-Jt-fhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1246" y="89"/>
+            <point key="canvasLocation" x="2058" y="89"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="P9Q-RU-fqv">
@@ -299,7 +345,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KL7-FN-wiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2836" y="377"/>
+            <point key="canvasLocation" x="2816" y="177"/>
         </scene>
     </scenes>
     <resources>
