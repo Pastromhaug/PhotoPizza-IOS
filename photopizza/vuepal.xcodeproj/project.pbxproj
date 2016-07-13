@@ -43,14 +43,14 @@
 		145136B81D34191D00CD786F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		145136C01D352BCF00CD786F /* PicStreamCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicStreamCollectionViewController.swift; sourceTree = "<group>"; };
 		145136C21D35503300CD786F /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		14924CA61D319C2500E42676 /* photopizza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photopizza.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14924CA61D319C2500E42676 /* vuepal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vuepal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14924CA91D319C2500E42676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14924CAB1D319C2500E42676 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		14924CAE1D319C2500E42676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14924CB01D319C2500E42676 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14924CB31D319C2500E42676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14924CB51D319C2500E42676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14924CBA1D319C2500E42676 /* photopizzaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = photopizzaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14924CBA1D319C2500E42676 /* vuepal.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vuepal.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14924CBE1D319C2500E42676 /* photopizzaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photopizzaTests.swift; sourceTree = "<group>"; };
 		14924CC01D319C2500E42676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DCCC64CC1B81F7E9F8303A5 /* Pods_photopizzaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_photopizzaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,8 +104,8 @@
 		14924CA71D319C2500E42676 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				14924CA61D319C2500E42676 /* photopizza.app */,
-				14924CBA1D319C2500E42676 /* photopizzaTests.xctest */,
+				14924CA61D319C2500E42676 /* vuepal.app */,
+				14924CBA1D319C2500E42676 /* vuepal.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,9 +154,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		14924CA51D319C2500E42676 /* photopizza */ = {
+		14924CA51D319C2500E42676 /* vuepal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14924CC31D319C2500E42676 /* Build configuration list for PBXNativeTarget "photopizza" */;
+			buildConfigurationList = 14924CC31D319C2500E42676 /* Build configuration list for PBXNativeTarget "vuepal" */;
 			buildPhases = (
 				F028A983360AC2295DDDC5E1 /* [CP] Check Pods Manifest.lock */,
 				14924CA21D319C2500E42676 /* Sources */,
@@ -169,14 +169,14 @@
 			);
 			dependencies = (
 			);
-			name = photopizza;
+			name = vuepal;
 			productName = photopizza;
-			productReference = 14924CA61D319C2500E42676 /* photopizza.app */;
+			productReference = 14924CA61D319C2500E42676 /* vuepal.app */;
 			productType = "com.apple.product-type.application";
 		};
-		14924CB91D319C2500E42676 /* photopizzaTests */ = {
+		14924CB91D319C2500E42676 /* vuepalTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14924CC61D319C2500E42676 /* Build configuration list for PBXNativeTarget "photopizzaTests" */;
+			buildConfigurationList = 14924CC61D319C2500E42676 /* Build configuration list for PBXNativeTarget "vuepalTests" */;
 			buildPhases = (
 				4836A79ED2C87D03ABFE601A /* [CP] Check Pods Manifest.lock */,
 				14924CB61D319C2500E42676 /* Sources */,
@@ -190,9 +190,9 @@
 			dependencies = (
 				14924CBC1D319C2500E42676 /* PBXTargetDependency */,
 			);
-			name = photopizzaTests;
+			name = vuepalTests;
 			productName = photopizzaTests;
-			productReference = 14924CBA1D319C2500E42676 /* photopizzaTests.xctest */;
+			productReference = 14924CBA1D319C2500E42676 /* vuepal.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -215,7 +215,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 14924CA11D319C2500E42676 /* Build configuration list for PBXProject "photopizza" */;
+			buildConfigurationList = 14924CA11D319C2500E42676 /* Build configuration list for PBXProject "vuepal" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -228,8 +228,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				14924CA51D319C2500E42676 /* photopizza */,
-				14924CB91D319C2500E42676 /* photopizzaTests */,
+				14924CA51D319C2500E42676 /* vuepal */,
+				14924CB91D319C2500E42676 /* vuepalTests */,
 			);
 		};
 /* End PBXProject section */
@@ -377,7 +377,7 @@
 /* Begin PBXTargetDependency section */
 		14924CBC1D319C2500E42676 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 14924CA51D319C2500E42676 /* photopizza */;
+			target = 14924CA51D319C2500E42676 /* vuepal */;
 			targetProxy = 14924CBB1D319C2500E42676 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -498,7 +498,7 @@
 				INFOPLIST_FILE = photopizza/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizza;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = vuepal;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "photopizza/photopizza-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -516,7 +516,7 @@
 				INFOPLIST_FILE = photopizza/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizza;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = vuepal;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "photopizza/photopizza-Bridging-Header.h";
 			};
@@ -530,8 +530,8 @@
 				INFOPLIST_FILE = photopizzaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizzaTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photopizza.app/photopizza";
+				PRODUCT_NAME = vuepal;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vuepal.app/vuepal";
 			};
 			name = Debug;
 		};
@@ -543,15 +543,15 @@
 				INFOPLIST_FILE = photopizzaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.garycheng.photopizzaTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photopizza.app/photopizza";
+				PRODUCT_NAME = vuepal;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vuepal.app/vuepal";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		14924CA11D319C2500E42676 /* Build configuration list for PBXProject "photopizza" */ = {
+		14924CA11D319C2500E42676 /* Build configuration list for PBXProject "vuepal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14924CC11D319C2500E42676 /* Debug */,
@@ -560,7 +560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		14924CC31D319C2500E42676 /* Build configuration list for PBXNativeTarget "photopizza" */ = {
+		14924CC31D319C2500E42676 /* Build configuration list for PBXNativeTarget "vuepal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14924CC41D319C2500E42676 /* Debug */,
@@ -569,7 +569,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		14924CC61D319C2500E42676 /* Build configuration list for PBXNativeTarget "photopizzaTests" */ = {
+		14924CC61D319C2500E42676 /* Build configuration list for PBXNativeTarget "vuepalTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14924CC71D319C2500E42676 /* Debug */,

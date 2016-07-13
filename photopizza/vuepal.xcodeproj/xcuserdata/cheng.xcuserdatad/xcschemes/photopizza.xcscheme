@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "14924CA51D319C2500E42676"
-               BuildableName = "photopizza.app"
-               BlueprintName = "photopizza"
-               ReferencedContainer = "container:photopizza.xcodeproj">
+               BuildableName = "vuepal.app"
+               BlueprintName = "vuepal"
+               ReferencedContainer = "container:vuepal.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "14924CB91D319C2500E42676"
-               BuildableName = "photopizzaTests.xctest"
-               BlueprintName = "photopizzaTests"
-               ReferencedContainer = "container:photopizza.xcodeproj">
+               BuildableName = "vuepal.xctest"
+               BlueprintName = "vuepalTests"
+               ReferencedContainer = "container:vuepal.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14924CA51D319C2500E42676"
-            BuildableName = "photopizza.app"
-            BlueprintName = "photopizza"
-            ReferencedContainer = "container:photopizza.xcodeproj">
+            BuildableName = "vuepal.app"
+            BlueprintName = "vuepal"
+            ReferencedContainer = "container:vuepal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14924CA51D319C2500E42676"
-            BuildableName = "photopizza.app"
-            BlueprintName = "photopizza"
-            ReferencedContainer = "container:photopizza.xcodeproj">
+            BuildableName = "vuepal.app"
+            BlueprintName = "vuepal"
+            ReferencedContainer = "container:vuepal.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14924CA51D319C2500E42676"
-            BuildableName = "photopizza.app"
-            BlueprintName = "photopizza"
-            ReferencedContainer = "container:photopizza.xcodeproj">
+            BuildableName = "vuepal.app"
+            BlueprintName = "vuepal"
+            ReferencedContainer = "container:vuepal.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
