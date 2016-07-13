@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="424" y="58"/>
         </scene>
-        <!--Title-->
+        <!--France-->
         <scene sceneID="gpc-bJ-SgY">
             <objects>
                 <collectionViewController id="mZa-8d-tRK" customClass="PicStreamCollectionViewController" customModule="vuepal" customModuleProvider="target" sceneMemberID="viewController">
@@ -95,7 +95,7 @@
                             <outlet property="delegate" destination="mZa-8d-tRK" id="hsD-DN-YZh"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Title" id="6cK-rd-uYn">
+                    <navigationItem key="navigationItem" title="France" id="6cK-rd-uYn">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dXG-ae-aSu">
                             <connections>
                                 <action selector="uploadPicture:" destination="mZa-8d-tRK" id="T0b-E1-sdR"/>
