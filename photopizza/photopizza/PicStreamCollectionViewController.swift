@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import SwiftyJSON
-import  DKImagePickerController
+import DKImagePickerController
 import Agrume
 
 private let reuseIdentifier = "BackendImage"

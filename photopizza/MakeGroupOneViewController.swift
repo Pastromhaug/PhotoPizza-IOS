@@ -103,8 +103,9 @@ class MakeGroupOneViewController: UIViewController, UITextFieldDelegate, UIImage
         if sender === nextButton {
             let name = groupTextField.text ?? ""
             let avatar = avatarImage.image
+            let update = "placehodlertoavoiderror"
             
-            group = Group(name: name, avatar: avatar)
+            group = Group(name: name, avatar: avatar, update: update)
             
             let svc = segue.destinationViewController as! AddMembsViewController;
             svc.group = self.group

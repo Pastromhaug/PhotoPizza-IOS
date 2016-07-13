@@ -11,10 +11,12 @@ class Group {
     var name: String
     var avatar: UIImage?
     var members: [String]
+    var update: String
     
-    init(name: String, avatar: UIImage?) {
+    init(name: String, avatar: UIImage?, update: String) {
         self.name = name
         self.avatar = avatar
         self.members = [String]()
+        self.update = update
     }
 }
