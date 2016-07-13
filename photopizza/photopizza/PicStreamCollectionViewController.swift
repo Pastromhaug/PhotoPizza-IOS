@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 import SwiftyJSON
 import  DKImagePickerController
-
+import Agrume
 
 private let reuseIdentifier = "BackendImage"
 
@@ -24,15 +24,32 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     let ref = FIRDatabase.database().reference()
     @IBOutlet var picCollectionView: UICollectionView!
     
+    var screenSize: CGRect!
+    var screenWidth: CGFloat!
+    var screenHeight: CGFloat!
+    
     var imgIDs: [String] = [String]()
     var imgs : [String : UIImage] = [String : UIImage]()
     var imgList : [UIImage] = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        screenSize = UIScreen.mainScreen().bounds
+        screenWidth = screenSize.width
+        screenHeight = screenSize.height
+        
         //self.navigationController?.navigationBar.translucent = false
         initImageRefs()
         dbListen()
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+        layout.itemSize = CGSize(width: screenWidth / 3, height: screenWidth / 3)
+        picCollectionView!.dataSource = self
+        picCollectionView!.delegate = self
+        
+        
         //print(self.imgs.count)
         
         //self.loadView()
@@ -198,11 +215,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         }
         pickerController.showsCancelButton = true
         self.presentViewController(pickerController, animated: true) {}    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        // Dismiss the picker if the user canceled.
-        dismissViewControllerAnimated(true, completion: nil)
-    }
+
     
     func md5(string string: String) -> String {
         var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
@@ -217,50 +230,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         
         return digestHex
     }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
-        
-        //select image from photo library
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        //convert photo to string and clean it
-        let uploadData: NSData = UIImageJPEGRepresentation(selectedImage, 0.9)!
-        let fileString: String = uploadData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-        let subString = md5(string: fileString)
-        
-        
-        print(subString)
-        
-        //uploads img to storage
-        let imgRef = storageRef.child("images/" + subString + ".jpg")
-        imgRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-            if (error != nil) {
-                print("Error in putData")
-            }
-            else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-                print("putData succeeded")
-                
-                //uploads to real time database
-                var dict = [String: String]()
-                dict.updateValue(subString + ".jpg", forKey: subString)
-                print(dict)
-                self.ref.child("images").updateChildValues(dict)
-
-            }
-        })
-        
-    
-        
-        // Set photoImageView to display the selected image.
-        //photoImageView.image = selectedImage
-        
-        // Dismiss the picker.
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
 
     // MARK: UICollectionViewDataSource
 
@@ -289,11 +258,28 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         imgList = Array(imgs.values)
         cell.designatedPic.image = imgList[indexPath.row]
         //cell.designatedPic.image = UIImage(named: "noAvatar")
+//        cell.layer.borderWidth = 0.5
+//        cell.frame.size.width = screenWidth / 3
+//        cell.frame.size.height = screenWidth / 3
+        
+    
         return cell
     }
     
 
     // MARK: UICollectionViewDelegate
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let agrume = Agrume(images: imgList, startIndex: indexPath.row, backgroundBlurStyle: .Light)
+        agrume.didScroll = {
+            [unowned self] index in
+            self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forRow: index, inSection: 0),
+                                                         atScrollPosition: [],
+                                                         animated: false)
+        }
+        agrume.showFrom(self)
+    }
+
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking

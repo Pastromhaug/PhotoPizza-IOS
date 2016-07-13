@@ -1,4 +1,5 @@
 PODS:
+  - Agrume (2.7.1)
   - Bolts (1.8.3):
     - Bolts/AppLinks (= 1.8.3)
     - Bolts/Tasks (= 1.8.3)
@@ -58,6 +59,7 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - Agrume (from `https://github.com/JanGorman/Agrume.git`)
   - Bolts
   - DKImagePickerController
   - FBSDKCoreKit
@@ -69,7 +71,17 @@ DEPENDENCIES:
   - Firebase/Storage
   - SwiftyJSON
 
+EXTERNAL SOURCES:
+  Agrume:
+    :git: https://github.com/JanGorman/Agrume.git
+
+CHECKOUT OPTIONS:
+  Agrume:
+    :commit: 2edf783f95f934a38f46ec97235a17c5c2c7d051
+    :git: https://github.com/JanGorman/Agrume.git
+
 SPEC CHECKSUMS:
+  Agrume: b5d2ff2830a8fa6dadc009e0046cf4e1a2424e68
   Bolts: 52551f96df2f8aac6b4414347f3f8353a39f1966
   DKImagePickerController: 416dab2d42caaf4ca681baca9c2d533895a8c1a2
   FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
@@ -88,6 +100,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 78467be304c37089b9888bdf2b8af3aa75b2c6ef
+PODFILE CHECKSUM: ab170e3e823bc0690230b4ca1ec848fdd2ed1ff1
 
 COCOAPODS: 1.0.1
