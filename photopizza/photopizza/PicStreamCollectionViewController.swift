@@ -17,13 +17,12 @@ import Agrume
 private let reuseIdentifier = "BackendImage"
 
 
-class PicStreamCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PicStreamCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout {
 
     //MARK: Properties
     let storage = FIRStorage.storage()
     let ref = FIRDatabase.database().reference()
     @IBOutlet var picCollectionView: UICollectionView!
-    
     var screenSize: CGRect!
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
@@ -43,11 +42,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         initImageRefs()
         dbListen()
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
-        layout.itemSize = CGSize(width: screenWidth / 3, height: screenWidth / 3)
-        picCollectionView!.dataSource = self
-        picCollectionView!.delegate = self
+//
         
         
         //print(self.imgs.count)
@@ -66,14 +61,18 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         
     }
     
-//    islandRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
-//    if (error != nil) {
-//    // Uh-oh, an error occurred!
-//    } else {
-//    // Data for "images/island.jpg" is returned
-//    // ... let islandImage: UIImage! = UIImage(data: data!)
-//    }
-//    }
+    // MARK: UICollectionViewDelegateFlowLayout
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(screenWidth/5, screenWidth/5 );
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0;
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0;
+    }
     
     
     func initImageRefs() {
@@ -181,7 +180,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
             for object in assets {
                 object.fetchOriginalImageWithCompleteBlock { (image, info) -> Void in
                     //convert photo to string and clean it
-                    let uploadData: NSData = UIImageJPEGRepresentation(image!, 0.1)!
+                    let uploadData: NSData = UIImageJPEGRepresentation(image!, 0.05)!
                     let fileString: String = uploadData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
                     let subString = self.md5(string: fileString)
                     
@@ -256,11 +255,14 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         //cell.backgroundColor = UIColor.blackColor()
         
         imgList = Array(imgs.values)
+        if (cell.designatedPic == nil) {
+            
+        }
         cell.designatedPic.image = imgList[indexPath.row]
         //cell.designatedPic.image = UIImage(named: "noAvatar")
-//        cell.layer.borderWidth = 0.5
-//        cell.frame.size.width = screenWidth / 3
-//        cell.frame.size.height = screenWidth / 3
+        cell.layer.borderWidth = 0
+        cell.frame.size.width = screenWidth / 5
+        cell.frame.size.height = screenWidth / 5
         
     
         return cell
