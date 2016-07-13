@@ -25,13 +25,13 @@ class GroupTableViewController: UITableViewController {
     
     func loadSampleMeals() {
         let photo1 = UIImage(named: "Fjord")!
-        let group1 = Group(name: "Norway 2016 Trip", avatar: photo1)
+        let group1 = Group(name: "Norway 2016 Trip", avatar: photo1, update: "Gary added 15 new photos")
         
         let photo2 = UIImage(named: "Family")!
-        let group2 = Group(name: "Family Vaca", avatar: photo2)
+        let group2 = Group(name: "Family Vaca", avatar: photo2, update: "New photos from Paige, Gary, Ken")
         
         let photo3 = UIImage(named: "Friends")!
-        let group3 = Group(name: "Berkeley Takes Nice", avatar: photo3)
+        let group3 = Group(name: "Berkeley Takes Nice", avatar: photo3, update: "Anjali added 5 photos")
         
         groups += [group1, group2, group3]
     }
@@ -64,6 +64,7 @@ class GroupTableViewController: UITableViewController {
         
         cell.groupLabel.text = group.name
         cell.groupImage.image = group.avatar
+        cell.groupUpdate.text = group.update
         
         return cell
     }

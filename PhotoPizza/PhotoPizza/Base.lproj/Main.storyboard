@@ -234,11 +234,18 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OEw-6K-dea">
                                             <rect key="frame" x="0.0" y="0.0" width="66.5" height="66.5"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2po-x3-qQb">
+                                            <rect key="frame" x="74" y="37" width="518" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.52932755235602102" green="0.52932755235602102" blue="0.52932755235602102" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="groupImage" destination="OEw-6K-dea" id="DJc-7n-mhi"/>
                                     <outlet property="groupLabel" destination="TxH-Vl-g7b" id="G7v-S3-fig"/>
+                                    <outlet property="groupUpdate" destination="2po-x3-qQb" id="Uc5-MO-2WV"/>
                                     <segue destination="mZa-8d-tRK" kind="show" id="M2l-ey-Akp"/>
                                 </connections>
                             </tableViewCell>
