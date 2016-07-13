@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DACircularProgress.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FBSDKCoreKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -24,12 +29,32 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MWPhotoBrowser-MWPhotoBrowser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MWPhotoBrowser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-photopizza.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-photopizzaTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,7 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0F75F8B67600BCD2E8BF6A6F75EEAD0D</key>
+		<key>14E6E2E2484806AB62B60CA2EAD41F9B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>687D91CE861932103CC09CE612EDADEF</key>
+		<key>478BB4FCE9AA0C343B14C842B1F63482</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6461FF73E606AC17ECB9C28944E4F30F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +102,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>94624EC6C9739263AA965CFE2D8933F5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B128DF320FFC8867661650323433E179</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BE7A5E8E0FDE9CA58316BC4D6568818D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
