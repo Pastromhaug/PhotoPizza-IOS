@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
+import SwiftyJSON
+
 
 private let reuseIdentifier = "BackendImage"
 
@@ -42,10 +44,17 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         
     }
     func initImageRefs() {
-        ref.queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
-            print("query returned")
-            print(snapshot.value!)
+        ref.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
+            let json = JSON(snapshot.value!)["images"]
+            for (key,subJson):(String, JSON) in json {
+                let newval = subJson.string!
+                self.imgIDs.append(newval)
+                print(newval)
+            }
+            print("imgIDs")
+            print(self.imgIDs)
         })
+        
     }
     
     func dbListen() {
@@ -54,15 +63,30 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         let addHandle = postRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             print("live added")
             print(snapshot.value!)
-            self.imgIDs += [snapshot.value as! String]
+            let newval: String = snapshot.value as! String
+            for ref in self.imgIDs {
+                if ref == newval{
+                    print(self.imgIDs)
+                    return
+                }
+            }
+            self.imgIDs.append(newval)
+            print(self.imgIDs)
         })
         let removeHandle = postRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
             print("live remove")
             print(snapshot.value!)
-        })
-        let refHandle = postRef.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
-            print(snapshot.value!)
-            // ...
+            let newval: String = snapshot.value as! String
+            var len = self.imgIDs.count
+            for i in 0..<len {
+                let curr = self.imgIDs[i]
+                if (curr == newval) {
+                    self.imgIDs.removeAtIndex(i)
+                    print(self.imgIDs)
+                    return
+                }
+            }
+            print(self.imgIDs)
         })
     }
 
