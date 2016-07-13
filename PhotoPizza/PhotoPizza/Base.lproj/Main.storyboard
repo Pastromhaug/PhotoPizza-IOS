@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="K9e-MF-uOe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="856" y="-590"/>
         </scene>
-        <!--France-->
+        <!--Pic Stream Collection View Controller-->
         <scene sceneID="gpc-bJ-SgY">
             <objects>
                 <collectionViewController id="mZa-8d-tRK" customClass="PicStreamCollectionViewController" customModule="vuepal" customModuleProvider="target" sceneMemberID="viewController">
@@ -95,7 +95,7 @@
                             <outlet property="delegate" destination="mZa-8d-tRK" id="hsD-DN-YZh"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="France" id="6cK-rd-uYn">
+                    <navigationItem key="navigationItem" id="6cK-rd-uYn">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dXG-ae-aSu">
                             <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -249,7 +249,7 @@
                                     <outlet property="groupImage" destination="OEw-6K-dea" id="DJc-7n-mhi"/>
                                     <outlet property="groupLabel" destination="TxH-Vl-g7b" id="G7v-S3-fig"/>
                                     <outlet property="groupUpdate" destination="2po-x3-qQb" id="Uc5-MO-2WV"/>
-                                    <segue destination="mZa-8d-tRK" kind="show" id="M2l-ey-Akp"/>
+                                    <segue destination="mZa-8d-tRK" kind="show" identifier="showDetail" id="M2l-ey-Akp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -261,6 +261,9 @@
                     <navigationItem key="navigationItem" title="Groups" id="8Mw-OM-XMJ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="A2C-JW-xrN">
                             <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="5lJ-BH-vNz" kind="presentation" id="r0P-H6-Hag"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -285,7 +288,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KL7-FN-wiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2816" y="177"/>
+            <point key="canvasLocation" x="2771" y="-348"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a09-Yp-vfx">

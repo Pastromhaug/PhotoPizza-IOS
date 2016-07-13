@@ -119,14 +119,20 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+   
+     //In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetail" {
+            let detailViewController = segue.destinationViewController as! PicStreamCollectionViewController
+            if let selectedCell = sender as? GroupTableViewCell {
+                detailViewController.navigationItem.title = selectedCell.groupLabel.text
+            }
+        }
     }
-    */
+
+    
 
 }
