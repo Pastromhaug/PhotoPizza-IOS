@@ -28,12 +28,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        imgs["Image-1"] = UIImage(named: "Image-1")
-        imgs["Image-2"] = UIImage(named: "Image-2")
-        imgs["noAvatar"] = UIImage(named: "noAvatar")
-        
-        imgList = Array(imgs.values)
         initImageRefs()
         dbListen()
         
@@ -49,12 +43,34 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         
         
     }
+    
+//    islandRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+//    if (error != nil) {
+//    // Uh-oh, an error occurred!
+//    } else {
+//    // Data for "images/island.jpg" is returned
+//    // ... let islandImage: UIImage! = UIImage(data: data!)
+//    }
+//    }
+    
+    
     func initImageRefs() {
         ref.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
             let json = JSON(snapshot.value!)["images"]
             for (key,subJson):(String, JSON) in json {
                 let newval = subJson.string!
                 self.imgIDs.append(newval)
+                let photoRef = "images/" + newval
+                photoRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+                    if (error != nil) {
+                        // Uh-oh, an error occurred!
+                    } else {
+                        // Data for "images/island.jpg" is returned
+                        // ... let islandImage: UIImage! = UIImage(data: data!)
+                        imgs[newVal] = UIImage(data: data!)
+                    }
+                }
+
                 print(newval)
             }
             print("imgIDs")
@@ -77,6 +93,17 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                 }
             }
             self.imgIDs.append(newval)
+            let photoRef = "images/" + newval
+            photoRef.dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+                if (error != nil) {
+                    // Uh-oh, an error occurred!
+                } else {
+                    // Data for "images/island.jpg" is returned
+                    // ... let islandImage: UIImage! = UIImage(data: data!)
+                    imgs[newVal] = UIImage(data: data!)
+                }
+            }
+
             print(self.imgIDs)
         })
         let removeHandle = postRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
@@ -88,6 +115,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                 let curr = self.imgIDs[i]
                 if (curr == newval) {
                     self.imgIDs.removeAtIndex(i)
+                    imgs.removeValueForKey(newval)
                     print(self.imgIDs)
                     return
                 }
@@ -198,7 +226,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 3
+        
+        imgList = Array(imgs.values)
+        return imgList.count
         //return imgIDs.count
     }
 
@@ -209,7 +239,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
         //cell.backgroundColor = UIColor.blackColor()
         //cell.designatedPic = UIImageView()
-        
+        imgList = Array(imgs.values)
         cell.designatedPic.image = imgList[indexPath.row]
         return cell
     }
