@@ -32,7 +32,7 @@ public class DKAsset: NSObject {
 	
 	public private(set) var originalAsset: PHAsset?
 		
-	init(originalAsset: PHAsset) {
+	public init(originalAsset: PHAsset) {
 		super.init()
 		
 		self.originalAsset = originalAsset
@@ -45,7 +45,7 @@ public class DKAsset: NSObject {
 	}
 	
 	private var image: UIImage?
-	public init(image: UIImage) {
+	internal init(image: UIImage) {
 		super.init()
 		self.image = image
 		self.fullScreenImage = (image, nil)
