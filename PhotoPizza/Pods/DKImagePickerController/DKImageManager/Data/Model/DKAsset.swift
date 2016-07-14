@@ -32,7 +32,7 @@ public class DKAsset: NSObject {
 	
 	public private(set) var originalAsset: PHAsset?
 		
-	public init(originalAsset: PHAsset) {
+	init(originalAsset: PHAsset) {
 		super.init()
 		
 		self.originalAsset = originalAsset
