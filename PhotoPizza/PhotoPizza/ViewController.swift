@@ -17,13 +17,22 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     // MARK: Properties
     
+    
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var hoverBox: UIView!
     @IBOutlet weak var loginButton: FBSDKLoginButton!
     
+    //@IBOutlet weak var mainBoxView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        self.mainView.backgroundColor = UIColor(patternImage: UIImage(named: "loginBackground")!)
+        self.hoverBox.layer.cornerRadius = self.hoverBox.frame.size.width / 16
+        self.hoverBox.clipsToBounds = true
+        self.hoverBox.backgroundColor = UIColor(white: 1, alpha: 0.3)
+        
         loginButton.center = self.view.center
+       // mainBoxView.center = self.view.center
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         loginButton.delegate = self
         FIRDatabase.database().persistenceEnabled = true
