@@ -22,16 +22,23 @@ private let reuseIdentifier = "BackendImage"
 class PicStreamCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout {
 
     //MARK: Properties
+    
+    //refs
     let storage = FIRStorage.storage()
     let ref = FIRDatabase.database().reference()
     @IBOutlet var picCollectionView: UICollectionView!
+    
+    //screen data
     var screenSize: CGRect!
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
     
+    // image data
     var imgIDs: [String] = [String]()
     var imgs : [String : UIImage] = [String : UIImage]()
     var imgList : [UIImage] = [UIImage]()
+    
+    // group 
     
     override func viewDidLoad() {
         super.viewDidLoad()

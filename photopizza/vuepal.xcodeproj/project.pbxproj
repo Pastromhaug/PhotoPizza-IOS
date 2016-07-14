@@ -21,6 +21,7 @@
 		14924CB11D319C2500E42676 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14924CB01D319C2500E42676 /* Assets.xcassets */; };
 		14924CB41D319C2500E42676 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14924CB21D319C2500E42676 /* LaunchScreen.storyboard */; };
 		14924CBF1D319C2500E42676 /* photopizzaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14924CBE1D319C2500E42676 /* photopizzaTests.swift */; };
+		14AD39651D380BA200ECC9BE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD39641D380BA200ECC9BE /* User.swift */; };
 		8329B439B7856C45FAA04710 /* Pods_vuepalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7BCB5ECBC9FA8A04B040FF /* Pods_vuepalTests.framework */; };
 		F0484557D3AEA74609AE0E5F /* Pods_vuepal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3EF8B9632471B8437EE37D /* Pods_vuepal.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		14924CBA1D319C2500E42676 /* vuepal.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vuepal.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14924CBE1D319C2500E42676 /* photopizzaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photopizzaTests.swift; sourceTree = "<group>"; };
 		14924CC01D319C2500E42676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14AD39641D380BA200ECC9BE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6B3EF8B9632471B8437EE37D /* Pods_vuepal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vuepal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB7BCB5ECBC9FA8A04B040FF /* Pods_vuepalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vuepalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC70CB21B0541B8866D47F1 /* Pods-vuepal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vuepal.release.xcconfig"; path = "Pods/Target Support Files/Pods-vuepal/Pods-vuepal.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				145136C21D35503300CD786F /* ImageCollectionViewCell.swift */,
 				145136B21D33AD8600CD786F /* AddMembsViewController.swift */,
 				145136B01D33964D00CD786F /* Group.swift */,
+				14AD39641D380BA200ECC9BE /* User.swift */,
 				14924CB01D319C2500E42676 /* Assets.xcassets */,
 				14924CB21D319C2500E42676 /* LaunchScreen.storyboard */,
 				14924CB51D319C2500E42676 /* Info.plist */,
@@ -366,6 +369,7 @@
 				145136C11D352BCF00CD786F /* PicStreamCollectionViewController.swift in Sources */,
 				145136C31D35503300CD786F /* ImageCollectionViewCell.swift in Sources */,
 				14924CAA1D319C2500E42676 /* AppDelegate.swift in Sources */,
+				14AD39651D380BA200ECC9BE /* User.swift in Sources */,
 				145136B11D33964D00CD786F /* Group.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
