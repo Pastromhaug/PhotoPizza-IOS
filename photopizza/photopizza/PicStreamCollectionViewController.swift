@@ -87,7 +87,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
         ref.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
             let json = JSON(snapshot.value!)["images"]
-            for (key,subJson):(String, JSON) in json {
+            for (_,subJson):(String, JSON) in json {
                 let newval = subJson.string!
                 self.imgIDs.append(newval)
                 let photoRef = storageRef.child("images/" + newval)
@@ -98,18 +98,11 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         // Data for "images/island.jpg" is returned
                         // ... let islandImage: UIImage! = UIImage(data: data!)
                         self.imgs[newval] = UIImage(data: data!)
-                        print("IMAGE COUNT: " + String(self.imgs.count))
                         //self.loadView()
                         self.picCollectionView.reloadData()
                         
                     }
-                }
-                
-                print(newval)
-            }
-            print("imgIDs")
-            print(self.imgIDs)
-            print("MASTER IMAGE COUNT: " + String(self.imgs.count))
+                }            }
         })
         
     }
@@ -118,13 +111,10 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
         let postRef = FIRDatabase.database().reference().child("images")
         
-        let addHandle = postRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
-            print("live added")
-            print(snapshot.value!)
+        postRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             let newval: String = snapshot.value as! String
             for ref in self.imgIDs {
                 if ref == newval{
-                    print(self.imgIDs)
                     return
                 }
             }
@@ -141,20 +131,15 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                 }
             }
             //self.loadView()
-            print(self.imgIDs)
            
         })
-        let removeHandle = postRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
-            print("live remove")
-            print(snapshot.value!)
-            let newval: String = snapshot.value as! String
-            var len = self.imgIDs.count
+        postRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in            let newval: String = snapshot.value as! String
+            let len = self.imgIDs.count
             for i in 0..<len {
                 let curr = self.imgIDs[i]
                 if (curr == newval) {
                     self.imgIDs.removeAtIndex(i)
                     self.imgs.removeValueForKey(newval)
-                    print(self.imgIDs)
                     //self.loadView()
                     self.picCollectionView.reloadData()
                     return
@@ -183,7 +168,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         let pickerController = DKImagePickerController()
         pickerController.didSelectAssets = { (assets: [DKAsset]) in
             let storageRef = self.storage.referenceForURL("gs://photo-pizza.appspot.com")
-            print("didSelectAssets")
             print(assets)
             for object in assets {
                 object.fetchOriginalImageWithCompleteBlock { (image, info) -> Void in
@@ -203,12 +187,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         }
                         else {
                             // Metadata contains file metadata such as size, content-type, and download URL.
-                            print("putData succeeded")
-                            
                             //uploads to real time database
                             var dict = [String: String]()
                             dict.updateValue(subString + ".jpg", forKey: subString)
-                            print(dict)
                             self.ref.child("images").updateChildValues(dict)
                             
                         }
@@ -221,13 +202,10 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
         }
         pickerController.showsCancelButton = true
+        fetchPhotos()
         var dkassets = [DKAsset]()
-        print("")
-        print(self.images)
         for image in self.images {
-            print("image")
-            print(image)
-            dkassets.append(DKAsset(image: image))
+            dkassets.append(DKAsset(originalAsset: image))
         }
         pickerController.defaultSelectedAssets = dkassets
         self.presentViewController(pickerController, animated: true) {}    }
@@ -299,11 +277,11 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         agrume.showFrom(self)
     }
     
-    var images: [UIImage] = [] // <-- Array to hold the fetched images
+    var images: [PHAsset] = [] // <-- Array to hold the fetched images
     var totalImageCountNeeded:Int! // <-- The number of images to fetch
     
     func fetchPhotos () {
-        images = [UIImage]()
+        self.images = [PHAsset]()
         totalImageCountNeeded = 3
         self.fetchPhotoAtIndexFromEnd(0)
     }
@@ -311,8 +289,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     // Repeatedly call the following method while incrementing
     // the index until all the photos are fetched
     func fetchPhotoAtIndexFromEnd(index:Int) {
-        
-        let imgManager = PHImageManager.defaultManager()
         
         // Note that if the request is not set to synchronous
         // the requestImageForAsset will return both the image
@@ -326,31 +302,20 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: true)]
         
         if let fetchResult: PHFetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions) {
-            
+            print(fetchResult.dynamicType)
+
             // If the fetch result isn't empty,
             // proceed with the image request
             print("fetchResult.count")
             print(fetchResult.count)
-            if fetchResult.count > 0 {
-                // Perform the image request
-                imgManager.requestImageForAsset(fetchResult.objectAtIndex(fetchResult.count - 1 - index) as! PHAsset, targetSize: view.frame.size, contentMode: PHImageContentMode.AspectFill, options: requestOptions, resultHandler: { (image, _) in
-                    
-                    // Add the returned image to your array
-                    self.images.append(image!)
-                    
-                    // If you haven't already reached the first
-                    // index of the fetch result and if you haven't
-                    // already stored all of the images you need,
-                    // perform the fetch request again with an
-                    // incremented index
-                    if index + 1 < fetchResult.count && self.images.count < self.totalImageCountNeeded {
-                        self.fetchPhotoAtIndexFromEnd(index + 1)
-                    } else {
-                        // Else you have completed creating your array
-                        print("Completed array: \(self.images)")
-                    }
-                })
+            let numAssets = fetchResult.count
+            for i in 0..<numAssets {
+                let asset: PHAsset = fetchResult.objectAtIndex(numAssets - 1 - i) as! PHAsset
+                images.append(asset)
             }
+        }
+        else {
+            print("fetch1 failed")
         }
     }
 

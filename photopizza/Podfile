@@ -15,7 +15,7 @@ target 'vuepal' do
   pod 'Firebase/Database'
   pod 'Firebase/Core'
   pod 'SwiftyJSON'	
-  pod 'DKImagePickerController'
+  pod 'DKImagePickerController', :git => 'https://github.com/Pastromhaug/DKImagePickerController.git'
   pod 'Agrume', :git => 'https://github.com/JanGorman/Agrume.git'
   
   target 'vuepalTests' do
