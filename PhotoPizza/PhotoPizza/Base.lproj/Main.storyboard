@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,19 +19,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkE-yu-B7z" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="8" y="285" width="584" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3tG-Rj-0JK">
+                                <rect key="frame" x="106" y="162" width="408" height="208"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="g7j-tO-mSg">
+                                        <rect key="frame" x="52" y="25" width="500" height="247"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Image-3" translatesAutoresizingMaskIntoConstraints="NO" id="t7D-jT-7pX">
+                                                <rect key="frame" x="10" y="0.0" width="480" height="217"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="t7D-jT-7pX" secondAttribute="height" multiplier="71:32" id="nVT-y2-Ud5"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzN-mA-iAt" customClass="FBSDKLoginButton">
+                                                <rect key="frame" x="227" y="217" width="46" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="IzN-mA-iAt" firstAttribute="top" secondItem="t7D-jT-7pX" secondAttribute="bottom" constant="20" id="Lwe-0q-nkc"/>
+                                            <constraint firstItem="t7D-jT-7pX" firstAttribute="leading" secondItem="g7j-tO-mSg" secondAttribute="leadingMargin" constant="10" id="SBo-5t-uFe"/>
+                                            <constraint firstItem="t7D-jT-7pX" firstAttribute="trailing" secondItem="g7j-tO-mSg" secondAttribute="trailingMargin" id="q8p-Lt-jGR"/>
+                                            <constraint firstItem="IzN-mA-iAt" firstAttribute="top" secondItem="t7D-jT-7pX" secondAttribute="bottom" constant="20" id="sDq-Ug-b5Z"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="g7j-tO-mSg" secondAttribute="trailing" constant="10" id="VS8-Kl-SF4"/>
+                                    <constraint firstItem="g7j-tO-mSg" firstAttribute="leading" secondItem="3tG-Rj-0JK" secondAttribute="leading" constant="10" id="oWa-Np-8Cg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="TkE-yu-B7z" secondAttribute="trailing" constant="10" id="AO9-nR-4NF"/>
-                            <constraint firstItem="TkE-yu-B7z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="dyo-hc-4Vb"/>
+                            <constraint firstItem="3tG-Rj-0JK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="gCI-lK-v5Z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3tG-Rj-0JK" secondAttribute="trailing" constant="20" id="j63-7u-VbS"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="loginButton" destination="TkE-yu-B7z" id="Djm-0F-sZN"/>
+                        <outlet property="hoverBox" destination="3tG-Rj-0JK" id="7ul-po-vhk"/>
+                        <outlet property="loginButton" destination="IzN-mA-iAt" id="dDM-qt-pMQ"/>
+                        <outlet property="mainView" destination="8bC-Xf-vdC" id="clL-y8-bkc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -309,6 +338,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Image-3" width="284" height="128"/>
         <image name="noAvatar" width="320" height="320"/>
     </resources>
 </document>
