@@ -212,11 +212,19 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                             // Metadata contains file metadata such as size, content-type, and download URL.
                             print("putData succeeded")
                             
+                            let groupRef = self.ref.child("groups")
+                            let curGroupRef = groupRef.child(self.navigationItem.title!)
+                            
                             //uploads to real time database
-                            var dict = [String: String]()
-                            dict.updateValue(subString + ".jpg", forKey: subString)
+                            var dict = [String: AnyObject]()
+                            dict["imgId"] = subString + ".jpg"
+                            dict["uploaderId"] = currentUser.id
+                            dict["uploaderName"] = currentUser.name
+                            dict["uploaderEmail"] = currentUser.email
+                            dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
+                            
                             print(dict)
-                            self.ref.child("images").updateChildValues(dict)
+                            curGroupRef.child(subString).updateChildValues(dict)
                             
                         }
                     })
