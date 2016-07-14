@@ -16,7 +16,7 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         loadSampleMeals()
-        navigationController!.navigationBar.barTintColor = UIColor(red:0.44, green:0.01, blue:0.33, alpha:1.0)
+        navigationController!.navigationBar.barTintColor = UIColor(red:0.38, green:0.28, blue:0.62, alpha:1.0)
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)]
         self.tableView.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
 

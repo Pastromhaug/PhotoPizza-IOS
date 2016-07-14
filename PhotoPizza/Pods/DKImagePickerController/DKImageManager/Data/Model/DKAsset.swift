@@ -45,7 +45,7 @@ public class DKAsset: NSObject {
 	}
 	
 	private var image: UIImage?
-	internal init(image: UIImage) {
+	public init(image: UIImage) {
 		super.init()
 		self.image = image
 		self.fullScreenImage = (image, nil)

@@ -13,6 +13,8 @@ import FirebaseStorage
 import SwiftyJSON
 import DKImagePickerController
 import Agrume
+import Photos
+
 
 private let reuseIdentifier = "BackendImage"
 
@@ -33,7 +35,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController!.navigationBar.barTintColor = UIColor(red:0.44, green:0.01, blue:0.33, alpha:1.0)
+        navigationController!.navigationBar.barTintColor = UIColor(red:0.38, green:0.28, blue:0.62, alpha:1.0)
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)]
         navigationController!.navigationBar.tintColor = UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)
         self.collectionView?.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
@@ -219,6 +221,15 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
         }
         pickerController.showsCancelButton = true
+        var dkassets = [DKAsset]()
+        print("")
+        print(self.images)
+        for image in self.images {
+            print("image")
+            print(image)
+            dkassets.append(DKAsset(image: image))
+        }
+        pickerController.defaultSelectedAssets = dkassets
         self.presentViewController(pickerController, animated: true) {}    }
 
     
@@ -286,6 +297,61 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                                                          animated: false)
         }
         agrume.showFrom(self)
+    }
+    
+    var images: [UIImage] = [] // <-- Array to hold the fetched images
+    var totalImageCountNeeded:Int! // <-- The number of images to fetch
+    
+    func fetchPhotos () {
+        images = [UIImage]()
+        totalImageCountNeeded = 3
+        self.fetchPhotoAtIndexFromEnd(0)
+    }
+    
+    // Repeatedly call the following method while incrementing
+    // the index until all the photos are fetched
+    func fetchPhotoAtIndexFromEnd(index:Int) {
+        
+        let imgManager = PHImageManager.defaultManager()
+        
+        // Note that if the request is not set to synchronous
+        // the requestImageForAsset will return both the image
+        // and thumbnail; by setting synchronous to true it
+        // will return just the thumbnail
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.synchronous = true
+        
+        // Sort the images by creation date
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: true)]
+        
+        if let fetchResult: PHFetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions) {
+            
+            // If the fetch result isn't empty,
+            // proceed with the image request
+            print("fetchResult.count")
+            print(fetchResult.count)
+            if fetchResult.count > 0 {
+                // Perform the image request
+                imgManager.requestImageForAsset(fetchResult.objectAtIndex(fetchResult.count - 1 - index) as! PHAsset, targetSize: view.frame.size, contentMode: PHImageContentMode.AspectFill, options: requestOptions, resultHandler: { (image, _) in
+                    
+                    // Add the returned image to your array
+                    self.images.append(image!)
+                    
+                    // If you haven't already reached the first
+                    // index of the fetch result and if you haven't
+                    // already stored all of the images you need,
+                    // perform the fetch request again with an
+                    // incremented index
+                    if index + 1 < fetchResult.count && self.images.count < self.totalImageCountNeeded {
+                        self.fetchPhotoAtIndexFromEnd(index + 1)
+                    } else {
+                        // Else you have completed creating your array
+                        print("Completed array: \(self.images)")
+                    }
+                })
+            }
+        }
     }
 
 
