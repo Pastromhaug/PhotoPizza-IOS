@@ -82,20 +82,17 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
             print("we made it here: \(self.navigationItem.title)")
             let json = JSON(snapshot.value!)["images"]
             print(json)
-            for (imgTitle, subJson):(String, JSON) in json {
-                let newval = subJson["id"].stringValue
-                print("NEWVAL: \(newval)")
-                //let newval = subJson.string!
-                self.imgIDs.append(newval)
-                let photoRef = storageRef.child("images/" + newval)
+            for (imgTitle, newDict):(String, JSON) in json {
+                let imgId = newDict["imgId"].stringValue
+                self.imgIDs.append(imgId)
+                let photoRef = storageRef.child("images/" + imgId)
                 photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
                     if (error != nil) {
                         // Uh-oh, an error occurred!
                     } else {
                         // Data for "images/island.jpg" is returned
                         // ... let islandImage: UIImage! = UIImage(data: data!)
-                        self.imgs[newval] = UIImage(data: data!)
-                        //self.loadView()
+                        self.imgs[imgId] = UIImage(data: data!)
                         self.picCollectionView.reloadData()
                         
                     }
@@ -112,22 +109,22 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         let curGroupImgRef = curGroupRef.child("images")
         
         curGroupImgRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
-            let newdict = snapshot.value as! Dictionary<String, AnyObject>
-            let newval = newdict["imgId"] as! String
+            let newDict = snapshot.value as! Dictionary<String, AnyObject>
+            let imgId = newDict["imgId"] as! String
             for id in self.imgIDs {
-                if id == newval{
+                if id == imgId{
                     return
                 }
             }
-            self.imgIDs.append(newval)
-            let photoRef = storageRef.child("images/" + newval)
+            self.imgIDs.append(imgId)
+            let photoRef = storageRef.child("images/" + imgId)
             photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
                 if (error != nil) {
                     // Uh-oh, an error occurred!
                 } else {
                     // Data for "images/island.jpg" is returned
                     // ... let islandImage: UIImage! = UIImage(data: data!)
-                    self.imgs[newval] = UIImage(data: data!)
+                    self.imgs[imgId] = UIImage(data: data!)
                     self.picCollectionView.reloadData()
                 }
             }
@@ -135,15 +132,15 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
            
         })
         curGroupImgRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
-            let newdict = snapshot.value as! Dictionary<String, AnyObject>
-            let newval = newdict["imgId"] as! String
+            let newDict = snapshot.value as! Dictionary<String, AnyObject>
+            let imgId = newDict["imgId"] as! String
             //let newval: String = snapshot.value as! String
             let len = self.imgIDs.count
             for i in 0..<len {
                 let curr = self.imgIDs[i]
-                if (curr == newval) {
+                if (curr == imgId) {
                     self.imgIDs.removeAtIndex(i)
-                    self.imgs.removeValueForKey(newval)
+                    self.imgs.removeValueForKey(imgId)
                     //self.loadView()
                     self.picCollectionView.reloadData()
                     return
