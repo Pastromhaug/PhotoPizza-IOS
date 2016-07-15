@@ -22,16 +22,23 @@ private let reuseIdentifier = "BackendImage"
 class PicStreamCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout {
 
     //MARK: Properties
+    
+    //refs
     let storage = FIRStorage.storage()
     let ref = FIRDatabase.database().reference()
     @IBOutlet var picCollectionView: UICollectionView!
+    
+    //screen data
     var screenSize: CGRect!
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
     
+    // image data
     var imgIDs: [String] = [String]()
     var imgs : [String : UIImage] = [String : UIImage]()
     var imgList : [UIImage] = [UIImage]()
+    
+    // group 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,11 +194,21 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         }
                         else {
                             // Metadata contains file metadata such as size, content-type, and download URL.
-                            //uploads to real time database
-                            var dict = [String: String]()
-                            dict.updateValue(subString + ".jpg", forKey: subString)
-                            self.ref.child("images").updateChildValues(dict)
+                            print("putData succeeded")
                             
+                            let groupRef = self.ref.child("groups")
+                            let curGroupRef = groupRef.child(self.navigationItem.title!)
+                            
+                            //uploads to real time database
+                            var dict = [String: AnyObject]()
+                            dict["imgId"] = subString + ".jpg"
+                            dict["uploaderId"] = currentUser.id
+                            dict["uploaderName"] = currentUser.name
+                            dict["uploaderEmail"] = currentUser.email
+                            dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
+                            
+                            print(dict)
+                            curGroupRef.child(subString).updateChildValues(dict)
                         }
                     })
                     

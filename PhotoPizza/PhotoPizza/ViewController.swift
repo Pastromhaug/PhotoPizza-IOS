@@ -12,6 +12,9 @@ import FBSDKShareKit
 import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
+import SwiftyJSON
+
+var currentUser : User = User()
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 
@@ -62,7 +65,21 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         let req = FBSDKGraphRequest(graphPath: "me", parameters: fields, tokenString: tokenString, version: nil, HTTPMethod: "GET")
         req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
             if(error == nil){
-                print("result \(result)")
+                //print("result \(result)")
+                print("making user")
+                let json = JSON(result)
+                let name = json["name"].stringValue
+                let id = json["id"].intValue
+                let email = json["email"].stringValue
+                
+                //TODO: make groups better
+                let groups = [String]()
+                
+                print("name: \(name)")
+                print("id: \(id)")
+                print("email: \(email)")
+                
+                currentUser = User(name: name, email: email, id: id, groups: groups)
             }
             else{
                 print("error \(error)")
