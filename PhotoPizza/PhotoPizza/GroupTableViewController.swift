@@ -30,6 +30,7 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
         tableView.tableFooterView = UIView()
         //loadSampleMeals()
         initGroups()
+        dbListen()
         navigationController!.navigationBar.barTintColor = UIColor(red:0.38, green:0.28, blue:0.62, alpha:1.0)
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)]
         self.tableView.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
@@ -61,7 +62,7 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
         groups = [Group]()
         ref.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
-            print("we made it here: \(self.navigationItem.title)")
+            //print("we made it here: \(self.navigationItem.title)")
             let json = JSON(snapshot.value!)["groups"]
             print(json)
             print("json count: \(json.count)")
