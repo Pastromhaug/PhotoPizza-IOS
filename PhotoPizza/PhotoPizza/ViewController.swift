@@ -69,17 +69,18 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 print("making user")
                 let json = JSON(result)
                 let name = json["name"].stringValue
-                let id = json["id"].intValue
+                let facebookId = json["id"].intValue
                 let email = json["email"].stringValue
                 
                 //TODO: make groups better
                 let groups = [String]()
                 
                 print("name: \(name)")
-                print("id: \(id)")
+                print("id: \(facebookId)")
                 print("email: \(email)")
                 
-                currentUser = User(name: name, email: email, id: id, groups: groups)
+                currentUser = User(name: name, email: email, facebookId: facebookId, groups: groups)
+                
             }
             else{
                 print("error \(error)")
@@ -97,6 +98,15 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
             if (error != nil) {
                 print(error)
+            }
+            else {
+                currentUser.firebaseId = user!.uid
+                let userRef = FIRDatabase.database().reference().child("users").child(currentUser.firebaseId)
+                let userDict: [String: String] = ["facebookId": String(currentUser.facebookId),
+                                                  "firebaseId": currentUser.firebaseId,
+                                                  "userName": currentUser.name,
+                                                  "userEmail": currentUser.email]
+                userRef.updateChildValues(userDict)
             }
         }
         

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E0E74B57BE27144D52CD4AD399FFBD55'
-               BlueprintName = 'Pods-vuepal'
+               BlueprintIdentifier = '0EB19C1377A747F81110D44E2D5FCF78'
+               BlueprintName = 'FBSDKCoreKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods-vuepal.framework'>
+               BuildableName = 'FBSDKCoreKit.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

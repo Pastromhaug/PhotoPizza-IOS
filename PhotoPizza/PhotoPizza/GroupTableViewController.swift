@@ -17,6 +17,7 @@ import Photos
 
 class GroupTableViewController: UITableViewController, UINavigationControllerDelegate {
 
+    
     var groups = [Group]()
     @IBOutlet var groupTableView: UITableView!
     
@@ -104,7 +105,8 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
                     return
                 }
             }
-            self.groups.append(newval)
+            let newGroup = Group(name: newval, avatar: UIImage(named: "noAvatar"))
+            self.groups.append(newGroup)
             self.groupTableView.reloadData()
 //            let photoRef = storageRef.child("images/" + newval)
 //            photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
@@ -120,14 +122,14 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
             //self.loadView()
             
         })
-        curGroupRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+        groupRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
             let newdict = snapshot.value as! Dictionary<String, AnyObject>
             let newval = newdict["groupName"] as! String
             //let newval: String = snapshot.value as! String
-            let len = self.imgIDs.count
+            let len = self.groups.count
             for i in 0..<len {
                 let curr = self.groups[i]
-                if (curr == newval) {
+                if (curr.name == newval) {
                     self.groups.removeAtIndex(i)
                     //self.imgs.removeValueForKey(newval)
                     //self.loadView()
@@ -136,7 +138,7 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
                     return
                 }
             }
-            print(self.imgIDs)
+            print(self.groups)
         })
     }
 

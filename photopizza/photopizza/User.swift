@@ -11,20 +11,23 @@ import UIKit
 class User {
     var name: String
     var email: String
-    var id: Int
+    var facebookId: Int
+    var firebaseId: String
     var groups: [String]
     
     init() {
         self.name = ""
         self.email = ""
-        self.id = 0
+        self.facebookId = 0
+        self.firebaseId = ""
         self.groups = [String]()
     }
     
-    init(name: String, email: String, id: Int, groups: [String]) {
+    init(name: String, email: String, facebookId: Int, groups: [String]) {
         self.name = name
         self.email = email
-        self.id = id
+        self.facebookId = facebookId
+        self.firebaseId = ""
         self.groups = groups
     }
 }

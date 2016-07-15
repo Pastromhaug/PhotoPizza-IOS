@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
 class AddMembsViewController: UIViewController {
+    let postRef = FIRDatabase.database().reference().child("groups")
 
     var group: Group?
     
@@ -33,6 +35,25 @@ class AddMembsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     
+    // MARK: - Action
     
+    @IBAction func doneAction(sender: UIBarButtonItem) {
+        let groupId = self.group!.name
+        let groupRef = self.postRef.child(groupId)
+        let dict:[String:String] = ["groupName": self.group!.name,
+                    "creatorFacebookId": String(currentUser.facebookId),
+                    "creatorFirebaseId": currentUser.firebaseId]
+        groupRef.updateChildValues(dict)
+        navigateToGroups()
+    }
+    
+    @IBAction func cancelAction(sender: UIBarButtonItem) {
+        navigateToGroups()
+    }
+    func navigateToGroups() {
+        let storyBoard : UIStoryboard? = self.storyboard
+        let nextViewController = (storyBoard?.instantiateViewControllerWithIdentifier("newNav"))! as UIViewController
+        self.presentViewController(nextViewController, animated:true, completion:nil)
+    }
     
 }

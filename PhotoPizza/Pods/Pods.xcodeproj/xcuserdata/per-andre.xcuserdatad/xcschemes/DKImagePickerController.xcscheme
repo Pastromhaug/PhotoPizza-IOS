@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E0E74B57BE27144D52CD4AD399FFBD55'
-               BlueprintName = 'Pods-vuepal'
+               BlueprintIdentifier = '71CA2F0CB649E1404B5E028203A8F1D0'
+               BlueprintName = 'DKImagePickerController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods-vuepal.framework'>
+               BuildableName = 'DKImagePickerController.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
