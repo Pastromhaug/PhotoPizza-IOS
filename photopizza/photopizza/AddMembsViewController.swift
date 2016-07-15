@@ -48,7 +48,7 @@ class AddMembsViewController: UIViewController {
                     "creatorFacebookId": String(currentUser.facebookId),
                     "creatorFirebaseId": currentUser.firebaseId,
                     "update": "new group created by " + currentUser.name,
-                    "avatarId": self.avatarImageId + ".jpg"]
+                    "avatarImageId": self.avatarImageId + ".jpg"]
         groupRef.updateChildValues(dict)
         
         let imgRef = storageRef.child("images/" + self.avatarImageId)
