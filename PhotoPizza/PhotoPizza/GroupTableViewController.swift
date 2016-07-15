@@ -68,6 +68,7 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
             for (groupName, subJson):(String, JSON) in json {
                 let newval = subJson["groupName"].stringValue
                 let newgroup = Group(name: groupName, avatar: UIImage(named: "noAvatar"))
+                newgroup.update = subJson["update"].stringValue ?? ""
                 print("NEWVAL: \(newval)")
                 //let newval = subJson.string!
                 self.groups.append(newgroup)

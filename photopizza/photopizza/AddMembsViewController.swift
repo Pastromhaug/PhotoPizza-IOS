@@ -42,7 +42,8 @@ class AddMembsViewController: UIViewController {
         let groupRef = self.postRef.child(groupId)
         let dict:[String:String] = ["groupName": self.group!.name,
                     "creatorFacebookId": String(currentUser.facebookId),
-                    "creatorFirebaseId": currentUser.firebaseId]
+                    "creatorFirebaseId": currentUser.firebaseId,
+                    "update": "new group created by " + currentUser.name]
         groupRef.updateChildValues(dict)
         navigateToGroups()
     }
