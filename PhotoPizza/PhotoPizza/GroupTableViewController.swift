@@ -7,15 +7,28 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import SwiftyJSON
+import DKImagePickerController
+import Agrume
+import Photos
 
 class GroupTableViewController: UITableViewController, UINavigationControllerDelegate {
 
     var groups = [Group]()
+    @IBOutlet var groupTableView: UITableView!
+    
+    //refs
+    let storage = FIRStorage.storage()
+    let ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
-        loadSampleMeals()
+        //loadSampleMeals()
+        initGroups()
         navigationController!.navigationBar.barTintColor = UIColor(red:0.38, green:0.28, blue:0.62, alpha:1.0)
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)]
         self.tableView.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
@@ -39,6 +52,94 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
         
         groups += [group1, group2, group3]
     }
+    
+    // Listeners for the groups
+    func initGroups() {
+        //let groupRef = self.ref.child("groups")
+        //let curGroupRef = groupRef.child(self.navigationItem.title!)
+        let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
+        groups = [Group]()
+        ref.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
+            print("we made it here: \(self.navigationItem.title)")
+            let json = JSON(snapshot.value!)["groups"]
+            print(json)
+            print("json count: \(json.count)")
+            for (groupName, subJson):(String, JSON) in json {
+                let newval = subJson["groupName"].stringValue
+                let newgroup = Group(name: groupName, avatar: UIImage(named: "noAvatar"))
+                print("NEWVAL: \(newval)")
+                //let newval = subJson.string!
+                self.groups.append(newgroup)
+                self.groupTableView.reloadData()
+                //let photoRef = storageRef.child("images/" + newval)
+                
+//                photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
+//                    if (error != nil) {
+//                        // Uh-oh, an error occurred!
+//                    } else {
+//                        // Data for "images/island.jpg" is returned
+//                        // ... let islandImage: UIImage! = UIImage(data: data!)
+//                        self.imgs[newval] = UIImage(data: data!)
+//                        //self.loadView()
+//                        self.picCollectionView.reloadData()
+//                        
+//                    }
+//                }
+            }
+        })
+        
+    }
+    
+    func dbListen() {
+        let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
+        //let postRef = FIRDatabase.database().reference().child("images")
+        let groupRef = self.ref.child("groups")
+        //let curGroupRef = groupRef.child(self.navigationItem.title!)
+        
+        groupRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            let newdict = snapshot.value as! Dictionary<String, AnyObject>
+            let newval = newdict["groupName"] as! String
+            for group in self.groups {
+                if group.name == newval{
+                    return
+                }
+            }
+            self.groups.append(newval)
+            self.groupTableView.reloadData()
+//            let photoRef = storageRef.child("images/" + newval)
+//            photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
+//                if (error != nil) {
+//                    // Uh-oh, an error occurred!
+//                } else {
+//                    // Data for "images/island.jpg" is returned
+//                    // ... let islandImage: UIImage! = UIImage(data: data!)
+//                    self.imgs[newval] = UIImage(data: data!)
+//                    self.picCollectionView.reloadData()
+//                }
+//            }
+            //self.loadView()
+            
+        })
+        curGroupRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+            let newdict = snapshot.value as! Dictionary<String, AnyObject>
+            let newval = newdict["groupName"] as! String
+            //let newval: String = snapshot.value as! String
+            let len = self.imgIDs.count
+            for i in 0..<len {
+                let curr = self.groups[i]
+                if (curr == newval) {
+                    self.groups.removeAtIndex(i)
+                    //self.imgs.removeValueForKey(newval)
+                    //self.loadView()
+                    //self.picCollectionView.reloadData()
+                    self.groupTableView.reloadData()
+                    return
+                }
+            }
+            print(self.imgIDs)
+        })
+    }
+
 
 
     override func didReceiveMemoryWarning() {
