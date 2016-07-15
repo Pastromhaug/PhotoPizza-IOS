@@ -67,7 +67,7 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
             print("json count: \(json.count)")
             for (_, newDict):(String, JSON) in json {
                 let groupName = newDict["groupName"].stringValue
-                let avatarImgId = newDict["avatar"].stringValue
+                let avatarImgId = newDict["avatarId"].stringValue
                 
                 let newGroup = Group(name: groupName, avatar: UIImage(named: "noAvatar"))
                 self.groups.append(newGroup)
@@ -111,7 +111,7 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
                     return
                 }
             }
-            let avatarImgId = newDict["avatar"] as! String
+            let avatarImgId = newDict["avatarId"] as! String
             let newGroup = Group(name: groupName, avatar: UIImage(named: "noAvatar"))
             self.groups.append(newGroup)
             let photoRef = storageRef.child("images/" + avatarImgId)
