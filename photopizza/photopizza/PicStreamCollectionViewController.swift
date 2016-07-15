@@ -26,6 +26,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     //refs
     let storage = FIRStorage.storage()
     let ref = FIRDatabase.database().reference()
+    
     @IBOutlet var picCollectionView: UICollectionView!
     
     //screen data
@@ -74,11 +75,17 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     
     func initImageRefs() {
+        let groupRef = self.ref.child("groups")
+        //let curGroupRef = groupRef.child(self.navigationItem.title!)
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
-        ref.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
-            let json = JSON(snapshot.value!)["images"]
-            for (_,subJson):(String, JSON) in json {
-                let newval = subJson.string!
+        groupRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
+            print("we made it here: \(self.navigationItem.title)")
+            let json = JSON(snapshot.value!)[self.navigationItem.title!]
+            print(json)
+            for (imgTitle, subJson):(String, JSON) in json {
+                let newval = subJson["id"].stringValue
+                print("NEWVAL: \(newval)")
+                //let newval = subJson.string!
                 self.imgIDs.append(newval)
                 let photoRef = storageRef.child("images/" + newval)
                 photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
@@ -99,12 +106,15 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     func dbListen() {
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
-        let postRef = FIRDatabase.database().reference().child("images")
+        //let postRef = FIRDatabase.database().reference().child("images")
+        let groupRef = self.ref.child("groups")
+        let curGroupRef = groupRef.child(self.navigationItem.title!)
         
-        postRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
-            let newval: String = snapshot.value as! String
-            for ref in self.imgIDs {
-                if ref == newval{
+        curGroupRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            let newdict = snapshot.value as! Dictionary<String, AnyObject>
+            let newval = newdict["imgId"] as! String
+            for id in self.imgIDs {
+                if id == newval{
                     return
                 }
             }
@@ -123,7 +133,10 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
             //self.loadView()
            
         })
-        postRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in            let newval: String = snapshot.value as! String
+        curGroupRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+            let newdict = snapshot.value as! Dictionary<String, AnyObject>
+            let newval = newdict["imgId"] as! String
+            //let newval: String = snapshot.value as! String
             let len = self.imgIDs.count
             for i in 0..<len {
                 let curr = self.imgIDs[i]
