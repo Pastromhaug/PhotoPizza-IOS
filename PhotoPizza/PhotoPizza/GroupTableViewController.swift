@@ -10,6 +10,7 @@ import UIKit
 
 class GroupTableViewController: UITableViewController, UINavigationControllerDelegate {
 
+    
     var groups = [Group]()
     
     override func viewDidLoad() {

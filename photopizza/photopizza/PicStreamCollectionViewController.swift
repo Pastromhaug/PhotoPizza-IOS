@@ -57,23 +57,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         initImageRefs()
         dbListen()
         
-//
-        
-        
-        //print(self.imgs.count)
-        
-        //self.loadView()
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        //self.collectionView!.registerClass(ImageCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
-        
-        
     }
     
     // MARK: UICollectionViewDelegateFlowLayout
@@ -202,7 +185,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                             //uploads to real time database
                             var dict = [String: AnyObject]()
                             dict["imgId"] = subString + ".jpg"
-                            dict["uploaderId"] = currentUser.id
+                            dict["uploaderFirebaseId"] = currentUser.firebaseId
+                            dict["uploaderFacebookId"] = currentUser.facebookId
                             dict["uploaderName"] = currentUser.name
                             dict["uploaderEmail"] = currentUser.email
                             dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
@@ -219,6 +203,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
 
         }
         pickerController.showsCancelButton = true
+        pickerController.sourceType = .Photo
         fetchPhotos()
         var dkassets = [DKAsset]()
         for image in self.images {
