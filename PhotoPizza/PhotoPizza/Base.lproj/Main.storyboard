@@ -160,6 +160,9 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="0EL-hD-df0" secondAttribute="height" multiplier="1:1" id="7fd-D0-Utg"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="fs5-pf-Uee" appends="YES" id="vpK-aJ-ngX"/>
+                                        </connections>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Group Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A4x-fW-x0C">
                                         <rect key="frame" x="0.0" y="332" width="560" height="30"/>
@@ -203,6 +206,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="STK-Vl-3UE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fs5-pf-Uee">
+                    <connections>
+                        <action selector="selectAvatarAction:" destination="KtN-5f-wzn" id="bpT-h9-9eE"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3599" y="377"/>
         </scene>

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import DKImagePickerController
+import Firebase
 
 class MakeGroupOneViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -15,6 +17,9 @@ class MakeGroupOneViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBOutlet weak var groupTextField: UITextField!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     var group: Group?
+    var avatarImageId: String = ""
+    let storage = FIRStorage.storage()
+    let ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,22 +70,33 @@ class MakeGroupOneViewController: UIViewController, UITextFieldDelegate, UIImage
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func selectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
-        // Hide the keyboard.
-        groupTextField.resignFirstResponder()
-        
-        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        let imagePickerController = UIImagePickerController()
-        
-        // Only allow photos to be picked, not taken.
-        imagePickerController.sourceType = .PhotoLibrary
-        
-        // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self
-        
-        presentViewController(imagePickerController, animated: true, completion: nil)
-    }
+    // MARK: Actions
+    
+    @IBAction func selectAvatarAction(sender: UITapGestureRecognizer) {
+        let pickerController = DKImagePickerController()
+        pickerController.showsCancelButton = true
+        pickerController.sourceType = .Photo
+        pickerController.singleSelect = true
+        pickerController.didSelectAssets = { (assets: [DKAsset]) in
+            for object in assets {
+                object.fetchOriginalImageWithCompleteBlock { (image, info) -> Void in
+                    //convert photo to string and clean it
+                    let uploadData: NSData = UIImageJPEGRepresentation(image!, 0.05)!
+                    let fileString: String = uploadData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+                    let subString = md5(string: fileString)
+                    self.avatarImageId = subString
+                    object.fetchOriginalImageWithCompleteBlock { (image, info) -> Void in
+                        //convert photo to string and clean it
+                        self.group?.avatar = image
+                        self.avatarImage.image = image
+                    }
 
+                }
+            }
+
+        }
+        self.presentViewController(pickerController, animated: true) {}    
+    }
 
     
     
@@ -104,11 +120,11 @@ class MakeGroupOneViewController: UIViewController, UITextFieldDelegate, UIImage
             let name = groupTextField.text ?? ""
             let avatar = avatarImage.image
             let update = "placehodlertoavoiderror"
-            
             group = Group(name: name, avatar: avatar, update: update)
             
             let svc = segue.destinationViewController as! AddMembsViewController;
             svc.group = self.group
+            svc.avatarImageId = self.avatarImageId
         }
     }
     
