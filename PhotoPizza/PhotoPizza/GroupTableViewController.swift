@@ -112,7 +112,7 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
                     return
                 }
             }
-            let avatarImgId = newDict["avatarImgId"] as! String
+            let avatarImgId = newDict["avatarImgId"] as! String ?? ""
             let newGroup = Group(name: groupName, avatar: UIImage(named: "noAvatar"))
             self.groups.append(newGroup)
             let photoRef = storageRef.child("images/" + avatarImgId)
