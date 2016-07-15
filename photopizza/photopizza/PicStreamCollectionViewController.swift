@@ -76,11 +76,11 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     func initImageRefs() {
         let groupRef = self.ref.child("groups")
-        //let curGroupRef = groupRef.child(self.navigationItem.title!)
+        let curGroupRef = groupRef.child(self.navigationItem.title!)
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
-        groupRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
+        curGroupRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
             print("we made it here: \(self.navigationItem.title)")
-            let json = JSON(snapshot.value!)[self.navigationItem.title!]
+            let json = JSON(snapshot.value!)["images"]
             print(json)
             for (imgTitle, subJson):(String, JSON) in json {
                 let newval = subJson["id"].stringValue
@@ -109,8 +109,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         //let postRef = FIRDatabase.database().reference().child("images")
         let groupRef = self.ref.child("groups")
         let curGroupRef = groupRef.child(self.navigationItem.title!)
+        let curGroupImgRef = curGroupRef.child("images")
         
-        curGroupRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+        curGroupImgRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             let newdict = snapshot.value as! Dictionary<String, AnyObject>
             let newval = newdict["imgId"] as! String
             for id in self.imgIDs {
@@ -133,7 +134,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
             //self.loadView()
            
         })
-        curGroupRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+        curGroupImgRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
             let newdict = snapshot.value as! Dictionary<String, AnyObject>
             let newval = newdict["imgId"] as! String
             //let newval: String = snapshot.value as! String
@@ -194,6 +195,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                             
                             let groupRef = self.ref.child("groups")
                             let curGroupRef = groupRef.child(self.navigationItem.title!)
+                            let curGroupImgRef = curGroupRef.child("images")
                             
                             //uploads to real time database
                             var dict = [String: AnyObject]()
@@ -205,7 +207,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                             dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
                             
                             print(dict)
-                            curGroupRef.child(subString).updateChildValues(dict)
+                            curGroupImgRef.child(subString).updateChildValues(dict)
                         }
                     })
                     

@@ -19,4 +19,23 @@ class Group {
         self.members = [String]()
         self.update = update
     }
+    
+    init(name: String, avatar: UIImage?) {
+        self.name = name
+        self.avatar = avatar
+        self.members = [String]()
+        self.update = ""
+    }
+    
+    func isEqual(object: AnyObject?) -> Bool {
+        if let object = object as? Group {
+            return self.name == object.name
+        } else {
+            return false
+        }
+    }
+    
+    var hash: Int {
+        return name.hashValue
+    }
 }
