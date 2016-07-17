@@ -137,7 +137,67 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7V2-G4-Lio" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3567" y="-867"/>
+            <point key="canvasLocation" x="3543" y="-315"/>
+        </scene>
+        <!--Add Members-->
+        <scene sceneID="H48-IV-uPq">
+            <objects>
+                <tableViewController id="UgX-MV-cge" customClass="AddGroupMembersTableViewController" customModule="vuepal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Ta-tD-S8f">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="ZSp-iV-XMn">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="UgX-MV-cge" id="638-00-1cA"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VCk-FT-C7K">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VCk-FT-C7K" id="eAl-UQ-Y5g">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UgX-MV-cge" id="zAI-F3-NZn"/>
+                            <outlet property="delegate" destination="UgX-MV-cge" id="kbu-0e-vRh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Members" id="tW8-dv-u3G">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Ihx-JW-03f">
+                            <connections>
+                                <action selector="cancelAction:" destination="UgX-MV-cge" id="fzs-FV-da6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Wwt-IR-hFl">
+                            <connections>
+                                <action selector="doneAction:" destination="UgX-MV-cge" id="Qb6-jR-6Mp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="2J1-ZY-wFQ" id="bJw-Uw-dQT"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m3k-DL-n3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="2J1-ZY-wFQ">
+                    <connections>
+                        <outlet property="delegate" destination="UgX-MV-cge" id="U9G-ME-sT5"/>
+                        <outlet property="searchBar" destination="ZSp-iV-XMn" id="wFY-6O-JJB"/>
+                        <outlet property="searchContentsController" destination="UgX-MV-cge" id="aX6-my-q7i"/>
+                        <outlet property="searchResultsDataSource" destination="UgX-MV-cge" id="DHE-Vo-Z5g"/>
+                        <outlet property="searchResultsDelegate" destination="UgX-MV-cge" id="vzP-Sf-YlL"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2771" y="1199"/>
         </scene>
         <!--Make Group One View Controller-->
         <scene sceneID="oah-os-Zah">
@@ -194,7 +254,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="AHe-eB-ano">
                             <connections>
-                                <segue destination="hJK-SQ-ccL" kind="show" id="ZIV-Iq-6Hv"/>
+                                <segue destination="UgX-MV-cge" kind="show" id="hGM-K8-NbV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -212,48 +272,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3599" y="377"/>
-        </scene>
-        <!--Add Membs View Controller-->
-        <scene sceneID="qvo-uY-EsB">
-            <objects>
-                <viewController id="hJK-SQ-ccL" customClass="AddMembsViewController" customModule="vuepal" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ITe-Tg-tVv"/>
-                        <viewControllerLayoutGuide type="bottom" id="XOm-2e-kuf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Gxb-lk-rDW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="prominent" translatesAutoresizingMaskIntoConstraints="NO" id="EdG-oa-teu">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                            </searchBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="EdG-oa-teu" firstAttribute="top" secondItem="ITe-Tg-tVv" secondAttribute="bottom" id="IrC-q5-mPd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="EdG-oa-teu" secondAttribute="trailing" constant="-20" id="dac-EX-QxY"/>
-                            <constraint firstItem="EdG-oa-teu" firstAttribute="leading" secondItem="Gxb-lk-rDW" secondAttribute="leadingMargin" constant="-20" id="nYY-r2-5iX"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="iTB-HX-qe9">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="C1Z-fI-Nhy">
-                            <connections>
-                                <action selector="cancelAction:" destination="hJK-SQ-ccL" id="hd8-aq-xDO"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="dfQ-Q9-8Vq">
-                            <connections>
-                                <action selector="doneAction:" destination="hJK-SQ-ccL" id="w21-7t-olC"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DOt-9K-mct" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4507" y="256"/>
+            <point key="canvasLocation" x="2771" y="433"/>
         </scene>
         <!--Groups-->
         <scene sceneID="l4r-p0-yc1">
@@ -354,7 +373,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ff-3T-eQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5054" y="-398"/>
+            <point key="canvasLocation" x="3274" y="-1882"/>
         </scene>
     </scenes>
     <resources>
