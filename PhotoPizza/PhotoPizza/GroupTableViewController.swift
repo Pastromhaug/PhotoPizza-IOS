@@ -32,8 +32,8 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
         initGroups()
         dbListen()
         navigationController!.navigationBar.barTintColor = UIColor(red:0.38, green:0.28, blue:0.62, alpha:1.0)
-        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.88, green:0.88, blue:0.88, alpha:1.0)]
-        self.tableView.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.0)
+        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)]
+        self.tableView.backgroundColor = UIColor(red:0.9995, green:0.9995, blue:0.9995, alpha:1.0)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -178,6 +178,7 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
         cell.groupLabel.text = group.name
         cell.groupImage.image = group.avatar
         cell.groupUpdate.text = group.update
+        cell.contentView.backgroundColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
         
         return cell
     }
