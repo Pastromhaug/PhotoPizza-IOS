@@ -16,10 +16,13 @@ class AddMembsViewController: UIViewController {
     var avatarImageId: String = ""
     var group: Group?
     
+    var searchResults = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(self.group?.name)
+        searchResults = ["Gary Chen, Per Andre Stromhaug, Paige, Anjali, Ken"]
         // Do any additional setup after loading the view.
     }
 
