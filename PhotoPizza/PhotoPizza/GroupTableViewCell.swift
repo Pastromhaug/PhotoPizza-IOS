@@ -15,7 +15,7 @@ class GroupTableViewCell: UITableViewCell {
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var groupImage: UIImageView!
     @IBOutlet weak var groupUpdate: UILabel!
-    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

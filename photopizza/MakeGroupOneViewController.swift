@@ -122,7 +122,7 @@ class MakeGroupOneViewController: UIViewController, UITextFieldDelegate, UIImage
             let update = "placehodlertoavoiderror"
             group = Group(name: name, avatar: avatar, update: update)
             
-            let svc = segue.destinationViewController as! AddMembsViewController;
+            let svc = segue.destinationViewController as! AddGroupMembersTableViewController;
             svc.group = self.group
             svc.avatarImageId = self.avatarImageId
         }
