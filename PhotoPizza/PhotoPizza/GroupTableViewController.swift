@@ -106,45 +106,47 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
         
         userGroupRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             
-            let newDict = JSON(snapshot.value!)
-            for (groupAdded, _) in newDict {
-                let groupRef = self.ref.child("groups/" + groupAdded)
+            //let newDict = JSON(snapshot.value!)
+            //print("hellooooooo \(newDict)")
+            let groupAdded = JSON(snapshot.value!).stringValue
+            print("DID WE MAKE IT THO: \(groupAdded)")
+            let groupRef = self.ref.child("groups/" + groupAdded)
 
-                groupRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
-                    
-                    let groupDict = snapshot.value as! Dictionary<String, AnyObject>
-                    let groupName = groupDict["groupName"] as! String
-                    for group in self.groups {
-                        if group.name == groupName{
-                            return
-                        }
+            groupRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
+                
+                let groupDict = JSON(snapshot.value!)
+                let groupName = groupDict["groupName"].stringValue
+                for group in self.groups {
+                    if group.name == groupName{
+                        return
                     }
-                    let avatarImgId = groupDict["avatarImgId"] as! String ?? ""
-                    let newGroup = Group(name: groupName, avatar: UIImage(named: "noAvatar"))
-                    self.groups.append(newGroup)
-                    let photoRef = storageRef.child("images/" + avatarImgId)
-                    photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
-                        if (error != nil) {
-                            // Uh-oh, an error occurred!
-                            self.groupTableView.reloadData()
-                        } else {
-                            // Data for "images/island.jpg" is returned
-                            // ... let islandImage: UIImage! = UIImage(data: data!)
-                            newGroup.avatar = UIImage(data: data!)
-                            self.groupTableView.reloadData()
-                            
-                        }
+                }
+                let avatarImgId = groupDict["avatarImgId"].stringValue ?? ""
+                let newGroup = Group(name: groupName, avatar: UIImage(named: "noAvatar"))
+                self.groups.append(newGroup)
+                let photoRef = storageRef.child("images/" + avatarImgId)
+                photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
+                    if (error != nil) {
+                        // Uh-oh, an error occurred!
+                        self.groupTableView.reloadData()
+                    } else {
+                        // Data for "images/island.jpg" is returned
+                        // ... let islandImage: UIImage! = UIImage(data: data!)
+                        newGroup.avatar = UIImage(data: data!)
+                        self.groupTableView.reloadData()
+                        
                     }
-                    self.groupTableView.reloadData()
+                }
+                self.groupTableView.reloadData()
 
-                })
-            }
+            })
+            
 
             
         })
         userGroupRef.observeEventType(.ChildRemoved, withBlock: { (snapshot) in
-            let newDict = snapshot.value as! Dictionary<String, AnyObject>
-            let groupName = newDict["groupName"] as! String
+            let newDict = JSON(snapshot.value!)
+            let groupName = newDict["groupName"].stringValue
             let len = self.groups.count
             for i in 0..<len {
                 let curr = self.groups[i]
