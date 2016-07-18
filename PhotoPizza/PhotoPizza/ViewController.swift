@@ -85,10 +85,10 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 let facebookId = json["id"].intValue
                 let email = json["email"].stringValue
                 
-                //TODO: make groups better
+//                //TODO: make groups better
                 var groups = [String:String]()
-                groups["hello"] = "hello"
-                groups["goodbye"] = "goodbye"
+//                groups["hello"] = "hello"
+//                groups["goodbye"] = "goodbye"
                 
                 print("name: \(name)")
                 print("id: \(facebookId)")
@@ -106,12 +106,14 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                     else {
                         currentUser.firebaseId = user!.uid
                         
+                        
+                        
                         let userRef = FIRDatabase.database().reference().child("users").child(currentUser.firebaseId)
                         let userDict: [String: AnyObject] = ["facebookId": String(currentUser.facebookId),
                             "firebaseId": currentUser.firebaseId,
                             "userName": currentUser.name,
-                            "userEmail": currentUser.email,
-                            "groups": currentUser.groups]
+                            "userEmail": currentUser.email]
+                            //"groups": currentUser.groups]
                         userRef.updateChildValues(userDict)
                         //                self.initGroups()
                         //                self.dbListen()

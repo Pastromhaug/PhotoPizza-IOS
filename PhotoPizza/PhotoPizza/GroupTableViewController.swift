@@ -86,8 +86,6 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
                             // Data for "images/island.jpg" is returned
                             // ... let islandImage: UIImage! = UIImage(data: data!)
                             newGroup.avatar = UIImage(data: data!)
-                            //self.loadView()
-                            
                             self.groupTableView.reloadData()
                             
                         }
