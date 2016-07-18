@@ -18,13 +18,16 @@ import Photos
 class GroupTableViewController: UITableViewController, UINavigationControllerDelegate {
     
     //MARK: Properties
-    var groupsList = [Group]()
-    var groups = [String:Group]() {
+    var groupsList = [Group]() {
         didSet {
-            groupsList = Array(groups.values)
             tableView.reloadData()
         }
     }
+    var groups = [String:Group]()
+//        didSet {
+//            groupsList = Array(groups.values)
+//        }
+    
     @IBOutlet var groupTableView: UITableView!
     
     //refs
@@ -38,51 +41,53 @@ class GroupTableViewController: UITableViewController, UINavigationControllerDel
     
     var refsAndHandles = [refAndHandle]() {
         didSet {
-            self.groups = [:]
+            var tempGroups : [String: Group] = [:]
             for var i in refsAndHandles {
                 i.handle = i.ref.observeEventType(.Value,
                     withBlock: { snapshot in
                         let groupDict = JSON(snapshot.value!)
-                        let groupName = groupDict["groupName"].stringValue
-                        let groupId = groupDict["groupId"].stringValue
-                        let avatarImgId = groupDict["avatarImgId"].stringValue
-                        let update = groupDict["update"].stringValue
-                        
-                        let newGroup = Group(id: groupId,  name: groupName)
-                        newGroup.update = update
-                        
-                        let storageRef = self.storage.referenceForURL("gs://photo-pizza.appspot.com")
-                        let photoRef = storageRef.child("images/" + avatarImgId)
-                        print("self.groups")
-                        print(self.groups)
-                        photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
-                            if (error != nil) {
-                                // Uh-oh, an error occurred!
-                                self.groups[newGroup.id] = newGroup
-                            } else {
-                                // Data for "images/island.jpg" is returned
-                                // ... let islandImage: UIImage! = UIImage(data: data!)
-                                newGroup.avatar = UIImage(data: data!)
-                                self.groups[newGroup.id] = newGroup
+                        if groupDict["groupId"].stringValue != ""{
+                            let groupId = groupDict["groupId"].stringValue
+                            let groupName = groupDict["groupName"].stringValue
+                            let avatarImgId = groupDict["avatarImgId"].stringValue
+                            let update = groupDict["update"].stringValue
+                            
+                            let newGroup = Group(id: groupId,  name: groupName)
+                            newGroup.update = update
+                            
+                            let storageRef = self.storage.referenceForURL("gs://photo-pizza.appspot.com")
+                            let photoRef = storageRef.child("images/" + avatarImgId)
+                            print("tempGroups")
+                            print(tempGroups)
+                            photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
+                                if (error != nil) {
+                                    // Uh-oh, an error occurred!
+                                    tempGroups[newGroup.id] = newGroup
+                                } else {
+                                    // Data for "images/island.jpg" is returned
+                                    // ... let islandImage: UIImage! = UIImage(data: data!)
+                                    newGroup.avatar = UIImage(data: data!)
+                                    tempGroups[newGroup.id] = newGroup
+                                }
+                                print (tempGroups)
                             }
-                            print (self.groups)
                         }
-                        
-                        
-                        
                     },
                     withCancelBlock: { error in
                         print(error.description)
                     }
                 )
             }
+            tempGroups = groups
+            self.groupsList = Array(tempGroups.values)
+            
         }
         
-        willSet {
-            for var i in refsAndHandles {
-                i.ref.removeObserverWithHandle(i.handle!)
-            }
-        }
+//        willSet {
+//            for var i in refsAndHandles {
+//                i.ref.removeObserverWithHandle(i.handle!)
+//            }
+//        }
     }
 
     
