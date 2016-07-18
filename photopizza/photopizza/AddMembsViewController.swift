@@ -42,13 +42,14 @@ class AddMembsViewController: UIViewController {
     
     @IBAction func doneAction(sender: UIBarButtonItem) {
         let storageRef = self.storage.referenceForURL("gs://photo-pizza.appspot.com")
-                let groupId = self.group!.name
+        let groupId = self.group!.name
         let groupRef = self.postRef.child(groupId)
         let dict:[String:String] = ["groupName": self.group!.name,
                     "creatorFacebookId": String(currentUser.facebookId),
                     "creatorFirebaseId": currentUser.firebaseId,
                     "update": "new group created by " + currentUser.name,
-                    "avatarImgId": self.avatarImageId + ".jpg"]
+                    "avatarImgId": self.avatarImageId + ".jpg",
+                    "groupId" : groupId]
         groupRef.updateChildValues(dict)
         
         let imgRef = storageRef.child("images/" + self.avatarImageId)

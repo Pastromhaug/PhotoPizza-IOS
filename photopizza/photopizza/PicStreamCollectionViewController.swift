@@ -82,7 +82,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
             print("we made it here: \(self.navigationItem.title)")
             let json = JSON(snapshot.value!)["images"]
             print(json)
-            for (imgTitle, newDict):(String, JSON) in json {
+            for (_, newDict):(String, JSON) in json {
                 let imgId = newDict["imgId"].stringValue
                 self.imgIDs.append(imgId)
                 let photoRef = storageRef.child("images/" + imgId)
