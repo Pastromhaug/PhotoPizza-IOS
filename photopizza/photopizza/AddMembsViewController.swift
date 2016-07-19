@@ -61,6 +61,7 @@ class AddMembsViewController: UIViewController {
             else {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 print("putData succeeded")
+                let userGroupRef = self.databaseRef.child("users").child(currentUser.firebaseId).child("groups")
                 
                 let groupRef = self.databaseRef.child("groups")
                 let curGroupRef = groupRef.child(self.group!.name)
@@ -75,8 +76,14 @@ class AddMembsViewController: UIViewController {
                 dict["uploaderEmail"] = currentUser.email
                 dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
                 
-                print(dict)
+                print("gucci\(dict)")
                 curGroupImgRef.child(self.avatarImageId).updateChildValues(dict)
+                var otherDict = [String: String]()
+                otherDict[self.group!.name] = self.group!.name
+                print("yolo\(otherDict)")
+                
+                userGroupRef.updateChildValues(otherDict)
+                
             }
         })
 
