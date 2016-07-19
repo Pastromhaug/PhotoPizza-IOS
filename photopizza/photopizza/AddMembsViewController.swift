@@ -20,6 +20,7 @@ class AddMembsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(self.group?.name)
+        FIRDatabase.database().persistenceEnabled = true
         // Do any additional setup after loading the view.
     }
 
