@@ -14,7 +14,6 @@ import Firebase
 import FirebaseAuth
 import SwiftyJSON
 
-var currentUser : User = User()
 
 var isItDone = false
 
@@ -40,7 +39,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
        // mainBoxView.center = self.view.center
         loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         loginButton.delegate = self
-        FIRDatabase.database().persistenceEnabled = true
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,7 +71,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         print("Important: \(result.token.expirationDate)")
         print("Importnad: \(result.token.refreshDate)")
-        
+        print("access token2: \(FBSDKAccessToken.currentAccessToken()) ")
         let tokenString = result.token.tokenString
         let fields = ["fields":"email,name,friendlists,permissions"]
         let req = FBSDKGraphRequest(graphPath: "me", parameters: fields, tokenString: tokenString, version: nil, HTTPMethod: "GET")
@@ -101,6 +100,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 
                 FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                     if (error != nil) {
+                        print("FIREBASE SIGN IN ERROR")
                         print(error)
                     }
                     else {
@@ -119,11 +119,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                         //                self.dbListen()
                         isItDone = true
                         
-                        let storyBoard : UIStoryboard? = self.storyboard
-                        
-                        let nextViewController = (storyBoard?.instantiateViewControllerWithIdentifier("newNav"))! as UIViewController
-                        self.presentViewController(nextViewController, animated:true, completion:nil)
-                        
+                        self.goToView("newNav")
                     }
                 }
 
@@ -140,11 +136,12 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             print(error.localizedDescription)
             return
         }
-        
-        
-       
-        //        let secondViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("home"))! as UIViewController
-//        self.navigationController?.pushViewController(secondViewController, animated: true)
+    }
+    
+    func goToView(view: String) {
+        let storyBoard : UIStoryboard? = self.storyboard
+        let nextViewController = (storyBoard?.instantiateViewControllerWithIdentifier(view))! as UIViewController
+        self.presentViewController(nextViewController, animated:true, completion:nil)
     }
     
 //    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {

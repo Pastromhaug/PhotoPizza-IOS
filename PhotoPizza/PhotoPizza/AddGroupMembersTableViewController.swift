@@ -20,14 +20,21 @@ class AddGroupMembersTableViewController: UITableViewController {
     
     @IBAction func doneAction(sender: UIBarButtonItem) {
         let storageRef = self.storage.referenceForURL("gs://photo-pizza.appspot.com")
-        let groupId = self.group!.name
+        let groupId = self.group!.id
         let groupRef = self.postRef.child(groupId)
         let dict:[String:String] = ["groupName": self.group!.name,
+                                    "groupId" : groupId,
                                     "creatorFacebookId": String(currentUser.facebookId),
                                     "creatorFirebaseId": currentUser.firebaseId,
                                     "update": "new group created by " + currentUser.name,
                                     "avatarImgId": self.avatarImageId + ".jpg"]
         groupRef.updateChildValues(dict)
+        let userGroupRef = self.databaseRef.child("users").child(currentUser.firebaseId).child("groups")
+        var otherDict = [String: String]()
+        otherDict[self.group!.name] = self.group!.name
+        print("yolo\(otherDict)")
+        userGroupRef.updateChildValues(otherDict)
+        
         
         let imgRef = storageRef.child("images/" + self.avatarImageId)
         let uploadData = UIImageJPEGRepresentation((self.group?.avatar!)!, 0.05)!
