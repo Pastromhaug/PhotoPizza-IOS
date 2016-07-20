@@ -12,19 +12,86 @@ import FBSDKShareKit
 import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
+import SwiftyJSON
+
+var currentUser : User = User()
+var ref: FIRDatabaseReference? = nil
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    override init() {
+        FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
+        ref = FIRDatabase.database().reference()
+        ref!.keepSynced(true)
+        
+    }
+
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        FIRApp.configure()
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-        print("didFinishLaunchingWithOptions: firebase confiured")
+        // Override point for customization after application launch.        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        print("access token1: \(FBSDKAccessToken.currentAccessToken()) ")
+        
+        if (FBSDKAccessToken.currentAccessToken() != nil) {
+            verifyAndLaunch(FBSDKAccessToken.currentAccessToken())
+        }
+        else {
+            print("firebase error 1")
+        }
+        
+        
         return true
+    }
+    
+    func verifyAndLaunch(fbToken: FBSDKAccessToken) {
+        print("fir1")
+        let credential = FIRFacebookAuthProvider.credentialWithAccessToken(fbToken.tokenString)
+        print("fir2")
+        print("authData:")
+        if let user: FIRUser? = FIRAuth.auth()?.currentUser {
+            print("user signed in")
+            self.getUserDataAndSwitchViews(user, view: "newNav")
+        } else {
+            print("user not signed in")
+            FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                if (error != nil) {
+                    print("FIREBASE SIGN IN ERROR")            }
+                else {
+                    print("firebase sign in working")
+                    self.getUserDataAndSwitchViews(user, view: "newNav")
+                }
+            }
+        }
+        
+        
+
+    }
+    
+    func getUserDataAndSwitchViews(user: FIRUser?, view: String) {
+        if let userRef: FIRDatabaseReference? =
+            FIRDatabase.database().reference().child("users").child(user!.uid) {
+                userRef!.observeSingleEventOfType(.Value,
+                                                  withBlock: { snapshot in
+                                                    let userInfo = JSON(snapshot.value!)
+                                                    let userName = userInfo["userName"].stringValue
+                                                    let userFacebookId = userInfo["facebookId"].intValue
+                                                    let userEmail = userInfo["userEmail"].stringValue
+                                                    let userFirebaseId = userInfo["firebaseId"].stringValue
+                                                    var groups = [String:String]()
+                                                    currentUser = User(name: userName, email: userEmail, facebookId: userFacebookId, groups: groups)
+                                                    currentUser.firebaseId = userFirebaseId
+                                                    self.goToView(view)
+                    }
+                )
+        }
+        else {
+            print("failed to sign in to firebase")
+        }
+
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -54,6 +121,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
+    
+    func goToView(view: String) {
+        let storyBoard : UIStoryboard? = UIStoryboard(name: "Main", bundle: nil)
+        let nextViewController = (storyBoard?.instantiateViewControllerWithIdentifier(view))! as UIViewController
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = nextViewController
+        self.window?.makeKeyAndVisible()
+    }
+
 
 
 }

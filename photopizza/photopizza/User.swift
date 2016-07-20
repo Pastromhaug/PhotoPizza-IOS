@@ -13,17 +13,17 @@ class User {
     var email: String
     var facebookId: Int
     var firebaseId: String
-    var groups: [String]
+    var groups: [String : String]
     
     init() {
         self.name = ""
         self.email = ""
         self.facebookId = 0
         self.firebaseId = ""
-        self.groups = [String]()
+        self.groups = [String: String]()
     }
     
-    init(name: String, email: String, facebookId: Int, groups: [String]) {
+    init(name: String, email: String, facebookId: Int, groups: [String : String]) {
         self.name = name
         self.email = email
         self.facebookId = facebookId

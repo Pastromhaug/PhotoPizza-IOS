@@ -23,6 +23,7 @@ class AddMembsViewController: UIViewController {
         super.viewDidLoad()
         print(self.group?.name)
         searchResults = ["Gary Chen, Per Andre Stromhaug, Paige, Anjali, Ken"]
+        FIRDatabase.database().persistenceEnabled = true
         // Do any additional setup after loading the view.
     }
 
@@ -45,13 +46,14 @@ class AddMembsViewController: UIViewController {
     
     @IBAction func doneAction(sender: UIBarButtonItem) {
         let storageRef = self.storage.referenceForURL("gs://photo-pizza.appspot.com")
-                let groupId = self.group!.name
+        let groupId = self.group!.name
         let groupRef = self.postRef.child(groupId)
         let dict:[String:String] = ["groupName": self.group!.name,
                     "creatorFacebookId": String(currentUser.facebookId),
                     "creatorFirebaseId": currentUser.firebaseId,
                     "update": "new group created by " + currentUser.name,
-                    "avatarImgId": self.avatarImageId + ".jpg"]
+                    "avatarImgId": self.avatarImageId + ".jpg",
+                    "groupId" : groupId]
         groupRef.updateChildValues(dict)
         
         let imgRef = storageRef.child("images/" + self.avatarImageId)
@@ -63,6 +65,7 @@ class AddMembsViewController: UIViewController {
             else {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 print("putData succeeded")
+                let userGroupRef = self.databaseRef.child("users").child(currentUser.firebaseId).child("groups")
                 
                 let groupRef = self.databaseRef.child("groups")
                 let curGroupRef = groupRef.child(self.group!.name)
@@ -77,8 +80,14 @@ class AddMembsViewController: UIViewController {
                 dict["uploaderEmail"] = currentUser.email
                 dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
                 
-                print(dict)
+                print("gucci\(dict)")
                 curGroupImgRef.child(self.avatarImageId).updateChildValues(dict)
+                var otherDict = [String: String]()
+                otherDict[self.group!.name] = self.group!.name
+                print("yolo\(otherDict)")
+                
+                userGroupRef.updateChildValues(otherDict)
+                
             }
         })
 

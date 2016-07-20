@@ -118,9 +118,10 @@ class MakeGroupOneViewController: UIViewController, UITextFieldDelegate, UIImage
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if sender === nextButton {
             let name = groupTextField.text ?? ""
+            let id = groupTextField.text ?? ""
             let avatar = avatarImage.image
             let update = "placehodlertoavoiderror"
-            group = Group(name: name, avatar: avatar, update: update)
+            group = Group(id: id, name: name, avatar: avatar, update: update)
             
             let svc = segue.destinationViewController as! AddGroupMembersTableViewController;
             svc.group = self.group
