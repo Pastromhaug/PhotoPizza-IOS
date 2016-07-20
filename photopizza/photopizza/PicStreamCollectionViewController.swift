@@ -39,6 +39,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     var imgs : [String : UIImage] = [String : UIImage]()
     var imgList : [UIImage] = [UIImage]()
     
+    
+    var imageObjs : [Image] = [Image]()
+    
     // group 
     
     override func viewDidLoad() {
@@ -55,7 +58,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         screenHeight = screenSize.height
         
         //self.navigationController?.navigationBar.translucent = false
-        initImageRefs()
+        //initImageRefs()
         dbListen()
         
     }
@@ -76,14 +79,15 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     func initImageRefs() {
         let groupRef = self.ref.child("groups")
-        let curGroupRef = groupRef.child(self.navigationItem.title!)
+        let curGroupRef = groupRef.child(self.navigationItem.title!).child("images")
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
-        curGroupRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
+        curGroupRef.queryOrderedByChild("uploadTimeSince1970").observeSingleEventOfType(.Value, withBlock: { snapshot in
             print("we made it here: \(self.navigationItem.title)")
-            let json = JSON(snapshot.value!)["images"]
-            print(json)
-            for (_, newDict):(String, JSON) in json {
+            let newDict = JSON(snapshot.value!)//["images"]
+            print(newDict)
+            //for (_, newDict):(String, JSON) in json {
                 let imgId = newDict["imgId"].stringValue
+                print("QUITE IMPORTANT" + imgId)
                 self.imgIDs.append(imgId)
                 let photoRef = storageRef.child("images/" + imgId)
                 photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
@@ -96,7 +100,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         self.picCollectionView.reloadData()
                         
                     }
-                }            }
+                }
+            //}
         })
         
     }
@@ -111,23 +116,32 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         curGroupImgRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
             let newDict = snapshot.value as! Dictionary<String, AnyObject>
             let imgId = newDict["imgId"] as! String
-            for id in self.imgIDs {
-                if id == imgId{
+            let uploadTimeSince1970 = newDict["uploadTimeSince1970"] as! Double
+            let newImage = Image(imgId: imgId, uploadTimeSince1970: uploadTimeSince1970)
+            
+            for image in self.imageObjs {
+                if image.imgId == newImage.imgId{
                     return
                 }
             }
-            self.imgIDs.append(imgId)
-            let photoRef = storageRef.child("images/" + imgId)
+            self.imageObjs.append(newImage)
+            let photoRef = storageRef.child("images/" + newImage.imgId)
             photoRef.dataWithMaxSize(1 * 4000 * 4000) { (data, error) -> Void in
                 if (error != nil) {
                     // Uh-oh, an error occurred!
+                    self.sortImageObjs()
+                    self.picCollectionView.reloadData()
+                    
                 } else {
                     // Data for "images/island.jpg" is returned
                     // ... let islandImage: UIImage! = UIImage(data: data!)
-                    self.imgs[imgId] = UIImage(data: data!)
+                    newImage.img = UIImage(data: data!)!
+                    self.sortImageObjs()
                     self.picCollectionView.reloadData()
+                   
                 }
             }
+            
             //self.loadView()
            
         })
@@ -135,18 +149,19 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
             let newDict = snapshot.value as! Dictionary<String, AnyObject>
             let imgId = newDict["imgId"] as! String
             //let newval: String = snapshot.value as! String
-            let len = self.imgIDs.count
+            let len = self.imageObjs.count
             for i in 0..<len {
-                let curr = self.imgIDs[i]
-                if (curr == imgId) {
-                    self.imgIDs.removeAtIndex(i)
-                    self.imgs.removeValueForKey(imgId)
+                let curr = self.imageObjs[i]
+                if (curr.imgId == imgId) {
+                    self.imageObjs.removeAtIndex(i)
+                    //self.imgs.removeValueForKey(imgId)
                     //self.loadView()
+                    self.sortImageObjs()
                     self.picCollectionView.reloadData()
                     return
                 }
             }
-            print(self.imgIDs)
+            //print(self.imgIDs)
         })
     }
 
@@ -236,10 +251,24 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         
-        imgList = Array(imgs.values)
+        //imgList = Array(imgs.values)
+        
+        //updateImgList()
         //print("COUNT: " + String(imgIDs))
-        return imgList.count
+        return imageObjs.count
         //return 4
+    }
+    
+    func updateImgList () {
+        imgList = [UIImage]()
+        for image in imageObjs {
+            imgList.append(image.img)
+        }
+    }
+    
+    func sortImageObjs () {
+        imageObjs.sortInPlace({ $0.uploadTimeSince1970 > $1.uploadTimeSince1970 })
+        return
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -248,18 +277,23 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         // Configure the cell
     
         //cell.backgroundColor = UIColor.blackColor()
+        //updateImgList()
+        let curImage = imageObjs[indexPath.row]
         
-        imgList = Array(imgs.values)
-        if (cell.designatedPic == nil) {
-            
+        //let imgID = imgIDs[indexPath.row]
+        let img : UIImage? = curImage.img
+        
+        if (img == nil) {
+            cell.designatedPic.image = UIImage(named: "noAvatar")
+        } else {
+            cell.designatedPic.image = img
         }
-        cell.designatedPic.image = imgList[indexPath.row]
-        //cell.designatedPic.image = UIImage(named: "noAvatar")
         cell.layer.borderWidth = 0
         cell.frame.size.width = screenWidth / 5
         cell.frame.size.height = screenWidth / 5
         
-    
+        print("somewhat importatn: \(imgIDs)")
+        
         return cell
     }
     
@@ -267,9 +301,10 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     // MARK: UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        updateImgList()
         let agrume = Agrume(images: imgList, startIndex: indexPath.row, backgroundBlurStyle: .Light)
         agrume.didScroll = {
-            [unowned self] index in
+        [unowned self] index in
             self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forRow: index, inSection: 0),
                                                          atScrollPosition: [],
                                                          animated: false)

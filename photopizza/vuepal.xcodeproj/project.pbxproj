@@ -13,6 +13,7 @@
 		12FAC6E41D3BA9FD007C8AD1 /* AutocompleteTextfieldSwift in Resources */ = {isa = PBXBuildFile; fileRef = 12FAC6E31D3BA9FD007C8AD1 /* AutocompleteTextfieldSwift */; };
 		12FAC6E61D3BB9E9007C8AD1 /* AddGroupMembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FAC6E51D3BB9E9007C8AD1 /* AddGroupMembersTableViewController.swift */; };
 		12FAC6E81D3BCC6C007C8AD1 /* AddGroupMembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FAC6E71D3BCC6C007C8AD1 /* AddGroupMembersTableViewCell.swift */; };
+		1405ECD11D3FEC99001602D7 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1405ECD01D3FEC99001602D7 /* Image.swift */; };
 		145136AF1D328BC300CD786F /* MakeGroupOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136AE1D328BC300CD786F /* MakeGroupOneViewController.swift */; };
 		145136B11D33964D00CD786F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136B01D33964D00CD786F /* Group.swift */; };
 		145136B31D33AD8600CD786F /* AddMembsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136B21D33AD8600CD786F /* AddMembsViewController.swift */; };
@@ -47,6 +48,7 @@
 		12FAC6E31D3BA9FD007C8AD1 /* AutocompleteTextfieldSwift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AutocompleteTextfieldSwift; path = ../AutocompleteTextfieldSwift; sourceTree = "<group>"; };
 		12FAC6E51D3BB9E9007C8AD1 /* AddGroupMembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGroupMembersTableViewController.swift; path = PhotoPizza/AddGroupMembersTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		12FAC6E71D3BCC6C007C8AD1 /* AddGroupMembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGroupMembersTableViewCell.swift; path = PhotoPizza/AddGroupMembersTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		1405ECD01D3FEC99001602D7 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		143F537D1D35AC4B00B1FEAA /* photopizza-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "photopizza-Bridging-Header.h"; sourceTree = "<group>"; };
 		145136AE1D328BC300CD786F /* MakeGroupOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeGroupOneViewController.swift; path = ../MakeGroupOneViewController.swift; sourceTree = "<group>"; };
 		145136B01D33964D00CD786F /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				12FAC6E31D3BA9FD007C8AD1 /* AutocompleteTextfieldSwift */,
 				145136C01D352BCF00CD786F /* PicStreamCollectionViewController.swift */,
+				1405ECD01D3FEC99001602D7 /* Image.swift */,
 				12FAC6E11D39370E007C8AD1 /* utils.swift */,
 				145136B81D34191D00CD786F /* GoogleService-Info.plist */,
 				145136AE1D328BC300CD786F /* MakeGroupOneViewController.swift */,
@@ -381,6 +384,7 @@
 				12FAC6E81D3BCC6C007C8AD1 /* AddGroupMembersTableViewCell.swift in Sources */,
 				145136B31D33AD8600CD786F /* AddMembsViewController.swift in Sources */,
 				145136AF1D328BC300CD786F /* MakeGroupOneViewController.swift in Sources */,
+				1405ECD11D3FEC99001602D7 /* Image.swift in Sources */,
 				14924CAC1D319C2500E42676 /* ViewController.swift in Sources */,
 				145136C11D352BCF00CD786F /* PicStreamCollectionViewController.swift in Sources */,
 				145136C31D35503300CD786F /* ImageCollectionViewCell.swift in Sources */,
