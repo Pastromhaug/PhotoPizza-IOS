@@ -40,15 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             verifyAndLaunch(FBSDKAccessToken.currentAccessToken())
         }
         else {
+            self.goToView("loginPage")
             print("firebase error 1")
         }
         return true
     }
     
     func verifyAndLaunch(fbToken: FBSDKAccessToken) {
-        print("fir1")
         let credential = FIRFacebookAuthProvider.credentialWithAccessToken(fbToken.tokenString)
-        print("fir2")
         print("authData:")
         if let user: FIRUser? = FIRAuth.auth()?.currentUser {
             print("user signed in")

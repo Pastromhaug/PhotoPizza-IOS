@@ -37,7 +37,6 @@ class AddGroupMembersTableViewController: UITableViewController {
         let userGroupRef = self.databaseRef.child("users").child(currentUser.firebaseId).child("groups")
         var otherDict = [String: String]()
         otherDict[self.group!.name] = self.group!.name
-        print("yolo\(otherDict)")
         userGroupRef.updateChildValues(otherDict)
         
         
@@ -48,9 +47,7 @@ class AddGroupMembersTableViewController: UITableViewController {
                 print("Error in putData")
             }
 //            else {
-//                // Metadata contains file metadata such as size, content-type, and download URL.
-//                print("putData succeeded")
-//                
+//                // Metadata contains file metadata such as size, content-type, and download URL.//
 //                let groupRef = self.databaseRef.child("groups")
 //                let curGroupRef = groupRef.child(self.group!.name)
 //                let curGroupImgRef = curGroupRef.child("images")
@@ -63,8 +60,7 @@ class AddGroupMembersTableViewController: UITableViewController {
 //                dict["uploaderName"] = currentUser.name
 //                dict["uploaderEmail"] = currentUser.email
 //                dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
-//                
-//                print(dict)
+//
 //                curGroupImgRef.child(self.avatarImageId).updateChildValues(dict)
 //            }
         })
@@ -92,7 +88,6 @@ class AddGroupMembersTableViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
         self.usersRef.observeEventType(.Value,
             withBlock: { snapshot in
-                print(JSON(snapshot.value!))
                 self.users = []
                 let userInfos = JSON(snapshot.value!)
                 for (_,userInfo) in userInfos {
