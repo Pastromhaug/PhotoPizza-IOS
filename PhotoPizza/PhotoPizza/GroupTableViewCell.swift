@@ -12,6 +12,8 @@ class GroupTableViewCell: UITableViewCell {
 
     // MARK: Properties
     
+    var user: User? = nil
+    
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var groupImage: UIImageView!
     @IBOutlet weak var groupUpdate: UILabel!
