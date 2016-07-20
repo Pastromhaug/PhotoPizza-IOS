@@ -50,23 +50,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         let loginManager: FBSDKLoginManager = FBSDKLoginManager()
         loginManager.logOut()
-        
-        // If you have user_likes permission granted
-//        let connection = GraphRequestConnection()
-//        connection.add(GraphRequest(graphPath: "me/likes")) { (response: NSHTTPURLResponse?, result: GraphRequestResult<GraphResponse>) in
-//            // TODO: Process error or result.
-//        }
-//        connection.start()
     }
     
-
-    
-//    func configureFacebook() {
-//        let fbLoginButton = FBSDKLoginButton()
-//        fbLoginButton.readPermissions = ["public_profile", "email", "user_friends"];
-//        fbLoginButton.delegate = self
-//    }
-//    
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {
         let tokenString = result.token.tokenString
         let fields = ["fields":"email,name,friendlists,permissions"]
@@ -77,11 +62,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 let name = json["name"].stringValue
                 let facebookId = json["id"].intValue
                 let email = json["email"].stringValue
-                
-//                //TODO: make groups better
-                var groups = [String:String]()
-//                groups["hello"] = "hello"
-//                groups["goodbye"] = "goodbye"
+                let groups = [String:String]()
                 
                 print("name: \(name)")
                 print("id: \(facebookId)")
@@ -95,36 +76,22 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                     if (error != nil) {
                         print("FIREBASE SIGN IN ERROR")
                         print(error)
-                    }
-                    else {
+                    } else {
                         currentUser.firebaseId = user!.uid
-                        
-                        
-                        
                         let userRef = FIRDatabase.database().reference().child("users").child(currentUser.firebaseId)
                         let userDict: [String: AnyObject] = ["facebookId": String(currentUser.facebookId),
                             "firebaseId": currentUser.firebaseId,
                             "userName": currentUser.name,
                             "userEmail": currentUser.email]
-                            //"groups": currentUser.groups]
                         userRef.updateChildValues(userDict)
-                        //                self.initGroups()
-                        //                self.dbListen()
                         isItDone = true
-                        
                         self.goToView("newNav")
                     }
                 }
-
-
-                
-            }
-            else{
+            } else{
                 print("error \(error)")
             }
         })
-        
-        
         if let error = error {
             print(error.localizedDescription)
             return

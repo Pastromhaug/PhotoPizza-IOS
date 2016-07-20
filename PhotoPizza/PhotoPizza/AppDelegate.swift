@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRDatabase.database().persistenceEnabled = true
         ref = FIRDatabase.database().reference()
         ref!.keepSynced(true)
-        
     }
 
 
