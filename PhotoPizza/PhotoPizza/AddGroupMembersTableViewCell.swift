@@ -21,12 +21,12 @@ class AddGroupMembersTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    // MARK: Actions
+    // MARK: Properties
     
     @IBOutlet weak var labelOutlet: UILabel!
     @IBOutlet weak var imageOutlet: UIImageView!
     @IBOutlet weak var subLabelOutlet: UILabel!
-    //    @IBOutlet weak var labelOutlet: UILabel!
-    //    @IBOutlet weak var imageOutlet: UIImageView!
+    
+    // MARK: Actions
     
 }

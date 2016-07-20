@@ -42,8 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else {
             print("firebase error 1")
         }
-        
-        
         return true
     }
     
