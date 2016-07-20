@@ -32,7 +32,8 @@ class AddGroupMembersTableViewController: UITableViewController {
                                     "creatorFacebookId": String(currentUser.facebookId),
                                     "creatorFirebaseId": currentUser.firebaseId,
                                     "update": "new group created by " + currentUser.name,
-                                    "avatarImgId": self.avatarImageId + ".jpg"]
+                                    "avatarImgId": self.avatarImageId + ".jpg",
+                                    "lastAddedDate": String(NSDate().timeIntervalSince1970)]
         groupRef.updateChildValues(dict)
         let userGroupRef = self.databaseRef.child("users").child(currentUser.firebaseId).child("groups")
         var otherDict = [String: String]()
@@ -46,23 +47,6 @@ class AddGroupMembersTableViewController: UITableViewController {
             if (error != nil) {
                 print("Error in putData")
             }
-//            else {
-//                // Metadata contains file metadata such as size, content-type, and download URL.//
-//                let groupRef = self.databaseRef.child("groups")
-//                let curGroupRef = groupRef.child(self.group!.name)
-//                let curGroupImgRef = curGroupRef.child("images")
-//                
-//                //uploads to real time database
-//                var dict = [String: AnyObject]()
-//                dict["imgId"] = self.avatarImageId + ".jpg"
-//                dict["uploaderFirebaseId"] = currentUser.firebaseId
-//                dict["uploaderFacebookId"] = currentUser.facebookId
-//                dict["uploaderName"] = currentUser.name
-//                dict["uploaderEmail"] = currentUser.email
-//                dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
-//
-//                curGroupImgRef.child(self.avatarImageId).updateChildValues(dict)
-//            }
         })
         
         

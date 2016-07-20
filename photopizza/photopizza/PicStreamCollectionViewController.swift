@@ -168,6 +168,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     
     @IBAction func uploadPicture(sender: UIBarButtonItem) {
         let pickerController = DKImagePickerController()
+        let groupRef = self.ref.child("groups")
+        let curGroupRef = groupRef.child(self.navigationItem.title!)
         pickerController.didSelectAssets = { (assets: [DKAsset]) in
             let storageRef = self.storage.referenceForURL("gs://photo-pizza.appspot.com")
             print(assets)
@@ -178,9 +180,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                     let fileString: String = uploadData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
                     let subString = md5(string: fileString)
                     
-                    
-                    print(subString)
-                    
                     //uploads img to storage
                     let imgRef = storageRef.child("images/" + subString + ".jpg")
                     imgRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -189,8 +188,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         }
                         else {
                             // Metadata contains file metadata such as size, content-type, and download URL.
-                            let groupRef = self.ref.child("groups")
-                            let curGroupRef = groupRef.child(self.navigationItem.title!)
                             let curGroupImgRef = curGroupRef.child("images")
                             
                             //uploads to real time database
@@ -204,19 +201,45 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                             curGroupImgRef.child(subString).updateChildValues(dict)
                         }
                     })
-                    
                 }
+            }
+            let fetchOptions: PHFetchOptions = PHFetchOptions()
+            fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+            let fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
+            if (fetchResult.lastObject != nil) {
+                let lastAsset: PHAsset = fetchResult.lastObject as! PHAsset
+                print("last creation date")
+                print(lastAsset.creationDate?.timeIntervalSince1970)
+                print("curr date")
+                print(NSDate().timeIntervalSince1970)
+                let lastDate: NSDate? = lastAsset.creationDate
+                let dict: [String: String] = ["lastAddedDate": String(lastDate!.timeIntervalSince1970)]
+                print(dict)
+                curGroupRef.updateChildValues(dict)
             }
         }
         pickerController.showsCancelButton = true
         pickerController.sourceType = .Photo
         fetchPhotos()
         var dkassets = [DKAsset]()
-        for image in self.images {
-            dkassets.append(DKAsset(originalAsset: image))
-        }
-        pickerController.defaultSelectedAssets = dkassets
-        self.presentViewController(pickerController, animated: true) {}
+        curGroupRef.queryOrderedByKey().observeSingleEventOfType(.Value,
+            withBlock: { snapshot in
+                let res = JSON(snapshot.value!)
+                print(res)
+                let lastAddedDate = Float(res["lastAddedDate"].stringValue)
+                print(lastAddedDate!)
+                
+                for image in self.images {
+                    if Float(image.creationDate!.timeIntervalSince1970) > lastAddedDate {
+                        dkassets.append(DKAsset(originalAsset: image))
+                    }
+                    
+                }
+                pickerController.defaultSelectedAssets = dkassets
+                self.presentViewController(pickerController, animated: true) {}
+
+            }
+        )   
     }
 
     // MARK: UICollectionViewDataSource
@@ -316,6 +339,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                 let asset: PHAsset = fetchResult.objectAtIndex(numAssets - 1 - i) as! PHAsset
                 images.append(asset)
                 print(asset.creationDate)
+                print(asset.creationDate.dynamicType)
             }
         }
         else {
