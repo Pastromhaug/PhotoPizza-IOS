@@ -203,8 +203,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         }
                         else {
                             // Metadata contains file metadata such as size, content-type, and download URL.
-                            print("putData succeeded")
-                            
                             let groupRef = self.ref.child("groups")
                             let curGroupRef = groupRef.child(self.navigationItem.title!)
                             let curGroupImgRef = curGroupRef.child("images")
@@ -217,8 +215,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                             dict["uploaderName"] = currentUser.name
                             dict["uploaderEmail"] = currentUser.email
                             dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
-                            
-                            print(dict)
                             curGroupImgRef.child(subString).updateChildValues(dict)
                         }
                     })
@@ -254,7 +250,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         //imgList = Array(imgs.values)
         
         //updateImgList()
-        //print("COUNT: " + String(imgIDs))
         return imageObjs.count
         //return 4
     }
@@ -291,9 +286,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         cell.layer.borderWidth = 0
         cell.frame.size.width = screenWidth / 5
         cell.frame.size.height = screenWidth / 5
-        
-        print("somewhat importatn: \(imgIDs)")
-        
         return cell
     }
     
@@ -338,12 +330,9 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: true)]
         
         if let fetchResult: PHFetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions) {
-            print(fetchResult.dynamicType)
 
             // If the fetch result isn't empty,
             // proceed with the image request
-            print("fetchResult.count")
-            print(fetchResult.count)
             let numAssets = fetchResult.count
             for i in 0..<numAssets {
                 let asset: PHAsset = fetchResult.objectAtIndex(numAssets - 1 - i) as! PHAsset
