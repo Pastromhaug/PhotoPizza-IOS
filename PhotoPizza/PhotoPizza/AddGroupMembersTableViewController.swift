@@ -8,16 +8,18 @@
 
 import UIKit
 import Firebase
+import SwiftyJSON
 
 class AddGroupMembersTableViewController: UITableViewController {
     let postRef = FIRDatabase.database().reference().child("groups")
+    let usersRef = FIRDatabase.database().reference().child("users")
     let databaseRef = FIRDatabase.database().reference()
     let storage = FIRStorage.storage()
     var avatarImageId: String = ""
     var group: Group?
     let searchController = UISearchController(searchResultsController: nil)
-    var users = ["hey","what's up", "Per Andre Stromhaug", "Gary", "Paige", "Angali", "Ken"]
-    var filteredUsers = [String]()
+    var users = [User]()
+    var filteredUsers = [User]()
 
     // MARK: Actions
     
@@ -86,22 +88,42 @@ class AddGroupMembersTableViewController: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
+        tableView.tableFooterView = UIView()
         tableView.tableHeaderView = searchController.searchBar
+        self.usersRef.observeEventType(.Value,
+            withBlock: { snapshot in
+                print(JSON(snapshot.value!))
+                self.users = []
+                let userInfos = JSON(snapshot.value!)
+                for (_,userInfo) in userInfos {
+                    let userName = userInfo["userName"].stringValue
+                    let userFacebookId = userInfo["facebookId"].intValue
+                    let userEmail = userInfo["userEmail"].stringValue
+                    let userFirebaseId = userInfo["firebaseId"].stringValue
+                    let user = User(name: userName, email: userEmail, facebookId: userFacebookId, firebaseId: userFirebaseId)
+                    self.users.append(user)
+                }
+            }
+        )
+    }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
+    
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-//        print("filtering")
-        filteredUsers = users.filter { res in
-            return res.lowercaseString.containsString(searchText.lowercaseString)
+        if searchText.characters.count == 0 {
+            self.filteredUsers = []
+        }
+        else {
+            self.filteredUsers = users.filter { res in
+                return res.name.lowercaseString.containsString(searchText.lowercaseString)
+            }
         }
         
-        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,27 +135,20 @@ class AddGroupMembersTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active && searchController.searchBar.text != "" {
-            return filteredUsers.count
-        }
-        return users.count
+        return filteredUsers.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "memberCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddGroupMembersTableViewCell
-        var user = ""
-        if searchController.active && searchController.searchBar.text != "" {
-            user = filteredUsers[indexPath.row]
-        } else {
-            user = users[indexPath.row]
-        }
-        cell.labelOutlet.text = user
-        cell.detailTextLabel?.text = user
+        let user = filteredUsers[indexPath.row]
+        cell.labelOutlet.text = user.name
+        cell.imageOutlet.image = UIImage(named: "noAvatar")
+        cell.subLabelOutlet.text = user.email
         return cell
     }
     /*
@@ -186,6 +201,7 @@ class AddGroupMembersTableViewController: UITableViewController {
 extension AddGroupMembersTableViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
+        tableView.reloadData()
     }
 }
 

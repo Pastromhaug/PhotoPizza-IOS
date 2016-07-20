@@ -30,4 +30,13 @@ class User {
         self.firebaseId = ""
         self.groups = groups
     }
+    
+    init(name: String, email: String, facebookId: Int, firebaseId: String) {
+        self.name = name
+        self.email = email
+        self.facebookId = facebookId
+        self.firebaseId = firebaseId
+        self.groups = [String : String]()
+    }
+
 }

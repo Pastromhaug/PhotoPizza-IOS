@@ -101,7 +101,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         
                     }
                 }
-            //}
+
         })
         
     }
@@ -319,6 +319,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         self.images = [PHAsset]()
         totalImageCountNeeded = 3
         self.fetchPhotoAtIndexFromEnd(0)
+        
     }
     
     // Repeatedly call the following method while incrementing
@@ -347,6 +348,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
             for i in 0..<numAssets {
                 let asset: PHAsset = fetchResult.objectAtIndex(numAssets - 1 - i) as! PHAsset
                 images.append(asset)
+                print(asset.creationDate)
             }
         }
         else {

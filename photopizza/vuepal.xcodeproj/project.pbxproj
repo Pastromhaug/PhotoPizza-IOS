@@ -12,11 +12,10 @@
 		12FAC6E21D39370E007C8AD1 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FAC6E11D39370E007C8AD1 /* utils.swift */; };
 		12FAC6E41D3BA9FD007C8AD1 /* AutocompleteTextfieldSwift in Resources */ = {isa = PBXBuildFile; fileRef = 12FAC6E31D3BA9FD007C8AD1 /* AutocompleteTextfieldSwift */; };
 		12FAC6E61D3BB9E9007C8AD1 /* AddGroupMembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FAC6E51D3BB9E9007C8AD1 /* AddGroupMembersTableViewController.swift */; };
-		12FAC6E81D3BCC6C007C8AD1 /* AddGroupMembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FAC6E71D3BCC6C007C8AD1 /* AddGroupMembersTableViewCell.swift */; };
+		12FED6D51D3FDA130068BECF /* AddGroupMembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FED6D41D3FDA120068BECF /* AddGroupMembersTableViewCell.swift */; };
 		1405ECD11D3FEC99001602D7 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1405ECD01D3FEC99001602D7 /* Image.swift */; };
 		145136AF1D328BC300CD786F /* MakeGroupOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136AE1D328BC300CD786F /* MakeGroupOneViewController.swift */; };
 		145136B11D33964D00CD786F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136B01D33964D00CD786F /* Group.swift */; };
-		145136B31D33AD8600CD786F /* AddMembsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136B21D33AD8600CD786F /* AddMembsViewController.swift */; };
 		145136B91D34191D00CD786F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 145136B81D34191D00CD786F /* GoogleService-Info.plist */; };
 		145136C11D352BCF00CD786F /* PicStreamCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136C01D352BCF00CD786F /* PicStreamCollectionViewController.swift */; };
 		145136C31D35503300CD786F /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145136C21D35503300CD786F /* ImageCollectionViewCell.swift */; };
@@ -47,12 +46,11 @@
 		12FAC6E11D39370E007C8AD1 /* utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		12FAC6E31D3BA9FD007C8AD1 /* AutocompleteTextfieldSwift */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AutocompleteTextfieldSwift; path = ../AutocompleteTextfieldSwift; sourceTree = "<group>"; };
 		12FAC6E51D3BB9E9007C8AD1 /* AddGroupMembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGroupMembersTableViewController.swift; path = PhotoPizza/AddGroupMembersTableViewController.swift; sourceTree = SOURCE_ROOT; };
-		12FAC6E71D3BCC6C007C8AD1 /* AddGroupMembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGroupMembersTableViewCell.swift; path = PhotoPizza/AddGroupMembersTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		12FED6D41D3FDA120068BECF /* AddGroupMembersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGroupMembersTableViewCell.swift; path = PhotoPizza/AddGroupMembersTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		1405ECD01D3FEC99001602D7 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		143F537D1D35AC4B00B1FEAA /* photopizza-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "photopizza-Bridging-Header.h"; sourceTree = "<group>"; };
 		145136AE1D328BC300CD786F /* MakeGroupOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeGroupOneViewController.swift; path = ../MakeGroupOneViewController.swift; sourceTree = "<group>"; };
 		145136B01D33964D00CD786F /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		145136B21D33AD8600CD786F /* AddMembsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMembsViewController.swift; sourceTree = "<group>"; };
 		145136B81D34191D00CD786F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		145136C01D352BCF00CD786F /* PicStreamCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicStreamCollectionViewController.swift; sourceTree = "<group>"; };
 		145136C21D35503300CD786F /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -138,16 +136,15 @@
 				14924CAD1D319C2500E42676 /* Main.storyboard */,
 				12D9F8091D36A5B300503CEE /* GroupTableViewController.swift */,
 				12FAC6E51D3BB9E9007C8AD1 /* AddGroupMembersTableViewController.swift */,
-				12FAC6E71D3BCC6C007C8AD1 /* AddGroupMembersTableViewCell.swift */,
 				12D9F8071D36A4DB00503CEE /* GroupTableViewCell.swift */,
 				145136C21D35503300CD786F /* ImageCollectionViewCell.swift */,
-				145136B21D33AD8600CD786F /* AddMembsViewController.swift */,
 				145136B01D33964D00CD786F /* Group.swift */,
 				14AD39641D380BA200ECC9BE /* User.swift */,
 				14924CB01D319C2500E42676 /* Assets.xcassets */,
 				14924CB21D319C2500E42676 /* LaunchScreen.storyboard */,
 				14924CB51D319C2500E42676 /* Info.plist */,
 				143F537D1D35AC4B00B1FEAA /* photopizza-Bridging-Header.h */,
+				12FED6D41D3FDA120068BECF /* AddGroupMembersTableViewCell.swift */,
 			);
 			name = vuepal;
 			path = photopizza;
@@ -381,8 +378,7 @@
 				12FAC6E21D39370E007C8AD1 /* utils.swift in Sources */,
 				12D9F80A1D36A5B300503CEE /* GroupTableViewController.swift in Sources */,
 				12FAC6E61D3BB9E9007C8AD1 /* AddGroupMembersTableViewController.swift in Sources */,
-				12FAC6E81D3BCC6C007C8AD1 /* AddGroupMembersTableViewCell.swift in Sources */,
-				145136B31D33AD8600CD786F /* AddMembsViewController.swift in Sources */,
+				12FED6D51D3FDA130068BECF /* AddGroupMembersTableViewCell.swift in Sources */,
 				145136AF1D328BC300CD786F /* MakeGroupOneViewController.swift in Sources */,
 				1405ECD11D3FEC99001602D7 /* Image.swift in Sources */,
 				14924CAC1D319C2500E42676 /* ViewController.swift in Sources */,
