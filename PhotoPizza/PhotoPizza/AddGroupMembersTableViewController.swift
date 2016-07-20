@@ -15,6 +15,9 @@ class AddGroupMembersTableViewController: UITableViewController {
     let storage = FIRStorage.storage()
     var avatarImageId: String = ""
     var group: Group?
+    let searchController = UISearchController(searchResultsController: nil)
+    var users = ["hey","what's up", "Per Andre Stromhaug", "Gary", "Paige", "Angali", "Ken"]
+    var filteredUsers = [String]()
 
     // MARK: Actions
     
@@ -72,13 +75,26 @@ class AddGroupMembersTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
+//        tableView.tableFooterView = UIView()
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+//        print("filtering")
+        filteredUsers = users.filter { res in
+            return res.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,19 +110,25 @@ class AddGroupMembersTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredUsers.count
+        }
+        return users.count
     }
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cellIdentifier = "memberCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddGroupMembersTableViewCell
+        var user = ""
+        if searchController.active && searchController.searchBar.text != "" {
+            user = filteredUsers[indexPath.row]
+        } else {
+            user = users[indexPath.row]
+        }
+        cell.labelOutlet.text = user
+        cell.detailTextLabel?.text = user
         return cell
     }
-    */
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -153,3 +175,10 @@ class AddGroupMembersTableViewController: UITableViewController {
     */
 
 }
+
+extension AddGroupMembersTableViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+

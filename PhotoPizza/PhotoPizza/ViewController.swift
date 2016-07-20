@@ -46,8 +46,17 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
-    {}
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        let loginManager: FBSDKLoginManager = FBSDKLoginManager()
+        loginManager.logOut()
+        
+        // If you have user_likes permission granted
+//        let connection = GraphRequestConnection()
+//        connection.add(GraphRequest(graphPath: "me/likes")) { (response: NSHTTPURLResponse?, result: GraphRequestResult<GraphResponse>) in
+//            // TODO: Process error or result.
+//        }
+//        connection.start()
+    }
     
 
     
@@ -59,6 +68,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 //    
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError?) {
         
+        print("Important: \(result.token.expirationDate)")
+        print("Importnad: \(result.token.refreshDate)")
         
         let tokenString = result.token.tokenString
         let fields = ["fields":"email,name,friendlists,permissions"]
@@ -73,7 +84,10 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 let email = json["email"].stringValue
                 
                 //TODO: make groups better
-                let groups = [String]()
+                var groups = [String]()
+                groups.append("hello")
+                groups.append("goodbye")
+                groups.append("waterfall")
                 
                 print("name: \(name)")
                 print("id: \(facebookId)")
@@ -102,10 +116,11 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             else {
                 currentUser.firebaseId = user!.uid
                 let userRef = FIRDatabase.database().reference().child("users").child(currentUser.firebaseId)
-                let userDict: [String: String] = ["facebookId": String(currentUser.facebookId),
+                let userDict: [String: AnyObject] = ["facebookId": String(currentUser.facebookId),
                                                   "firebaseId": currentUser.firebaseId,
                                                   "userName": currentUser.name,
-                                                  "userEmail": currentUser.email]
+                                                  "userEmail": currentUser.email,
+                                                  "groups": currentUser.groups]
                 userRef.updateChildValues(userDict)
             }
         }
@@ -113,6 +128,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         let storyBoard : UIStoryboard? = self.storyboard
         
         let nextViewController = (storyBoard?.instantiateViewControllerWithIdentifier("newNav"))! as UIViewController
+        //FBSDKLoginManager().logOut()
         self.presentViewController(nextViewController, animated:true, completion:nil)
 //        let secondViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("home"))! as UIViewController
 //        self.navigationController?.pushViewController(secondViewController, animated: true)
