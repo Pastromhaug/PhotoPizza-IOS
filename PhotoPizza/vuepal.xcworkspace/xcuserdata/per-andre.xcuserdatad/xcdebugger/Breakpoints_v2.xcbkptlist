@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PhotoPizza/AddGroupMembersTableViewController.swift"
+            timestampString = "490725431.792066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PhotoPizza/AddGroupMembersTableViewController.swift"
+            timestampString = "490725431.792066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PhotoPizza/AddGroupMembersTableViewCell.swift"
+            timestampString = "490723780.262479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "AddGroupMembersTableViewCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "vuepal.AddGroupMembersTableViewCell.__deallocating_deinit"
+                  moduleName = "vuepal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/per-andre/Desktop/vuepal/PhotoPizza/PhotoPizza/AddGroupMembersTableViewCell.swift"
+                  timestampString = "490723780.277201"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "vuepal.AddGroupMembersTableViewCell.init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; vuepal.AddGroupMembersTableViewCell"
+                  moduleName = "vuepal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/per-andre/Desktop/vuepal/PhotoPizza/PhotoPizza/AddGroupMembersTableViewCell.swift"
+                  timestampString = "490723780.277353"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "74">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "vuepal.AddGroupMembersTableViewCell.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;vuepal.AddGroupMembersTableViewCell&gt;"
+                  moduleName = "vuepal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/per-andre/Desktop/vuepal/PhotoPizza/PhotoPizza/AddGroupMembersTableViewCell.swift"
+                  timestampString = "490723780.277481"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

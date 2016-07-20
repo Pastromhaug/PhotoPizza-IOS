@@ -86,6 +86,7 @@ class AddGroupMembersTableViewController: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
+        tableView.tableFooterView = UIView()
         tableView.tableHeaderView = searchController.searchBar
 
         // Uncomment the following line to preserve selection between presentations
@@ -97,11 +98,17 @@ class AddGroupMembersTableViewController: UITableViewController {
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
 //        print("filtering")
-        filteredUsers = users.filter { res in
-            return res.lowercaseString.containsString(searchText.lowercaseString)
+        print("h" + searchText + "h")
+        print(searchText.characters.count)
+        if searchText.characters.count == 0 {
+            self.filteredUsers = []
+        }
+        else {
+            self.filteredUsers = users.filter { res in
+                return res.lowercaseString.containsString(searchText.lowercaseString)
+            }
         }
         
-        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -113,26 +120,19 @@ class AddGroupMembersTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active && searchController.searchBar.text != "" {
-            return filteredUsers.count
-        }
-        return users.count
+        return filteredUsers.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "memberCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddGroupMembersTableViewCell
-        var user = ""
-        if searchController.active && searchController.searchBar.text != "" {
-            user = filteredUsers[indexPath.row]
-        } else {
-            user = users[indexPath.row]
-        }
+        let user = filteredUsers[indexPath.row]
         cell.labelOutlet.text = user
+        cell.imageOutlet.image = UIImage(named: "noAvatar")
         cell.detailTextLabel?.text = user
         return cell
     }
@@ -186,6 +186,8 @@ class AddGroupMembersTableViewController: UITableViewController {
 extension AddGroupMembersTableViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
+        print(self.filteredUsers)
+        tableView.reloadData()
     }
 }
 
