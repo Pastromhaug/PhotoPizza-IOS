@@ -148,7 +148,7 @@ class AddGroupMembersTableViewController: UITableViewController {
         let user = filteredUsers[indexPath.row]
         cell.labelOutlet.text = user.name
         cell.imageOutlet.image = UIImage(named: "noAvatar")
-        cell.detailTextLabel?.text = user.email
+        cell.subLabelOutlet.text = user.email
         return cell
     }
     /*

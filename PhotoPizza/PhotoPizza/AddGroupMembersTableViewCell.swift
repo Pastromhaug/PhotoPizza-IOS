@@ -25,6 +25,7 @@ class AddGroupMembersTableViewCell: UITableViewCell {
     
     @IBOutlet weak var labelOutlet: UILabel!
     @IBOutlet weak var imageOutlet: UIImageView!
+    @IBOutlet weak var subLabelOutlet: UILabel!
     //    @IBOutlet weak var labelOutlet: UILabel!
     //    @IBOutlet weak var imageOutlet: UIImageView!
     
