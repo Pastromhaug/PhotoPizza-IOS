@@ -38,11 +38,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     var imgIDs: [String] = [String]()
     var imgs : [String : UIImage] = [String : UIImage]()
     var imgList : [UIImage] = [UIImage]()
-    
-    
     var imageObjs : [Image] = [Image]()
-    
-    // group 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +52,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
-        
-        //self.navigationController?.navigationBar.translucent = false
-        //initImageRefs()
         dbListen()
         
     }
@@ -103,8 +96,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                 }
 
         })
-        
     }
+    
     
     func dbListen() {
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
@@ -165,20 +158,13 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         })
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func uploadPicture(sender: UIBarButtonItem) {
         let pickerController = DKImagePickerController()
@@ -221,9 +207,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                     
                 }
             }
-            
-            
-
         }
         pickerController.showsCancelButton = true
         pickerController.sourceType = .Photo
@@ -239,20 +222,13 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        
-        //imgList = Array(imgs.values)
-        
-        //updateImgList()
-        return imageObjs.count
-        //return 4
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {        return imageObjs.count
     }
+    
     
     func updateImgList () {
         imgList = [UIImage]()
@@ -261,11 +237,13 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         }
     }
     
+    
     func sortImageObjs () {
         imageObjs.sortInPlace({ $0.uploadTimeSince1970 > $1.uploadTimeSince1970 })
         return
     }
 
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageCollectionViewCell
     
@@ -344,35 +322,4 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
             print("fetch1 failed")
         }
     }
-
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-
 }
