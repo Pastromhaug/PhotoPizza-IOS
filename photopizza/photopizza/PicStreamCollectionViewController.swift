@@ -38,11 +38,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
     var imgIDs: [String] = [String]()
     var imgs : [String : UIImage] = [String : UIImage]()
     var imgList : [UIImage] = [UIImage]()
-    
-    
     var imageObjs : [Image] = [Image]()
-    
-    // group 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +52,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
-        
-        //self.navigationController?.navigationBar.translucent = false
-        //initImageRefs()
         dbListen()
         
     }
@@ -103,8 +96,8 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                 }
 
         })
-        
     }
+    
     
     func dbListen() {
         let storageRef = storage.referenceForURL("gs://photo-pizza.appspot.com")
@@ -165,23 +158,18 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         })
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func uploadPicture(sender: UIBarButtonItem) {
         let pickerController = DKImagePickerController()
+        let groupRef = self.ref.child("groups")
+        let curGroupRef = groupRef.child(self.navigationItem.title!)
         pickerController.didSelectAssets = { (assets: [DKAsset]) in
             let storageRef = self.storage.referenceForURL("gs://photo-pizza.appspot.com")
             print(assets)
@@ -192,9 +180,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                     let fileString: String = uploadData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
                     let subString = md5(string: fileString)
                     
-                    
-                    print(subString)
-                    
                     //uploads img to storage
                     let imgRef = storageRef.child("images/" + subString + ".jpg")
                     imgRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -203,10 +188,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                         }
                         else {
                             // Metadata contains file metadata such as size, content-type, and download URL.
-                            print("putData succeeded")
-                            
-                            let groupRef = self.ref.child("groups")
-                            let curGroupRef = groupRef.child(self.navigationItem.title!)
                             let curGroupImgRef = curGroupRef.child("images")
                             
                             //uploads to real time database
@@ -217,47 +198,60 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                             dict["uploaderName"] = currentUser.name
                             dict["uploaderEmail"] = currentUser.email
                             dict["uploadTimeSince1970"] = NSDate().timeIntervalSince1970
-                            
-                            print(dict)
                             curGroupImgRef.child(subString).updateChildValues(dict)
                         }
                     })
-                    
                 }
             }
-            
-            
-
+            let fetchOptions: PHFetchOptions = PHFetchOptions()
+            fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+            let fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
+            if (fetchResult.lastObject != nil) {
+                let lastAsset: PHAsset = fetchResult.lastObject as! PHAsset
+                print("last creation date")
+                print(lastAsset.creationDate?.timeIntervalSince1970)
+                print("curr date")
+                print(NSDate().timeIntervalSince1970)
+                let lastDate: NSDate? = lastAsset.creationDate
+                let dict: [String: String] = ["lastAddedDate": String(lastDate!.timeIntervalSince1970)]
+                print(dict)
+                curGroupRef.updateChildValues(dict)
+            }
         }
         pickerController.showsCancelButton = true
         pickerController.sourceType = .Photo
         fetchPhotos()
         var dkassets = [DKAsset]()
-        for image in self.images {
-            dkassets.append(DKAsset(originalAsset: image))
-        }
-        pickerController.defaultSelectedAssets = dkassets
-        self.presentViewController(pickerController, animated: true) {}
+        curGroupRef.queryOrderedByKey().observeSingleEventOfType(.Value,
+            withBlock: { snapshot in
+                let res = JSON(snapshot.value!)
+                print(res)
+                let lastAddedDate = Float(res["lastAddedDate"].stringValue)
+                print(lastAddedDate!)
+                
+                for image in self.images {
+                    if Float(image.creationDate!.timeIntervalSince1970) > lastAddedDate {
+                        dkassets.append(DKAsset(originalAsset: image))
+                    }
+                    
+                }
+                pickerController.defaultSelectedAssets = dkassets
+                self.presentViewController(pickerController, animated: true) {}
+
+            }
+        )   
     }
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        
-        //imgList = Array(imgs.values)
-        
-        //updateImgList()
-        //print("COUNT: " + String(imgIDs))
-        return imageObjs.count
-        //return 4
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {        return imageObjs.count
     }
+    
     
     func updateImgList () {
         imgList = [UIImage]()
@@ -266,11 +260,13 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         }
     }
     
+    
     func sortImageObjs () {
         imageObjs.sortInPlace({ $0.uploadTimeSince1970 > $1.uploadTimeSince1970 })
         return
     }
 
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageCollectionViewCell
     
@@ -291,9 +287,6 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         cell.layer.borderWidth = 0
         cell.frame.size.width = screenWidth / 5
         cell.frame.size.height = screenWidth / 5
-        
-        print("somewhat importatn: \(imgIDs)")
-        
         return cell
     }
     
@@ -338,52 +331,19 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
         fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: true)]
         
         if let fetchResult: PHFetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions) {
-            print(fetchResult.dynamicType)
 
             // If the fetch result isn't empty,
             // proceed with the image request
-            print("fetchResult.count")
-            print(fetchResult.count)
             let numAssets = fetchResult.count
             for i in 0..<numAssets {
                 let asset: PHAsset = fetchResult.objectAtIndex(numAssets - 1 - i) as! PHAsset
                 images.append(asset)
                 print(asset.creationDate)
+                print(asset.creationDate.dynamicType)
             }
         }
         else {
             print("fetch1 failed")
         }
     }
-
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-
 }

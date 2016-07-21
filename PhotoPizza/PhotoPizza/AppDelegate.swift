@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRDatabase.database().persistenceEnabled = true
         ref = FIRDatabase.database().reference()
         ref!.keepSynced(true)
-        
     }
 
 
@@ -46,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
     func verifyAndLaunch(fbToken: FBSDKAccessToken) {
         let credential = FIRFacebookAuthProvider.credentialWithAccessToken(fbToken.tokenString)
         print("authData:")
@@ -63,29 +63,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
-        
-
     }
     
+    
     func getUserDataAndSwitchViews(user: FIRUser?, view: String) {
-        if let userRef: FIRDatabaseReference? =
-            FIRDatabase.database().reference().child("users").child(user!.uid) {
+        if let userRef: FIRDatabaseReference? = FIRDatabase.database().reference().child("users").child(user!.uid) {
                 userRef!.observeSingleEventOfType(.Value,
-                                                  withBlock: { snapshot in
-                                                    let userInfo = JSON(snapshot.value!)
-                                                    let userName = userInfo["userName"].stringValue
-                                                    let userFacebookId = userInfo["facebookId"].intValue
-                                                    let userEmail = userInfo["userEmail"].stringValue
-                                                    let userFirebaseId = userInfo["firebaseId"].stringValue
-                                                    var groups = [String:String]()
-                                                    currentUser = User(name: userName, email: userEmail, facebookId: userFacebookId, groups: groups)
-                                                    currentUser.firebaseId = userFirebaseId
-                                                    self.goToView(view)
+                withBlock: { snapshot in
+                    let userInfo = JSON(snapshot.value!)
+                    let userName = userInfo["userName"].stringValue
+                    let userFacebookId = userInfo["facebookId"].intValue
+                    let userEmail = userInfo["userEmail"].stringValue
+                    let userFirebaseId = userInfo["firebaseId"].stringValue
+                    var groups = [String:String]()
+                    currentUser = User(name: userName, email: userEmail, facebookId: userFacebookId, groups: groups)
+                    currentUser.firebaseId = userFirebaseId
+                    self.goToView(view)
                     }
                 )
-        }
-        else {
+        } else {
             print("failed to sign in to firebase")
         }
 
