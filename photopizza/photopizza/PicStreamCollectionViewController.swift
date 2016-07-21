@@ -239,7 +239,7 @@ class PicStreamCollectionViewController: UICollectionViewController, UIImagePick
                 self.presentViewController(pickerController, animated: true) {}
 
             }
-        )   
+        )
     }
 
     // MARK: UICollectionViewDataSource

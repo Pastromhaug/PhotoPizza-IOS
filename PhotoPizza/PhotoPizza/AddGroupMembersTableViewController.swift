@@ -41,7 +41,7 @@ class AddGroupMembersTableViewController: UITableViewController {
         userGroupRef.updateChildValues(otherDict)
         
         
-        let imgRef = storageRef.child("images/" + self.avatarImageId)
+        let imgRef = storageRef.child("images/" + self.avatarImageId + ".jpg")
         let uploadData = UIImageJPEGRepresentation((self.group?.avatar!)!, 0.05)!
         imgRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
             if (error != nil) {
